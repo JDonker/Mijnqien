@@ -1,3 +1,4 @@
+package com.Mijnqien;
 
 public class Admin extends Gebruiker{
 	String voornaam;

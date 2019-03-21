@@ -1,3 +1,4 @@
+package com.Mijnqien;
 
 public class Gebruiker {
 	long id;
