@@ -1,10 +1,21 @@
 package com.Mijnqien.Trainee;
-
-import java.util.ArrayList;
 import java.util.Set;
-
 import com.Mijnqien.Gebruiker;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+
+@Entity
 public class Trainee extends Gebruiker {
 	String voornaam;
 	String achternaam;

@@ -1,9 +1,16 @@
 package com.Mijnqien;
 
 import java.time.LocalDate;
+import java.util.concurrent.ExecutorService;
 
 public class DagelijkseCheck implements Runnable{
+	ExecutorService sm;
 
+	DagelijkseCheck(ExecutorService sm){
+		this.sm=sm;
+	}
+	
+	
 	@Override
 	public void run() {
 		
@@ -27,13 +34,10 @@ public class DagelijkseCheck implements Runnable{
 		
 		if(vandaag.isEqual(evm.plusDays(7))) {}
 		// laatse reminder volgende mail cc naar cora
-		
-		
+
 		System.out.println(evm2.minusWeeks(1));
 		System.out.println(evm2.minusDays(2));
 		System.out.println(evm.toString());
 		System.out.println(evm.plusDays(3).toString());
-		
 	}
-
 }

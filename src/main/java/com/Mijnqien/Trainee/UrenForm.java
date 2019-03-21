@@ -1,10 +1,9 @@
 package com.Mijnqien.Trainee;
 
-
-import java.util.ArrayList;
+import java.util.Set;
 
 public class UrenForm {
-	ArrayList <UrenPerDag> uren;
+	Set <UrenPerDag> uren;
 	int maand; //of enum?
 	Trainee trainee;
 	String opdracht;

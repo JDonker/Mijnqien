@@ -14,7 +14,7 @@ public class MijnqienApplication {
 		//srv.send("jasperdonker@gmail.com", "johoe", "dit is het bericht");
 		//SpringApplication.run(MijnqienApplication.class, args);
 		ExecutorService sm = Executors.newCachedThreadPool();
-		DagelijkseCheck check = new DagelijkseCheck();
+		DagelijkseCheck check = new DagelijkseCheck(sm);
 		sm.execute(check);
 	}
 }
