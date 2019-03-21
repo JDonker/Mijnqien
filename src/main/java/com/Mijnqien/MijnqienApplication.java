@@ -16,6 +16,7 @@ public class MijnqienApplication {
 		ExecutorService sm = Executors.newCachedThreadPool();
 		DagelijkseCheck check = new DagelijkseCheck();
 		sm.execute(check);
+	
 	}
 
 }

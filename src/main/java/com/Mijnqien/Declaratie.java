@@ -1,3 +1,5 @@
+package com.Mijnqien;
+
 import java.time.LocalDate;
 
 public class Declaratie {
