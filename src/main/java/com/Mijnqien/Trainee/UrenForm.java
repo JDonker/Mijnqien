@@ -1,4 +1,4 @@
-package com.Mijnqien;
+package com.Mijnqien.Trainee;
 
 
 import java.util.ArrayList;

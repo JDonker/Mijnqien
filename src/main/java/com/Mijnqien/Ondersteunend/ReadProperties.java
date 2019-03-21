@@ -1,4 +1,4 @@
-package com.Mijnqien;
+package com.Mijnqien.Ondersteunend;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -24,12 +24,7 @@ public class ReadProperties {
 			    setUsername = pro.getProperty("setUsername");
 			    setPassword = pro.getProperty("setPassword");	   
 			} catch(IOException e) {
-				System.out.println("Properties file not read.");
-				
+				System.out.println("Properties file not read.");	
 			}
-		
-
 		}
-
-
 }

@@ -1,6 +1,5 @@
-package com.Mijnqien;
+package com.Mijnqien.Ondersteunend;
 
-import java.io.IOException;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -9,6 +8,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+
 
 public class EmailServer{
 	private static EmailServer emailserver;
@@ -89,7 +90,6 @@ public class EmailServer{
 		    	System.out.println("Failed to send message to " + recipient);
 		    	System.out.println(e.getMessage());
 		    }
-		   
 	   }
 }
 
