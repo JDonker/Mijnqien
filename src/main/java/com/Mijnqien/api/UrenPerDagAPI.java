@@ -8,23 +8,23 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.Mijnqien.Trainee.Trainee;
-import com.Mijnqien.service.TraineeService;
+import com.Mijnqien.Trainee.UrenPerDag;
+import com.Mijnqien.service.UrenPerDagService;
 
 @Component
-@Path("trainee")
+@Path("urenperdag")
 
-public class TraineeAPI {
+public class UrenPerDagAPI {
 
 	@Autowired
-	TraineeService traineeService;
+	UrenPerDagService urenPerDagService;
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	
-	public Iterable<Trainee> getTrainees(){
-		Iterable<Trainee> trainees = traineeService.findAlleTrainees();
-		return trainees;
+	public Iterable<UrenPerDag> getUrenPerDag(){
+		Iterable<UrenPerDag> urenPerDag = urenPerDagService.findAlleUrenPerDag();
+		return urenPerDag;
 	}
 	
 }
