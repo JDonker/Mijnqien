@@ -1,5 +1,6 @@
 package com.Mijnqien.Trainee;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 import com.Mijnqien.Gebruiker;
 
@@ -14,20 +15,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Trainee extends Gebruiker {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	long id;
 	String voornaam;
 	String achternaam;
-	Profiel profiel;
+	//Profiel profiel;
 	int personeelsnummer;
-	long id;
 	String emailAdres;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
+	//Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
+	//Set<DeclaratieForm> declaratieFormulieren = new LinkedHashSet<>();
 
 	public String getEmailAdres() {
 		return emailAdres;
@@ -69,22 +67,4 @@ public class Trainee extends Gebruiker {
 		this.personeelsnummer = personeelsnummer;
 	}
 
-	public Set<UrenForm> getUrenFormulieren() {
-		return urenFormulieren;
-	}
-
-	public void setUrenFormulieren(Set<UrenForm> urenFormulieren) {
-		this.urenFormulieren = urenFormulieren;
-	}
-
-	public Set<DeclaratieForm> getDeclaratieFormulieren() {
-		return declaratieFormulieren;
-	}
-
-	public void setDeclaratieFormulieren(Set<DeclaratieForm> declaratieFormulieren) {
-		this.declaratieFormulieren = declaratieFormulieren;
-	}
-
-	Set<UrenForm> urenFormulieren;
-	Set<DeclaratieForm> declaratieFormulieren;
 }

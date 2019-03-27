@@ -20,4 +20,5 @@ public class Declaratie {
 	int btw;
 	int totaal;
 	String code;
+	
 }

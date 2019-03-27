@@ -60,7 +60,6 @@ public class EmailServer{
 	        props.put("mail.smtp.starttls.enable", enable);
 	   }
 	   
-	   
 	   public void send(String recipient, String subject,String content ) {
 		   	AutoResetUser();
 			Session session = Session.getInstance(props, null);
