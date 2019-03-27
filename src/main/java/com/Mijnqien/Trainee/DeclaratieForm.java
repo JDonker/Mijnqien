@@ -29,4 +29,79 @@ public class DeclaratieForm {
 	int totaalReisKosten;
 	int totaalKilometers;
 	
+	
+	public long getId() {
+		return Id;
+	}
+	public void setId(long id) {
+		Id = id;
+	}
+	public int getPrijsPerKilometer() {
+		return prijsPerKilometer;
+	}
+	public void setPrijsPerKilometer(int prijsPerKilometer) {
+		this.prijsPerKilometer = prijsPerKilometer;
+	}
+	public String getNaam() {
+		return naam;
+	}
+	public void setNaam(String naam) {
+		this.naam = naam;
+	}
+	public String getMasterclassEditie() {
+		return masterclassEditie;
+	}
+	public void setMasterclassEditie(String masterclassEditie) {
+		this.masterclassEditie = masterclassEditie;
+	}
+	public LocalDate getMaand() {
+		return maand;
+	}
+	public void setMaand(LocalDate maand) {
+		this.maand = maand;
+	}
+	public String getIBAN() {
+		return IBAN;
+	}
+	public void setIBAN(String iBAN) {
+		IBAN = iBAN;
+	}
+	public Set<Declaratie> getDeclaraties() {
+		return declaraties;
+	}
+	public void setDeclaraties(Set<Declaratie> declaraties) {
+		this.declaraties = declaraties;
+	}
+	public int getTotaalBedrag() {
+		return totaalBedrag;
+	}
+	public void setTotaalBedrag(int totaalBedrag) {
+		this.totaalBedrag = totaalBedrag;
+	}
+	public int getTotaalBTW() {
+		return totaalBTW;
+	}
+	public void setTotaalBTW(int totaalBTW) {
+		this.totaalBTW = totaalBTW;
+	}
+	public int getTotaalTotaal() {
+		return totaalTotaal;
+	}
+	public void setTotaalTotaal(int totaalTotaal) {
+		this.totaalTotaal = totaalTotaal;
+	}
+	public int getTotaalReisKosten() {
+		return totaalReisKosten;
+	}
+	public void setTotaalReisKosten(int totaalReisKosten) {
+		this.totaalReisKosten = totaalReisKosten;
+	}
+	public int getTotaalKilometers() {
+		return totaalKilometers;
+	}
+	public void setTotaalKilometers(int totaalKilometers) {
+		this.totaalKilometers = totaalKilometers;
+	}
+
+	
 }

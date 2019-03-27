@@ -51,6 +51,7 @@ public class Trainee extends Gebruiker {
 		this.achternaam = achternaam;
 	}
 
+
 //	public Profiel getProfiel() {
 //		return profiel;
 //	}
@@ -58,6 +59,7 @@ public class Trainee extends Gebruiker {
 //	public void setProfiel(Profiel profiel) {
 //		this.profiel = profiel;
 //	}
+
 
 	public int getPersoneelsnummer() {
 		return personeelsnummer;
