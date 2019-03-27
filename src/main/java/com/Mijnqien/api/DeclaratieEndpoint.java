@@ -7,6 +7,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -22,7 +23,7 @@ import com.Mijnqien.Trainee.DeclaratieForm;
 import com.Mijnqien.service.DeclaratieFormService;
 import com.Mijnqien.service.DeclaratieService;
 
-@Path("/DeclaratieForm/{FormID}/Declaratie")
+@Path("/DeclaratieForm/")
 @Component
 public class DeclaratieEndpoint {
 	
@@ -33,8 +34,9 @@ public class DeclaratieEndpoint {
 	DeclaratieFormService declaratieFormService;
 	
 	@GET
+	@Path("/{FormID}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response listGroep(long FormID) {
+	public Response listGroep(@PathParam("FormID") long FormID) {
 		Optional<DeclaratieForm> decFormOpt = declaratieFormService.findById(FormID);
 		try {
 			DeclaratieForm decForm= decFormOpt.orElseThrow(DeclaratieNotFoundException::new);
@@ -45,9 +47,10 @@ public class DeclaratieEndpoint {
 	}
 	
 	@POST
+	@Path("/{FormID}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response postDeclaratie(Declaratie declaratie,long FormID) {
+	public Response postDeclaratie(Declaratie declaratie,@PathParam("FormID") long FormID) {
 		Optional<DeclaratieForm> decFormOpt = declaratieFormService.findById(FormID);
 		try {
 			DeclaratieForm decForm= decFormOpt.orElseThrow(DeclaratieFormNotFoundException::new);
