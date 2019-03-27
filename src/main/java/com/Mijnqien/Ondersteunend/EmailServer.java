@@ -9,8 +9,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-
-
 public class EmailServer{
 	private static EmailServer emailserver;
 	private Properties props;
@@ -27,8 +25,6 @@ public class EmailServer{
 	};
 	
 	// Zorg dat er maar 1 instance van EmailServer kan bestaan!
-	
-		
 	public static EmailServer getInstance() {
 		   if (emailserver==null) {
 			   synchronized (EmailServer.class) {
@@ -63,7 +59,6 @@ public class EmailServer{
 	        props.put("mail.smtp.auth", auth);
 	        props.put("mail.smtp.starttls.enable", enable);
 	   }
-	   
 	   
 	   public void send(String recipient, String subject,String content ) {
 		   	AutoResetUser();
