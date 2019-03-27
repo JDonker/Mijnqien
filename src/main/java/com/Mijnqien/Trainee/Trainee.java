@@ -51,13 +51,13 @@ public class Trainee extends Gebruiker {
 		this.achternaam = achternaam;
 	}
 
-	public Profiel getProfiel() {
-		return profiel;
-	}
+	//public Profiel getProfiel() {
+	//	return profiel;
+	//}
 
-	public void setProfiel(Profiel profiel) {
-		this.profiel = profiel;
-	}
+	//public void setProfiel(Profiel profiel) {
+//		this.profiel = profiel;
+	//}
 
 	public int getPersoneelsnummer() {
 		return personeelsnummer;

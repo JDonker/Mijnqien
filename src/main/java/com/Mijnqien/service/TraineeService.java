@@ -4,13 +4,14 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.Mijnqien.Trainee.Trainee;
 import com.Mijnqien.repository.TraineeRepository;
 
-@Component
-@Transactional
 
+@Transactional
+@Service
 public class TraineeService {
 	@Autowired
 	TraineeRepository traineeRepository;
