@@ -29,9 +29,9 @@ public class DeclaratieService {
 	@Autowired 
 	ReisRepository reisRepository;
 	
-	public Declaratie findByID(Long id) throws DeclaratieFormNotFoundException{
+	public Declaratie findById(Long id) throws DeclaratieNotFoundException{
 		Optional<Declaratie> declaratieOPT = declaratieRepository.findById(id);
-		return declaratieOPT.orElseThrow(DeclaratieFormNotFoundException::new);
+		return declaratieOPT.orElseThrow(DeclaratieNotFoundException::new);
 				
 	}
 	

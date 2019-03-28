@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -18,14 +19,16 @@ import org.springframework.stereotype.Component;
 
 import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Exceptions.DeclaratieNotFoundException;
+import com.Mijnqien.Exceptions.ReisNotFoundException;
 import com.Mijnqien.Trainee.Declaratie;
 import com.Mijnqien.Trainee.DeclaratieForm;
+import com.Mijnqien.Trainee.Reis;
 import com.Mijnqien.service.DeclaratieFormService;
 import com.Mijnqien.service.DeclaratieService;
 
 @Path("/DeclaratieForm/")
 @Component
-public class DeclaratieEndpoint {
+public class DeclaratieApi {
 	
 	@Autowired
 	DeclaratieService declaratieService;
@@ -61,6 +64,22 @@ public class DeclaratieEndpoint {
 		}
 	}
 	
-	
-	
+	@PUT
+	@Path("/{FormID}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public Response putDeclaratie(Declaratie declaratie,@PathParam("FormID") long FormID) {
+		Optional<DeclaratieForm> decFormOpt = declaratieFormService.findById(FormID);		
+		try {
+			Declaratie gevondenDeclaratie = declaratieService.findById(declaratie.getId());
+			DeclaratieForm decForm= decFormOpt.orElseThrow(DeclaratieFormNotFoundException::new);
+			if (decForm.getDeclaraties().contains(gevondenDeclaratie)) {
+				Declaratie geupdateDeclaratie = declaratieService.Update(declaratie);
+				return Response.accepted(geupdateDeclaratie.getId()).build();
+			}
+			return Response.status(Status.BAD_REQUEST).build();
+		} catch (DeclaratieFormNotFoundException|DeclaratieNotFoundException e ) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
 }

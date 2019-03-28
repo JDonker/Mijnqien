@@ -26,5 +26,4 @@ public class TraineeAPI {
 		Iterable<Trainee> trainees = traineeService.findAlleTrainees();
 		return trainees;
 	}
-	
 }
