@@ -9,6 +9,29 @@ function Klik() {
     }
 }
 
+function opslaan(){
+ 
+  var input = document.getElementById("testDing").value;
+ 
+
+  xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(this.readyState == 4){
+				alert(this.responseText);
+			}
+		}
+		xhr.open("GET", "http://localhost:8082/api/urenperdag", true);
+		xhr.send();
+
+  // for(var i = 0; i<31; i++){
+
+  // }
+}
+
+function versturen(){
+
+}
+
 $(document).ready(function() {
     $('.Declaratieformulier').hide();
  });

@@ -13,7 +13,6 @@ import com.Mijnqien.service.TraineeService;
 
 @Component
 @Path("trainee")
-
 public class TraineeAPI {
 
 	@Autowired
@@ -21,7 +20,6 @@ public class TraineeAPI {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	
 	public Iterable<Trainee> getTrainees(){
 		Iterable<Trainee> trainees = traineeService.findAlleTrainees();
 		return trainees;
