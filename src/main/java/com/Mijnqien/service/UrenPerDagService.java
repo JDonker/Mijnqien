@@ -19,6 +19,11 @@ public class UrenPerDagService {
 		Iterable<UrenPerDag> resultaat = urenPerDagRepository.findAll();
 		return resultaat;
 	}
+	
+	public UrenPerDag saveUrenPerDag(UrenPerDag urenPerDag) {
+		return urenPerDagRepository.save(urenPerDag);
+
+	}
 
 	
 }

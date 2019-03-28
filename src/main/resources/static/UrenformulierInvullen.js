@@ -19,20 +19,20 @@ function opslaan(form){
   }
   xhr.open("POST", "http://localhost:8082/api/urenperdag", true);
   var uren_per_dag = {};
-  uren_per_dag.datum=form.datum1.value;
-  uren_per_dag.opdracht=form.opdracht1.value;
-  uren_per_dag.overwerk=form.overwerk1.value;
-  uren_per_dag.verlof=form.verlof1.value;
-  uren_per_dag.ziek=form.ziek1.value;
-  uren_per_dag.training=form.training1.value;
-  uren_per_dag.overig=form.overig1.value;
-  uren_per_dag.verklaring_overig=form.verklaring1.value;
+    uren_per_dag.datum=form.datum.value;
+    uren_per_dag.opdracht=form.opdracht.value;
+    uren_per_dag.overwerk=form.overwerk.value;
+    uren_per_dag.verlof=form.verlof.value;
+    uren_per_dag.ziek=form.ziek.value;
+    uren_per_dag.training=form.training.value;
+    uren_per_dag.overig=form.overig.value;
+    uren_per_dag.VerklaringOverig=form.verklaring.value;
 
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.send(JSON.stringify(uren_per_dag));
 }
 
-function versturen(){
+function versturen(form){
 
 }
 

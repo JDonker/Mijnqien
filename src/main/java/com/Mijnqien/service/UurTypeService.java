@@ -20,5 +20,9 @@ public class UurTypeService {
 		return resultaat;
 	}
 
+	public UurType saveUurType(UurType uurType) {
+	return uurTypeRepository.save(uurType);
+
+}
 	
 }

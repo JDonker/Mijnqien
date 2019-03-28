@@ -20,5 +20,9 @@ public class UrenFormService {
 		return resultaat;
 	}
 
+	public UrenForm saveUrenForm(UrenForm urenForm) {
+	return urenFormRepository.save(urenForm);
+
+}
 	
 }

@@ -16,7 +16,7 @@
         <a href="#about">Over ons</a>
     </div>
     <h1>Urenformulier maart</h1>
-    <form name = "traineeinput" action="" method = "GET">   
+    <form name = "ureninput" action="" method = "GET">   
         <table id="Uren">
             <thead>
                 <tr>
@@ -41,7 +41,7 @@
                     <td><input type="text" name="overig1" class="userinput" maxlength="2" size="1"/></td>
                     <td><input type="text" name="verklaring1" class="userinput" maxlength="30"/></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>2 maart</td>
                     <td><input type="text" name="opdracht2" class="userinput" maxlength="2" size="1"/></td>
                     <td><input type="text" name="overwerk2" class="userinput" maxlength="2" size="1"/></td>
@@ -340,11 +340,11 @@
                     <td><input type="text" name="training31" class="userinput" maxlength="2" size="1"/></td>
                     <td><input type="text" name="overig31" class="userinput" maxlength="2" size="1"/></td>
                     <td><input type="text" name="verklaring31" class="userinput" maxlength="30"/></td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
         <button type="button" id="Opslaan" class="buttonToggle" onclick="opslaan(this.form)">Opslaan</button>
-        <button type="button" id="Versturen" class="buttonToggle" onclick="versturen()">Versturen</button>
+        <button type="button" id="Versturen" class="buttonToggle" onclick="versturen(this.form)">Versturen</button>
     </form>
 </body>
 

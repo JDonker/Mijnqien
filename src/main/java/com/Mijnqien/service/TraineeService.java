@@ -21,5 +21,9 @@ public class TraineeService {
 		return resultaat;
 	}
 
+	public Trainee saveTrainee(Trainee trainee) {
+	return traineeRepository.save(trainee);
+
+}
 	
 }

@@ -20,5 +20,9 @@ public class ProfielService {
 		return resultaat;
 	}
 
+	public Profiel saveProfiel(Profiel profiel) {
+	return profielRepository.save(profiel);
+
+}
 	
 }
