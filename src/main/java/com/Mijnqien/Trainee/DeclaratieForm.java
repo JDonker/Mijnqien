@@ -23,6 +23,16 @@ public class DeclaratieForm {
 	String IBAN;					// fetch van trainee op moment van wijzigen/indienen
 	@OneToMany(fetch = FetchType.EAGER)
 	Set <Declaratie> declaraties = new LinkedHashSet<>();
+	@OneToMany(fetch = FetchType.EAGER)
+	Set <Reis> reizen = new LinkedHashSet<>();
+	
+	
+	public Set<Reis> getReizen() {
+		return reizen;
+	}
+	public void setReizen(Set<Reis> reizen) {
+		this.reizen = reizen;
+	}
 	int totaalBedrag;
 	int totaalBTW;
 	int totaalTotaal;

@@ -22,7 +22,7 @@ import com.Mijnqien.service.DeclaratieFormService;
 //adress in de api
 @Path("/DeclaratieForm")
 @Component
-public class DeclaratieFormEndpoint {
+public class DeclaratieFormApi {
 	
 	@Autowired
 	DeclaratieFormService declaratieFormService;
