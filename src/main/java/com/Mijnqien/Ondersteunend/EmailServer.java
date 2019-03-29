@@ -18,12 +18,12 @@ public class EmailServer{
 
 
 	@Autowired
-	Properties QienMail;
+	Properties mailServer;
 		// set the user details
 
 	   synchronized void SetUser(String username, String password) {
-		   QienMail.put("mail.smtp.user",username );
-		   QienMail.put("mail.smtp.pwd",password );
+		   mailServer.put("mail.smtp.user",username );
+		   mailServer.put("mail.smtp.pwd",password );
 	   }
 	   
 	   synchronized void AutoResetUser() {
@@ -37,10 +37,10 @@ public class EmailServer{
 	   // Set the server details of the server from which the message is send
 	   
 	   synchronized void SetServer(String name,String port, boolean auth, boolean enable) {
-		   QienMail.put("mail.smtp.host", name);
-		   QienMail.put("mail.smtp.port", port);
-		   QienMail.put("mail.smtp.auth", auth);
-		   QienMail.put("mail.smtp.starttls.enable", enable);
+		   mailServer.put("mail.smtp.host", name);
+		   mailServer.put("mail.smtp.port", port);
+		   mailServer.put("mail.smtp.auth", auth);
+		   mailServer.put("mail.smtp.starttls.enable", enable);
 	   }
 	   
 	   public void send(EmailBericht bericht) {
@@ -49,32 +49,21 @@ public class EmailServer{
 	   
 	   public void send(String recipient, String subject,String content ) {
 		   	AutoResetUser();
-			Session session = Session.getInstance(QienMail, null);
+			Session session = Session.getInstance(mailServer, null);
 		    session.setDebug(true);
 		    Message msg = new MimeMessage(session);
 		    
 		    try {
-		    	int i=1;
-		    	System.out.println(QienMail.getProperty("mail.smtp.user"));
-		    	System.out.println("hoi");
-			    msg.setFrom(new InternetAddress(QienMail.getProperty("mail.smtp.user")));
-			    System.out.println("hoi"+i++);
+		    	System.out.println(mailServer.getProperty("mail.smtp.user"));
+			    msg.setFrom(new InternetAddress(mailServer.getProperty("mail.smtp.user")));
 			    if (subject != null) {
 			        msg.setSubject(subject);
-	
 			    }
-			    System.out.println("hoi"+i++);
 			    msg.setText(content);
-			    System.out.println("hoi"+i++);
 			    msg.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-			    System.out.println("hoi"+i++);
 			    Transport transport = session.getTransport("smtp");
-			    System.out.println("hoi"+i++);
-			    transport.connect("smtp.live.com", 587, QienMail.getProperty("mail.smtp.user"), QienMail.getProperty("mail.smtp.pwd"));
-			    System.out.println("hoi"+i++);
+			    transport.connect("smtp.live.com", 587, mailServer.getProperty("mail.smtp.user"), mailServer.getProperty("mail.smtp.pwd"));
 			    transport.sendMessage(msg, msg.getAllRecipients());
-			    System.out.println("hoi"+i++);
-			    System.out.println("hoi"+i++);
 			    System.out.println("Mail sent successfully at " + recipient);
 			    transport.close();
 		    } catch (MessagingException e) {
@@ -83,4 +72,6 @@ public class EmailServer{
 		    }
 	   }
 }
+
+
 

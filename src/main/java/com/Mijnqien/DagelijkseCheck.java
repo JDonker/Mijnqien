@@ -2,11 +2,12 @@ package com.Mijnqien;
 
 import java.time.LocalDate;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class DagelijkseCheck implements Runnable{
-	ExecutorService sm;
+	ScheduledExecutorService sm;
 
-	DagelijkseCheck(ExecutorService sm){
+	DagelijkseCheck(ScheduledExecutorService sm){
 		this.sm=sm;
 	}
 	

@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "fac1e268-b3ff-417e-9fa3-30450a57db54",
+		"name": "mijnqien",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post Form Jasper",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prijsPerKilometer\": 19,\n    \"naam\": \"Jasper\",\n    \"masterclassEditie\": \"Februari2019\",\n    \"declaraties\": [],\n    \"totaalBedrag\": 0,\n    \"totaalBTW\": 0,\n    \"totaalTotaal\": 0,\n    \"totaalReisKosten\": 0,\n    \"totaalKilometers\": 0,\n    \"id\": 3,\n    \"iban\": null\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/DeclaratieForm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"DeclaratieForm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Form Robert",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prijsPerKilometer\": 19,\n    \"naam\": \"Robert\",\n    \"masterclassEditie\": \"Februari2019\",\n    \"declaraties\": [],\n    \"totaalBedrag\": 0,\n    \"totaalBTW\": 0,\n    \"totaalTotaal\": 0,\n    \"totaalReisKosten\": 0,\n    \"totaalKilometers\": 0,\n    \"id\": 3,\n    \"iban\": null\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/DeclaratieForm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"DeclaratieForm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Form",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prijsPerKilometer\": 19,\n    \"naam\": \"Robert\",\n    \"masterclassEditie\": \"Februari2019\",\n    \"declaraties\": [],\n    \"totaalBedrag\": 0,\n    \"totaalBTW\": 0,\n    \"totaalTotaal\": 0,\n    \"totaalReisKosten\": 0,\n    \"totaalKilometers\": 0,\n    \"id\": 3,\n    \"iban\": null\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/DeclaratieForm",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"DeclaratieForm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Declaratie Jasper",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nummer\" : 1,\n\t\"omschrijving\" : \"Hello\",\n\t\"bedrag\" : 200,\n\t\"btw\" : 400,\n\t\"totaal\" : 600,\n\t\"code\": \"324234\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/DeclaratieForm/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"DeclaratieForm",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Declaratie Robert",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nummer\" : 2,\n\t\"omschrijving\" : \"Hello\",\n\t\"bedrag\" : 200,\n\t\"btw\" : 400,\n\t\"totaal\" : 600,\n\t\"code\": \"324234\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/DeclaratieForm/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"DeclaratieForm",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Declaratie Robert 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nummer\" : 1,\n\t\"omschrijving\" : \"Udemy cursus\",\n\t\"bedrag\" : 21900,\n\t\"btw\" : 1100,\n\t\"totaal\" : 23000,\n\t\"code\": \"324f1234\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/DeclaratieForm/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"DeclaratieForm",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Declaraties Robert",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nummer\" : 1,\n\t\"omschrijving\" : \"Udemy cursus\",\n\t\"bedrag\" : 21900,\n\t\"btw\" : 1100,\n\t\"totaal\" : 23000,\n\t\"code\": \"324234\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/DeclaratieForm/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"DeclaratieForm",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Reis Robert",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"van\": \"Hilversum\",\n\t\"naar\": \"Utrecht\",\n\t\"ov\": true,\n\t\"ovkosten\": 3000\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/DeclaratieForm/Reis/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"DeclaratieForm",
+						"Reis",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Reis Robert 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"van\" : \"Hilversum\",\n\t\"naar\" : \"Utrecht\",\n\t\"kilometers\" : 44,\n\t\"ov\" : false\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/DeclaratieForm/Reis/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"DeclaratieForm",
+						"Reis",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Reizen Robert",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nummer\" : 1,\n\t\"omschrijving\" : \"Udemy cursus\",\n\t\"bedrag\" : 21900,\n\t\"btw\" : 1100,\n\t\"totaal\" : 23000,\n\t\"code\": \"324234\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/DeclaratieForm/Reis/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"DeclaratieForm",
+						"Reis",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Reis Robert 2 Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"subject\" : \"Hilversum\",\n\t\"content\" : \"Utrecht\",\n\t\"email\" : \"jasperdonker@gmail.com\"\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/Email/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"Email",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
