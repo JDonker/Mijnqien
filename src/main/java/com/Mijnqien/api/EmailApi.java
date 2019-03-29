@@ -19,7 +19,6 @@ public class EmailApi {
 	@Autowired
 	EmailServer emailServer;
 	
-	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
@@ -28,6 +27,4 @@ public class EmailApi {
 		emailServer.send(email);
 		return Response.accepted().build();
 	}
-	
-
 }

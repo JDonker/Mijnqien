@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.Mijnqien.Exceptions.TraineeNotFoundException;
 import com.Mijnqien.Trainee.Trainee;
 import com.Mijnqien.repository.TraineeRepository;
 
@@ -19,6 +20,10 @@ public class TraineeService {
 	public Iterable<Trainee> findAlleTrainees(){
 		Iterable<Trainee> resultaat = traineeRepository.findAll();
 		return resultaat;
+	}
+	
+	public Trainee findTraineeById(long id) throws TraineeNotFoundException {
+		return traineeRepository.findById(id).orElseThrow(TraineeNotFoundException::new);
 	}
 
 	

@@ -40,11 +40,10 @@ public class ReisApi {
 	@Path("/{FormID}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response listGroep(@PathParam("FormID") long FormID) {
-		Optional<DeclaratieForm> decFormOpt = declaratieFormService.findById(FormID);
 		try {
-			DeclaratieForm decForm= decFormOpt.orElseThrow(DeclaratieNotFoundException::new);
+			DeclaratieForm decForm= declaratieFormService.findById(FormID);
 			return Response.ok(decForm.getReizen()).build();
-		} catch (DeclaratieNotFoundException e) {
+		} catch (DeclaratieFormNotFoundException e) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
@@ -54,9 +53,8 @@ public class ReisApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response postDeclaratie(Reis reis,@PathParam("FormID") long FormID) {
-		Optional<DeclaratieForm> decFormOpt = declaratieFormService.findById(FormID);
 		try {
-			DeclaratieForm decForm= decFormOpt.orElseThrow(DeclaratieFormNotFoundException::new);
+			DeclaratieForm decForm= declaratieFormService.findById(FormID);
 			Reis reisSaved= reisService.saveInForm(reis, decForm);	
 			return Response.accepted(reisSaved.getId()).build();
 		} catch (DeclaratieFormNotFoundException e) {
@@ -69,10 +67,9 @@ public class ReisApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response putDeclaratie(Reis reis,@PathParam("FormID") long FormID) {
-		Optional<DeclaratieForm> decFormOpt = declaratieFormService.findById(FormID);		
 		try {
 			Reis gevondenreis = reisService.findById(reis.getId());
-			DeclaratieForm decForm= decFormOpt.orElseThrow(DeclaratieFormNotFoundException::new);
+			DeclaratieForm decForm= declaratieFormService.findById(FormID);
 			if (decForm.getReizen().contains(gevondenreis)) {
 				Reis geupdateReis = reisService.Update(reis);
 				return Response.accepted(geupdateReis.getId()).build();

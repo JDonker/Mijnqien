@@ -3,7 +3,6 @@ package com.Mijnqien.Ondersteunend;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -36,8 +35,8 @@ public class EmailServer{
 	   
 	   // Set the server details of the server from which the message is send
 	   
-	   synchronized void SetServer(String name,String port, boolean auth, boolean enable) {
-		   mailServer.put("mail.smtp.host", name);
+	   synchronized void SetServer(String hostname,String port, boolean auth, boolean enable) {
+		   mailServer.put("mail.smtp.host", hostname);
 		   mailServer.put("mail.smtp.port", port);
 		   mailServer.put("mail.smtp.auth", auth);
 		   mailServer.put("mail.smtp.starttls.enable", enable);
@@ -62,7 +61,7 @@ public class EmailServer{
 			    msg.setText(content);
 			    msg.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 			    Transport transport = session.getTransport("smtp");
-			    transport.connect("smtp.live.com", 587, mailServer.getProperty("mail.smtp.user"), mailServer.getProperty("mail.smtp.pwd"));
+			    transport.connect(mailServer.getProperty("mail.smtp.host"),  Integer.parseInt(mailServer.getProperty("mail.smtp.port")), mailServer.getProperty("mail.smtp.user"), mailServer.getProperty("mail.smtp.pwd"));
 			    transport.sendMessage(msg, msg.getAllRecipients());
 			    System.out.println("Mail sent successfully at " + recipient);
 			    transport.close();
