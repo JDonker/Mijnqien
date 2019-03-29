@@ -67,7 +67,9 @@ public class ReisApi {
 		try {
 			Reis gevondenreis = reisService.findById(reis.getId());
 			DeclaratieForm decForm= declaratieFormService.findById(FormID);
+			
 			if (decForm.getReizen().contains(gevondenreis)) {
+				
 				Reis geupdateReis = reisService.Update(reis);
 				return Response.accepted(geupdateReis.getId()).build();
 			}
