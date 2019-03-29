@@ -18,6 +18,8 @@ public class UrenForm {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	
 	long id;
+	String opdracht;
+	String maand;
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	Set <UrenPerDag> urenPerDag = new LinkedHashSet<>();
@@ -29,9 +31,8 @@ public class UrenForm {
 		this.urenPerDag = urenPerDag;
 	}
 	//Set <UrenPerDag> uren;
-	String maand;
 	//Trainee trainee;
-	String opdracht;
+
 	
 	public long getId() {
 		return id;
