@@ -22,7 +22,7 @@ import com.Mijnqien.service.DeclaratieFormService;
 //adress in de api
 @Path("/DeclaratieForm")
 @Component
-public class DeclaratieFormEndpoint {
+public class DeclaratieFormApi {
 	
 	@Autowired
 	DeclaratieFormService declaratieFormService;
@@ -38,6 +38,7 @@ public class DeclaratieFormEndpoint {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response postDeclaratieForm(DeclaratieForm declaratieForm) {
-		return Response.ok(declaratieFormService.save(declaratieForm)).build();
+		DeclaratieForm declaratieFormGesaved = declaratieFormService.save(declaratieForm);
+		return Response.accepted(declaratieFormGesaved.getId()).build();
 	}
 }
