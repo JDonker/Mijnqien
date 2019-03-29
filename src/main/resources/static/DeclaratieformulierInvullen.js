@@ -14,7 +14,7 @@ function DeclaratieToevoegen1() {
     cell3.setAttribute("name", "omschrijving" + row.rowIndex);
     var input3 = document.createElement("input");
     input3.setAttribute("type", "text");
-    input3.setAttribute("size", "100");
+    input3.setAttribute("size", "75");
     cell3.appendChild(input3);
     var cell4 = row.insertCell(3);
     cell4.setAttribute("name", "bedragbtw" + row.rowIndex);
@@ -43,7 +43,12 @@ function DeclaratieToevoegen1() {
     input6.setAttribute("min", "0");
     input6.setAttribute("value", "0");
     input6.setAttribute("step", ".01");
-    cell6.appendChild(input6);    
+    cell6.appendChild(input6); 
+    var cell7 = row.insertCell(6);
+    cell7.setAttribute("name", "bestand" + row.rowIndex);
+    var input7 = document.createElement("input");
+    input7.setAttribute("type", "file");   
+    cell7.appendChild(input7);
 }
 
 function DeclaratieToevoegen2(){
