@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MailBean {
     @Bean
-    public Properties QienMail() {
+    public Properties mailServer() {
 
         Properties p = new Properties();
 

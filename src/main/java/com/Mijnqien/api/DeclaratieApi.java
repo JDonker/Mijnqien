@@ -19,7 +19,6 @@ import org.springframework.stereotype.Component;
 
 import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Exceptions.DeclaratieNotFoundException;
-import com.Mijnqien.Exceptions.ReisNotFoundException;
 import com.Mijnqien.Trainee.Declaratie;
 import com.Mijnqien.Trainee.DeclaratieForm;
 import com.Mijnqien.Trainee.Reis;
@@ -69,17 +68,23 @@ public class DeclaratieApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response putDeclaratie(Declaratie declaratie,@PathParam("FormID") long FormID) {
-		Optional<DeclaratieForm> decFormOpt = declaratieFormService.findById(FormID);		
-		try {
-			Declaratie gevondenDeclaratie = declaratieService.findById(declaratie.getId());
-			DeclaratieForm decForm= decFormOpt.orElseThrow(DeclaratieFormNotFoundException::new);
-			if (decForm.getDeclaraties().contains(gevondenDeclaratie)) {
-				Declaratie geupdateDeclaratie = declaratieService.Update(declaratie);
-				return Response.accepted(geupdateDeclaratie.getId()).build();
+		if(declaratie!=null) {
+			Optional<DeclaratieForm> decFormOpt = declaratieFormService.findById(FormID);		
+			try {
+				Declaratie gevondenDeclaratie = declaratieService.findById(declaratie.getId());
+				DeclaratieForm decForm= decFormOpt.orElseThrow(DeclaratieFormNotFoundException::new);
+				if (decForm.getDeclaraties().contains(gevondenDeclaratie)) {
+					Declaratie geupdateDeclaratie = declaratieService.Update(declaratie);
+					return Response.accepted(geupdateDeclaratie.getId()).build();
+				}
+				return Response.status(Status.BAD_REQUEST).build();
+			} catch (DeclaratieFormNotFoundException|DeclaratieNotFoundException e ) {
+				return Response.status(Status.NOT_FOUND.getStatusCode(),e.toString()).build();
 			}
-			return Response.status(Status.BAD_REQUEST).build();
-		} catch (DeclaratieFormNotFoundException|DeclaratieNotFoundException e ) {
-			return Response.status(Status.NOT_FOUND).build();
-		}
+		} 
+		return Response.status(Status.BAD_REQUEST).build();
 	}
+
+
+
 }
