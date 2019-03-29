@@ -1,5 +1,6 @@
 package com.Mijnqien;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,6 +10,7 @@ public class Gebruiker {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	long id;
+	@Column(unique = true)
 	String gebruikersnaam;
 	String wachtwoord;
 	String rol; // trainee of admin
@@ -19,6 +21,7 @@ public class Gebruiker {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 	public String getGebruikersnaam() {
 		return gebruikersnaam;
 	}
