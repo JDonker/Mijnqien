@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.swing.text.html.ImageView;
 
 @Entity
 public class Profiel {
@@ -14,7 +13,7 @@ public class Profiel {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	long id;
-	//ImageView foto;
+	String foto;
 	String adres;
 	LocalDate geboorteDatum;
 	String IBAN;

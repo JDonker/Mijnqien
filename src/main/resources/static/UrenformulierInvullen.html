@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Oefening</title>
+    <title>UrenformulierInvullen</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="UrenformulierInvullen.css" />
     <script src="UrenformulierInvullen.js"></script>
@@ -16,7 +16,7 @@
         <a href="#about">Over ons</a>
     </div>
     <h1>Urenformulier maart</h1>
-    <div class="Urenformulier">
+    <form name = "ureninput" action="" method = "GET">   
         <table id="Uren">
             <thead>
                 <tr>
@@ -32,7 +32,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>1 maart</td>
+                    <td name = datum1>1 maart</td>
                     <td><input type="text" name="opdracht1" class="userinput" maxlength="2" size="1"/></td>
                     <td><input type="text" name="overwerk1" class="userinput" maxlength="2" size="1"/></td>
                     <td><input type="text" name="verlof1" class="userinput" maxlength="2" size="1"/></td>
@@ -343,10 +343,9 @@
                 </tr>
             </tbody>
         </table>
-        <button type="button" id="Opslaan" class="buttonToggle" onclick="Test()">Opslaan</button>
-        <button type="button" id="Versturen" class="buttonToggle" onclick="Test()">Versturen</button>
-    </div>
-        <script src="Admin.js"></script>
+        <button type="button" id="Opslaan" class="buttonToggle" onclick="opslaan(this.form)">Opslaan</button>
+        <button type="button" id="Versturen" class="buttonToggle" onclick="versturen(this.form)">Versturen</button>
+    </form>
 </body>
 
 </html>
