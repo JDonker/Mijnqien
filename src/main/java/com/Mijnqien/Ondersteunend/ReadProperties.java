@@ -17,7 +17,6 @@ public class ReadProperties {
 		{
 			try
 			{
-
 			    Properties pro = new Properties();
 			    String path = System.getProperty("user.dir")+"/src/main/resources/application.properties";
 			    pro.load(new FileInputStream(path));	   

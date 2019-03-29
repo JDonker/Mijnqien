@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Trainee.DeclaratieForm;
 import com.Mijnqien.Trainee.Trainee;
 import com.Mijnqien.repository.DeclaratieFormRepository;
@@ -22,9 +23,9 @@ public class DeclaratieFormService {
 		return resultaat;
 	}
 	
-	public Optional<DeclaratieForm> findById(long id){
-		Optional<DeclaratieForm> resultaat = declaratieFormRepository.findById(id);
-		return resultaat;
+	public DeclaratieForm findById(long id) throws DeclaratieFormNotFoundException {
+		return declaratieFormRepository.findById(id).orElseThrow(DeclaratieFormNotFoundException::new);
+
 	}
 	
 	public DeclaratieForm save(DeclaratieForm form){

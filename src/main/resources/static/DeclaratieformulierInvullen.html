@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Oefening</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="DeclaratieformulierInvullen.css" />
+    <script src="DeclaratieformulierInvullen.js"></script>
+</head>
+
+<body>
+    <div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a href="#news">Trainees</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">Over ons</a>
+    </div>
+    <h1>Declaratieformulier maart</h1>
+    <div class="Declaratieformulier">
+        <table id="Declaratie" align="center">
+            <thead>
+                <tr>
+                    <th>Nr.</th>
+                    <th>Datum</th>
+                    <th>Omschrijving</th>
+                    <th>Bedrag inclusief BTW (in euro's)</th>
+                    <th>BTW (%)</th>
+                    <th>Bedrag exclusief BTW (in euro's)</th>
+                    <th>Upload bestand</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><input type="date" name="datum1" class="userinput"/></td>
+                    <td><input type="text" name="omschrijving1" class="userinput" size="75"/></td>
+                    <td><input type="number" name="bedragbtw1" class="userinput" min="0" value="0" step=".01"/></td>
+                    <td>
+                        <select type="number" name="btw1" class="userinput">
+                                <option value="Kies BTW tarief">Kies BTW tarief</option>
+                                <option value="0%">0%</option>
+                                <option value="9%">9%</option>
+                                <option value="21%">21%</option>
+                        </select>
+                    </td>
+                    <td><input type="number" name="bedrag1" class="userinput" min="0" value="0" step=".01"/></td>
+                    <td><input type="file" name="bestand1" class="userinput"></td>
+                </tr>
+            </tbody>
+        </table>        
+    </div>
+    <button onclick="DeclaratieToevoegen1()">Declaratie toevoegen</button>
+    <div class="Declaratiekmformulier">
+            <table id="Declaratiekm" align="center">
+                <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Van (vertrek)</th>
+                            <th>Naar (bestemming)</th>
+                            <th>Aantal km.</th>
+                        </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td><input type="date" name="datumkm1" class="userinput"/></td>
+                            <td><input type="text" name="vertrek1" class="userinput" size="50"/></td>
+                            <td><input type="text" name="bestemming1" class="userinput" size="50"/></td>
+                            <td><input type="number" name="km1" class="userinput" min="0" value="0"/></td>
+                        </tr>
+                    </tbody>
+            </table>
+        </div>
+        <button onclick="DeclaratieToevoegen2()">Declaratie toevoegen</button>
+</body>
+
+</html>

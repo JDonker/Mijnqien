@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.validation.constraints.NotBlank;
@@ -18,17 +19,44 @@ public class Trainee extends Gebruiker {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	long id;
-	String voornaam;
-	String achternaam;
+	private long id;
+	private String voornaam;
+	private String achternaam;
+	private String tussenvoegsel;
 	//Profiel profiel;
-	int personeelsnummer;
-	String emailAdres;
+	private int personeelsnummer;
+	private String emailAdres;
 	//Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
-	//Set<DeclaratieForm> declaratieFormulieren = new LinkedHashSet<>();
+	@OneToMany
+	@JsonIgnore
+	Set<DeclaratieForm> declaratieFormulieren = new LinkedHashSet<>();
+
+	public Set<DeclaratieForm> getDeclaratieFormulieren() {
+		return declaratieFormulieren;
+	}
+
+	public void setDeclaratieFormulieren(Set<DeclaratieForm> declaratieFormulieren) {
+		this.declaratieFormulieren = declaratieFormulieren;
+	}
 
 	public String getEmailAdres() {
 		return emailAdres;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getTussenvoegsel() {
+		return tussenvoegsel;
+	}
+
+	public void setTussenvoegsel(String tussenvoegsel) {
+		this.tussenvoegsel = tussenvoegsel;
 	}
 
 	public void setEmailAdres(String emailAdres) {
