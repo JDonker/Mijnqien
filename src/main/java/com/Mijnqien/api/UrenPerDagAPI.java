@@ -26,5 +26,5 @@ public class UrenPerDagAPI {
 		Iterable<UrenPerDag> urenPerDag = urenPerDagService.findAlleUrenPerDag();
 		return urenPerDag;
 	}
-	
 }
+

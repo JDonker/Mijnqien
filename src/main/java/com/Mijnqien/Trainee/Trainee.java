@@ -25,7 +25,6 @@ public class Trainee extends Gebruiker {
 	private String tussenvoegsel;
 	//Profiel profiel;
 	private int personeelsnummer;
-	private String emailAdres;
 	//Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
 	@OneToMany
 	@JsonIgnore
@@ -39,9 +38,7 @@ public class Trainee extends Gebruiker {
 		this.declaratieFormulieren = declaratieFormulieren;
 	}
 
-	public String getEmailAdres() {
-		return emailAdres;
-	}
+
 
 	public long getId() {
 		return id;
@@ -59,9 +56,7 @@ public class Trainee extends Gebruiker {
 		this.tussenvoegsel = tussenvoegsel;
 	}
 
-	public void setEmailAdres(String emailAdres) {
-		this.emailAdres = emailAdres;
-	}
+
 
 	public String getVoornaam() {
 		return voornaam;

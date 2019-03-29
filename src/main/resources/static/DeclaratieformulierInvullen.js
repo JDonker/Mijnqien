@@ -1,3 +1,7 @@
+var trainee = 2;
+var declaraties = "";
+var reizen = "";
+
 function DeclaratieToevoegen1() {
     var table = document.getElementById("Declaratie");
     console.log(table);
@@ -83,6 +87,60 @@ function DeclaratieToevoegen2(){
 }
 
 
+function ReizenWegschrijven(){
+    var table = document.getElementById("Declaratiekm");
+    console.log(table);
+
+    jsondata =JSON.parse(reizen);
+    var col = [];
+    // verkijg de keys van de data 
+    for (var i = 0; i < jsondata.length; i++) {
+        // loop over de keys van ieder element
+        for (var key in jsondata[i]) {
+            // als het element mist in de variable col dan voeg je het toe
+            if (col.indexOf(key) === -1) {
+                col.push(key);
+            }
+        }
+    }
+
+    for (var i = 0; i < jsondata.length; i++) {
+        var row = table.insertRow(document.getElementById("Declaratiekm").rows.length);
+
+        for(var k=0;k<4;k++){
+            var cellReis = row.insertCell(-1);
+            var cellReisInput = document.createElement("input");
+            cellReisInput.setAttribute("onfocusout","putreis(" + jsondata[i]["id"] + ")");
+            if(k>0 && k<3){
+                cellReisInput.setAttribute("type", "text");
+                cellReisInput.setAttribute("size", "50");
+                if(k==2) {
+                    cellReisInput.value=jsondata[i]["van"];
+                    cellReisInput.setAttribute("id","van" + jsondata[i]["id"]);
+                } else {
+                    cellReisInput.value=jsondata[i]["naar"];
+                    cellReisInput.setAttribute("id","naar" + jsondata[i]["id"]);
+                }
+            }
+            if(k==0){
+                cellReisInput.setAttribute("type", "date");
+                cellReisInput.value=jsondata[i]["datum"];
+                cellReisInput.setAttribute("id","datum" + jsondata[i]["id"]);
+            }
+            if(k==3){
+                cellReisInput.setAttribute("type", "number");
+                cellReisInput.setAttribute("min", "0");
+                cellReisInput.setAttribute("value", "0");
+                cellReisInput.value=jsondata[i]["kilometers"];
+                cellReisInput.setAttribute("id","kilometers" + jsondata[i]["id"]);
+            }
+            cellReis.appendChild(cellReisInput);
+
+        }
+
+    }
+}
+
 function Klik() {
     if (document.getElementById("demo").innerHTML == "Bewerk") {
         document.getElementById("demo").innerHTML = "Geklikt";
@@ -90,3 +148,116 @@ function Klik() {
         document.getElementById("demo").innerHTML = "Bewerk";
     }
 }
+
+
+
+function onload() {
+    console.log(declaraties.length);
+    if(declaraties.length==0) {
+        loadDeclaraties();
+    } else {
+        
+    }
+
+    if(reizen.length==0){
+        loadReizen();
+        
+    } else {
+        ReizenWegschrijven();
+    }
+
+    var body = document.getElementById("thebody")
+
+
+    var textje = document.createElement("div");
+    textje.innerHTML = declaraties;
+    var textje2 = document.createElement("div");
+    textje2.innerHTML = reizen;
+    body.appendChild(textje);
+    body.appendChild(textje2);
+}
+
+function loadDeclaraties(){
+
+        var api =  "api/DeclaratieForm/" + trainee
+
+        // maak een nieuw request volgens het http protecol
+        var xhttp = new XMLHttpRequest();
+        console.log(api);
+        // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                if (declaraties!=this.responseText) {
+                    declaraties = this.responseText;
+                    console.log("nu hier");
+                    onload();
+                }
+            }
+          };
+        // geef aan dt je data wil gaan pakken uit de database
+        // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+        xhttp.open("GET", "http://localhost:8082/"+api);
+        // send request om data te gaan getten body wordt genegeerd
+        // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+        xhttp.send();
+}
+
+
+
+function loadReizen(){
+    var api =  "api/DeclaratieForm/Reis/" + trainee
+
+    // maak een nieuw request volgens het http protecol
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+    // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            if (reizen!=this.responseText) {
+                reizen = this.responseText;
+                console.log("nu hier");
+                onload();
+            }
+        }
+    };
+    // geef aan dt je data wil gaan pakken uit de database
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+    xhttp.open("GET", "http://localhost:8082/"+api);
+    // send request om data te gaan getten body wordt genegeerd
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+    xhttp.send();
+}
+
+function putreis(id){
+    var reis= {};
+    reis.van = document.getElementById("van" + id).value;
+    reis.naar = document.getElementById("naar" + id).value;
+    reis.kilometers = document.getElementById("kilometers" + id).value;
+    reis.datum = document.getElementById("datum" + id).value;
+    reis.id = id;
+    console.log(reis);
+    putobject(JSON.stringify(reis));
+}
+
+function putobject(data){
+    var api =  "api/DeclaratieForm/Reis/" + trainee
+
+    // maak een nieuw request volgens het http protecol
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+    // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+    xhttp.onreadystatechange = function() {
+        console.log(this.status)
+        if (this.readyState == 4 && this.status == 200) {
+            reload();
+        }
+    };
+    // geef aan dt je data wil gaan pakken uit de database
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+    xhttp.open("PUT", "http://localhost:8082/"+api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    // send request om data te gaan putten
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+    xhttp.send(data);
+}
+
