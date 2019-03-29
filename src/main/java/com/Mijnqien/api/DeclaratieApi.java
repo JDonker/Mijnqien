@@ -39,11 +39,11 @@ public class DeclaratieApi {
 	@Path("/{FormID}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response listGroep(@PathParam("FormID") long FormID) {
-		Optional<DeclaratieForm> decFormOpt = declaratieFormService.findById(FormID);
+
 		try {
-			DeclaratieForm decForm= decFormOpt.orElseThrow(DeclaratieNotFoundException::new);
+			DeclaratieForm decForm= declaratieFormService.findById(FormID);
 			return Response.ok(decForm.getDeclaraties()).build();
-		} catch (DeclaratieNotFoundException e) {
+		} catch (DeclaratieFormNotFoundException e) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
@@ -53,9 +53,8 @@ public class DeclaratieApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response postDeclaratie(Declaratie declaratie,@PathParam("FormID") long FormID) {
-		Optional<DeclaratieForm> decFormOpt = declaratieFormService.findById(FormID);
 		try {
-			DeclaratieForm decForm= decFormOpt.orElseThrow(DeclaratieFormNotFoundException::new);
+			DeclaratieForm decForm = declaratieFormService.findById(FormID);
 			Declaratie declaratiesaved= declaratieService.saveInForm(declaratie, decForm);	
 			return Response.accepted().build();
 		} catch (DeclaratieFormNotFoundException e) {
@@ -69,10 +68,9 @@ public class DeclaratieApi {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response putDeclaratie(Declaratie declaratie,@PathParam("FormID") long FormID) {
 		if(declaratie!=null) {
-			Optional<DeclaratieForm> decFormOpt = declaratieFormService.findById(FormID);		
-			try {
+			try  {
 				Declaratie gevondenDeclaratie = declaratieService.findById(declaratie.getId());
-				DeclaratieForm decForm= decFormOpt.orElseThrow(DeclaratieFormNotFoundException::new);
+				DeclaratieForm decForm= declaratieFormService.findById(FormID);
 				if (decForm.getDeclaraties().contains(gevondenDeclaratie)) {
 					Declaratie geupdateDeclaratie = declaratieService.Update(declaratie);
 					return Response.accepted(geupdateDeclaratie.getId()).build();
@@ -84,7 +82,4 @@ public class DeclaratieApi {
 		} 
 		return Response.status(Status.BAD_REQUEST).build();
 	}
-
-
-
 }
