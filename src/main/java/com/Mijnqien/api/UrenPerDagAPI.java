@@ -41,6 +41,7 @@ public class UrenPerDagAPI {
 		Iterable<UrenPerDag> urenPerDag = urenPerDagService.findAlleUrenPerDag();
 		return urenPerDag;
 	}
+
 	
 	@POST
 	public Response inDatabaseStoppen(UrenPerDag urenPerDag) {
@@ -81,5 +82,6 @@ public class UrenPerDagAPI {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
+
 }
 

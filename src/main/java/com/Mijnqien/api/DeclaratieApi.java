@@ -21,7 +21,6 @@ import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Exceptions.DeclaratieNotFoundException;
 import com.Mijnqien.Trainee.Declaratie;
 import com.Mijnqien.Trainee.DeclaratieForm;
-import com.Mijnqien.Trainee.Reis;
 import com.Mijnqien.service.DeclaratieFormService;
 import com.Mijnqien.service.DeclaratieService;
 

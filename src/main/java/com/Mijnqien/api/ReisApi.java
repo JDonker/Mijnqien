@@ -17,13 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
-import com.Mijnqien.Exceptions.DeclaratieNotFoundException;
 import com.Mijnqien.Exceptions.ReisNotFoundException;
-import com.Mijnqien.Trainee.Declaratie;
 import com.Mijnqien.Trainee.DeclaratieForm;
 import com.Mijnqien.Trainee.Reis;
 import com.Mijnqien.service.DeclaratieFormService;
-import com.Mijnqien.service.DeclaratieService;
 import com.Mijnqien.service.ReisService;
 
 @Path("/DeclaratieForm/Reis")
@@ -66,7 +63,11 @@ public class ReisApi {
 	@Path("/{FormID}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response putDeclaratie(Reis reis,@PathParam("FormID") long FormID) {
+	public Response putDeclaratie(@PathParam("FormID") long FormID,Reis reis) {
+		System.out.println(reis.getNaar());
+		System.out.println(reis.getVan());
+		System.out.println(reis.getId());
+		System.out.println(reis.getKilometers());
 		try {
 			Reis gevondenreis = reisService.findById(reis.getId());
 			DeclaratieForm decForm= declaratieFormService.findById(FormID);
@@ -76,7 +77,7 @@ public class ReisApi {
 			}
 			return Response.status(Status.BAD_REQUEST).build();
 		} catch (DeclaratieFormNotFoundException|ReisNotFoundException e ) {
-			return Response.status(Status.NOT_FOUND).build();
+			return Response.status(Status.NOT_FOUND.getStatusCode(),e.toString()).build();
 		}
 	}
 	
