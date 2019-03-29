@@ -14,6 +14,14 @@ public class UrenPerDag {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
 	long id;
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	String opdracht;
 	int overwerk;
 	int training;

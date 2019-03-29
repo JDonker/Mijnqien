@@ -18,16 +18,31 @@ function opslaan(form){
         }
   }
   xhr.open("POST", "http://localhost:8082/api/urenperdag", true);
-  var uren_per_dag = {};
-    uren_per_dag.datum=form.datum.value;
-    uren_per_dag.opdracht=form.opdracht.value;
-    uren_per_dag.overwerk=form.overwerk.value;
-    uren_per_dag.verlof=form.verlof.value;
-    uren_per_dag.ziek=form.ziek.value;
-    uren_per_dag.training=form.training.value;
-    uren_per_dag.overig=form.overig.value;
-    uren_per_dag.VerklaringOverig=form.verklaring.value;
-
+  var uren_per_dagArray = new Array(2);
+  var datum = "";
+  var opdracht = "";
+  var overwerk = "";
+  var verlof = "";
+  var ziek = "";
+  var training = "";
+  var overig = "";
+  var VerklaringOverig = "";
+  var uren_per_dag = {datum, opdracht, overwerk, verlof, ziek, training, overig, VerklaringOverig};
+  for (var i = 0; i<2; i++){
+      uren_per_dagArray.push(uren_per_dag);
+      console.log(uren_per_dagArray);
+  }
+  for(var i = 0; i<2; i++){
+   //uren_per_dagArray[i].datum=form.datum+i.innerHTML;
+   uren_per_dagArray[i].opdracht=form.opdracht[i].value;
+   uren_per_dagArray[i].overwerk=form.overwerk[i].value;
+   uren_per_dagArray[i].verlof=form.verlof[i].value;
+   uren_per_dagArray[i].ziek=form.ziek[i].value;
+   uren_per_dagArray[i].training=form.training[i].value;
+   uren_per_dagArray[i].overig=form.overig[i].value;
+   //uren_per_dagArray[i].VerklaringOverig=form.verklaring[i].value;
+  
+  }
   xhr.setRequestHeader("Content-type", "application/json");
   xhr.send(JSON.stringify(uren_per_dag));
 }
