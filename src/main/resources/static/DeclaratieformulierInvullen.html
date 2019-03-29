@@ -26,13 +26,14 @@
                     <th>Bedrag inclusief BTW (in euro's)</th>
                     <th>BTW (%)</th>
                     <th>Bedrag exclusief BTW (in euro's)</th>
+                    <th>Upload bestand</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>1</td>
                     <td><input type="date" name="datum1" class="userinput"/></td>
-                    <td><input type="text" name="omschrijving1" class="userinput" size="100"/></td>
+                    <td><input type="text" name="omschrijving1" class="userinput" size="75"/></td>
                     <td><input type="number" name="bedragbtw1" class="userinput" min="0" value="0" step=".01"/></td>
                     <td>
                         <select type="number" name="btw1" class="userinput">
@@ -43,6 +44,7 @@
                         </select>
                     </td>
                     <td><input type="number" name="bedrag1" class="userinput" min="0" value="0" step=".01"/></td>
+                    <td><input type="file" name="bestand1" class="userinput"></td>
                 </tr>
             </tbody>
         </table>        
