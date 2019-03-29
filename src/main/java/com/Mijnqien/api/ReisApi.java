@@ -64,10 +64,6 @@ public class ReisApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response putDeclaratie(@PathParam("FormID") long FormID,Reis reis) {
-		System.out.println(reis.getNaar());
-		System.out.println(reis.getVan());
-		System.out.println(reis.getId());
-		System.out.println(reis.getKilometers());
 		try {
 			Reis gevondenreis = reisService.findById(reis.getId());
 			DeclaratieForm decForm= declaratieFormService.findById(FormID);
@@ -80,6 +76,6 @@ public class ReisApi {
 			return Response.status(Status.NOT_FOUND.getStatusCode(),e.toString()).build();
 		}
 	}
-	
-	
 }
+
+
