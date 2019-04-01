@@ -1,6 +1,8 @@
 var trainee = 2;
 var declaraties = "";
 var reizen = "";
+var formulier = {};
+formulier.datum = new Date();
 
 function DeclaratieToevoegen1() {
     var table = document.getElementById("Declaratie");
@@ -55,37 +57,76 @@ function DeclaratieToevoegen1() {
     cell7.appendChild(input7);
 }
 
-function DeclaratieToevoegen2(){
-    var table = document.getElementById("Declaratiekm");
-    console.log(table);
-    var row = table.insertRow(document.getElementById("Declaratiekm").rows.length);
+function DeclaratieWegschrijven(){
+    var table = document.getElementById("DeclaratieTableBody");
+    table.innerHTML="";
 
-    var cell7 = row.insertCell(0);
-    cell7.setAttribute("name", "datumkm" + row.rowIndex);
-    var input7 = document.createElement("input");
-    input7.setAttribute("type", "date");
-    cell7.appendChild(input7);
-    var cell8 = row.insertCell(1);
-    cell8.setAttribute("name", "vertrek" + row.rowIndex);
-    var input8 = document.createElement("input");
-    input8.setAttribute("type", "text");
-    input8.setAttribute("size", "50");
-    cell8.appendChild(input8);
-    var cell9 = row.insertCell(2);
-    cell9.setAttribute("name", "aankomst" + row.rowIndex);
-    var input9 = document.createElement("input");
-    input9.setAttribute("type", "text");
-    input9.setAttribute("size", "50");
-    cell9.appendChild(input9);
-    var cell10 = row.insertCell(3);
-    cell10.setAttribute("name", "km" + row.rowIndex);
-    var input10 = document.createElement("input");
-    input10.setAttribute("type", "number");
-    input10.setAttribute("min", "0");
-    input10.setAttribute("value", "0");
-    cell10.appendChild(input10);
+
+    jsondata =JSON.parse(declaraties);
+    var col = [];
+    // verkijg de keys van de data 
+    for (var i = 0; i < jsondata.length; i++) {
+        // loop over de keys van ieder element
+        for (var key in jsondata[i]) {
+            // als het element mist in de variable col dan voeg je het toe
+            if (col.indexOf(key) === -1) {
+                col.push(key);
+            }
+        }
+    }
+
+    for (var i = 0; i < jsondata.length; i++) {
+        var row = table.insertRow(-1);
+
+        for(var k=0;k<6;k++){
+            var cellDeclaratie = row.insertCell(-1);
+            var cellDeclaratieinput = document.createElement("input");
+            cellDeclaratieinput.setAttribute("onfocusout","putdeclaratie(" + jsondata[i]["id"] + ")");
+
+            switch(k){
+                case 1:
+                    cellDeclaratieinput.setAttribute("id","datum" + jsondata[i]["id"] );
+                    cellDeclaratieinput.setAttribute("type", "date");
+                    // haal begin en end datum uit de datum van het formulier
+                    cellDeclaratieinput.setAttribute("min", "2019-03-01");
+                    cellDeclaratieinput.setAttribute("max", "2019-03-31");
+                    cellDeclaratieinput.value=jsondata[i]["datum"];
+                    break;
+                case 2:
+                    cellDeclaratieinput.setAttribute("id","omschrijving" + jsondata[i]["id"] );
+                    cellDeclaratieinput.setAttribute("type", "text");
+                    cellDeclaratieinput.value=jsondata[i]["omschrijving"];
+                    break; 
+                case 3:
+                    cellDeclaratieinput.setAttribute("id","bedrag" + jsondata[i]["id"] );
+                    cellDeclaratieinput.setAttribute("type", "text");
+                    cellDeclaratieinput.value=jsondata[i]["bedrag"];
+                    break;
+                case 4: 
+                    var cellDeclaratieinput = document.createElement("select");
+                    var array = ["Kies BTW tarief", "0%", "9%", "21%"];
+                    cellDeclaratieinput.id = "mySelect";
+                for (var j = 0; j < array.length; j++) {
+                    var option = document.createElement("option");
+                    option.value = array[j];
+                    option.text = array[j];
+                    cellDeclaratieinput.appendChild(option);
+                }
+                case 5:
+                    cellDeclaratieinput.setAttribute("id","bedragMinBtw" + jsondata[i]["id"] );
+                    cellDeclaratieinput.setAttribute("type", "text");
+                    cellDeclaratieinput.value=jsondata[i]["btw"];
+                default:
+                    break;
+            }
+
+
+            cellDeclaratie.appendChild(cellDeclaratieinput);
+
+        }
+    }
+
 }
-
 
 function ReizenWegschrijven(){
     var table = document.getElementById("ReizenTableBody");
@@ -115,7 +156,7 @@ function ReizenWegschrijven(){
             if(k>0 && k<3){
                 cellReisInput.setAttribute("type", "text");
                 cellReisInput.setAttribute("size", "50");
-                if(k==2) {
+                if(k==1) {
                     cellReisInput.value=jsondata[i]["van"];
                     cellReisInput.setAttribute("id","van" + jsondata[i]["id"]);
                 } else {
@@ -142,6 +183,8 @@ function ReizenWegschrijven(){
     }
 }
 
+
+
 function Klik() {
     if (document.getElementById("demo").innerHTML == "Bewerk") {
         document.getElementById("demo").innerHTML = "Geklikt";
@@ -157,7 +200,7 @@ function onload() {
     if(declaraties.length==0) {
         loadDeclaraties();
     } else {
-        
+        DeclaratieWegschrijven();
     }
 
     if(reizen.length==0){
@@ -229,6 +272,19 @@ function loadReizen(){
     xhttp.send();
 }
 
+function putdeclaratie(id){
+    var declaratie= {};
+    declaratie.omschrijving = document.getElementById("van" + id).value;
+    declaratie.bedrag = document.getElementById("naar" + id).value;
+    declaratie.btw = document.getElementById("kilometers" + id).value;
+    declaratie.datum = document.getElementById("datum" + id).value;
+    declaratie.id = id;
+    console.log(declaratie);
+    putReis(JSON.stringify(declaratie));
+}
+
+
+
 function putreis(id){
     var reis= {};
     reis.van = document.getElementById("van" + id).value;
@@ -237,11 +293,11 @@ function putreis(id){
     reis.datum = document.getElementById("datum" + id).value;
     reis.id = id;
     console.log(reis);
-    putobject(JSON.stringify(reis));
+    putReis(JSON.stringify(reis));
 }
 
-function putobject(data){
-    var api =  "api/DeclaratieForm/Reis/" + trainee
+function putDeclaratie(data){
+    var api =  "api/DeclaratieForm/" + trainee
 
     // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
@@ -249,8 +305,8 @@ function putobject(data){
     // als staat van het XMLHTTPRequest object verandert doe dan het volgende
     xhttp.onreadystatechange = function() {
         console.log(this.status)
-        if (this.readyState == 4 && this.status == 200) {
-            reload();
+        if (this.readyState == 4 && this.status == 202) {
+            loadReizen()
         }
     };
     // geef aan dt je data wil gaan pakken uit de database
@@ -262,3 +318,80 @@ function putobject(data){
     xhttp.send(data);
 }
 
+
+
+function putReis(data){
+    var api =  "api/DeclaratieForm/Reis/" + trainee
+
+    // maak een nieuw request volgens het http protecol
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+    // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+    xhttp.onreadystatechange = function() {
+        console.log(this.status)
+        if (this.readyState == 4 && this.status == 202) {
+            loadReizen()
+        }
+    };
+    // geef aan dt je data wil gaan pakken uit de database
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+    xhttp.open("PUT", "http://localhost:8082/"+api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    // send request om data te gaan putten
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+    xhttp.send(data);
+}
+
+
+function postDeclaratie(){
+    var api =  "api/DeclaratieForm/" + trainee
+    var declaratie= {};
+    declaratie.bedrag = "Bedrag";
+    declaratie.btw = "Bedrag minus btw";
+    declaratie.omschrijving = "omschrijving";
+    data = JSON.stringify(declaratie);
+    // maak een nieuw request volgens het http protecol
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+    // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+    xhttp.onreadystatechange = function() {
+        console.log(this.status)
+        if (this.readyState == 4 && this.status == 202) {
+            loadDeclaraties();
+        }
+    };
+    // geef aan dat je data wil gaan pakken uit de database
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+    xhttp.open("POST", "http://localhost:8082/"+api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    // send request om data te gaan putten
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+    xhttp.send(data);
+}
+
+function postReis(){
+    var api =  "api/DeclaratieForm/Reis/" + trainee
+    var reis= {};
+    reis.van = "van";
+    reis.naar = "naar";
+    reis.kilometers = 0;
+    console.log( new Date());
+    data = JSON.stringify(reis);
+    // maak een nieuw request volgens het http protecol
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+    // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+    xhttp.onreadystatechange = function() {
+        console.log(this.status)
+        if (this.readyState == 4 && this.status == 202) {
+            loadReizen();
+        }
+    };
+    // geef aan dt je data wil gaan pakken uit de database
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+    xhttp.open("POST", "http://localhost:8082/"+api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    // send request om data te gaan putten
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+    xhttp.send(data);
+}
