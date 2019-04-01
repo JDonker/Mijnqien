@@ -26,5 +26,9 @@ public class TraineeService {
 		return traineeRepository.findById(id).orElseThrow(TraineeNotFoundException::new);
 	}
 
+	public Trainee saveTrainee(Trainee trainee) {
+	return traineeRepository.save(trainee);
+
+}
 	
 }

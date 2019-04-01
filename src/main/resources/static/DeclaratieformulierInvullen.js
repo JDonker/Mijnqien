@@ -88,8 +88,9 @@ function DeclaratieToevoegen2(){
 
 
 function ReizenWegschrijven(){
-    var table = document.getElementById("Declaratiekm");
-    console.log(table);
+    var table = document.getElementById("ReizenTableBody");
+    table.innerHTML="";
+
 
     jsondata =JSON.parse(reizen);
     var col = [];
@@ -105,7 +106,7 @@ function ReizenWegschrijven(){
     }
 
     for (var i = 0; i < jsondata.length; i++) {
-        var row = table.insertRow(document.getElementById("Declaratiekm").rows.length);
+        var row = table.insertRow(-1);
 
         for(var k=0;k<4;k++){
             var cellReis = row.insertCell(-1);
@@ -215,7 +216,7 @@ function loadReizen(){
         if (this.readyState == 4 && this.status == 200) {
             if (reizen!=this.responseText) {
                 reizen = this.responseText;
-                console.log("nu hier");
+                console.log(reizen);
                 onload();
             }
         }

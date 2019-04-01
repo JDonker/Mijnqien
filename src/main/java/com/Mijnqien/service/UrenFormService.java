@@ -1,5 +1,7 @@
 package com.Mijnqien.service;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +22,14 @@ public class UrenFormService {
 		return resultaat;
 	}
 
+	public UrenForm saveUrenForm(UrenForm urenForm) {
+	return urenFormRepository.save(urenForm);
+
+}
+	
+	public Optional<UrenForm> findById(long id){
+	Optional<UrenForm> resultaat = urenFormRepository.findById(id);
+	return resultaat;
+}
 	
 }
