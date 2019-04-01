@@ -6,6 +6,11 @@ body{
 h1{
    color: #640080;
 }
+
+.weekend{
+  background-color: #9C4AF0;
+}
+
 /* Add a black background color to the top navigation */
 .topnav {
     background-color: #9C4AF0;
@@ -33,10 +38,25 @@ h1{
     background-color: rgb(216, 224, 217);
     color: white;
   }
+
   #Uren {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+    margin: auto;
+    width: 75%;
+  }
+
+  #Urenheader{
+    height: 50px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #640080;
+    color: white;
+  }
+
+  #HeaderCell{
+    width: 12.5%;
   }
   
   #Uren th {
