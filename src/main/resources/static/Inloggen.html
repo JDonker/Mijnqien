@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>mijnQien - Inloggen</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="mijnQien.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="Admin.js"></script>
+</head>
+
+<body>
+
+    <div class="topnav">
+        <a id="logo"><img class="logo" src="https://www.qien.nl/wp-content/uploads/2017/10/logo.svg"
+                style="height: auto; width: 25px"></a>
+                
+    </div>
+    <h1>Welkom bij mijnQien</h1>
+
+    <style>
+
+    </style>
+    <form>
+        <h2>Inloggen</h2>
+
+        <div class="input-container">
+            <i class="fa fa-envelope icon"></i>
+            <input class="input-field" type="text" placeholder="E-mailadres" onblur="emailCheck(this.value)" autofocus >
+        </div>
+        <p id="email"></p>
+        <div class="input-container">
+            <i class="fa fa-key icon"></i>
+            <input class="input-field" id="wachtwoord" type="password" placeholder="Wachtwoord"
+                onkeyup="capsTest(event)">
+        </div>
+        <p id="caps"></p>
+        <input type="checkbox" onclick="wachtwoordTonen()">Wachtwoord tonen
+        <span class="psw">Wachtwoord <a href="#">vergeten?</a></span>
+        <button type="submit" class="btn" onclick="inloggen()">Inloggen</button>
+    </form>
+    </div>
+
+
+
+    <script src="Admin.js"></script>
+</body>
+
+</html>
