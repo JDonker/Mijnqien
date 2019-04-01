@@ -77,11 +77,11 @@ function DeclaratieWegschrijven(){
 
     for (var i = 0; i < jsondata.length; i++) {
         var row = table.insertRow(-1);
-
+        row.setAttribute("onfocusout","putdeclaratie(" + jsondata[i]["id"] + ")");
         for(var k=0;k<6;k++){
             var cellDeclaratie = row.insertCell(-1);
             var cellDeclaratieinput = document.createElement("input");
-            cellDeclaratieinput.setAttribute("onfocusout","putdeclaratie(" + jsondata[i]["id"] + ")");
+           //cellDeclaratieinput.setAttribute("onfocusout","putdeclaratie(" + jsondata[i]["id"] + ")");
 
             switch(k){
                 case 1:
@@ -113,14 +113,12 @@ function DeclaratieWegschrijven(){
                     cellDeclaratieinput.appendChild(option);
                 }
                 case 5:
-                    cellDeclaratieinput.setAttribute("id","bedragMinBtw" + jsondata[i]["id"] );
+                    cellDeclaratieinput.setAttribute("id","bedragminbtw" + jsondata[i]["id"] );
                     cellDeclaratieinput.setAttribute("type", "text");
                     cellDeclaratieinput.value=jsondata[i]["btw"];
                 default:
                     break;
             }
-
-
             cellDeclaratie.appendChild(cellDeclaratieinput);
 
         }
@@ -131,7 +129,6 @@ function DeclaratieWegschrijven(){
 function ReizenWegschrijven(){
     var table = document.getElementById("ReizenTableBody");
     table.innerHTML="";
-
 
     jsondata =JSON.parse(reizen);
     var col = [];
@@ -148,11 +145,12 @@ function ReizenWegschrijven(){
 
     for (var i = 0; i < jsondata.length; i++) {
         var row = table.insertRow(-1);
+        row.setAttribute("onfocusout","putreis(" + jsondata[i]["id"] + ")");
 
         for(var k=0;k<4;k++){
             var cellReis = row.insertCell(-1);
             var cellReisInput = document.createElement("input");
-            cellReisInput.setAttribute("onfocusout","putreis(" + jsondata[i]["id"] + ")");
+           // cellReisInput.setAttribute("onfocusout","putreis(" + jsondata[i]["id"] + ")");
             if(k>0 && k<3){
                 cellReisInput.setAttribute("type", "text");
                 cellReisInput.setAttribute("size", "50");
@@ -177,23 +175,9 @@ function ReizenWegschrijven(){
                 cellReisInput.setAttribute("id","kilometers" + jsondata[i]["id"]);
             }
             cellReis.appendChild(cellReisInput);
-
         }
-
     }
 }
-
-
-
-function Klik() {
-    if (document.getElementById("demo").innerHTML == "Bewerk") {
-        document.getElementById("demo").innerHTML = "Geklikt";
-    } else {
-        document.getElementById("demo").innerHTML = "Bewerk";
-    }
-}
-
-
 
 function onload() {
     console.log(declaraties.length);
@@ -222,9 +206,7 @@ function onload() {
 }
 
 function loadDeclaraties(){
-
         var api =  "api/DeclaratieForm/" + trainee
-
         // maak een nieuw request volgens het http protecol
         var xhttp = new XMLHttpRequest();
         console.log(api);
@@ -245,8 +227,6 @@ function loadDeclaraties(){
         // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
         xhttp.send();
 }
-
-
 
 function loadReizen(){
     var api =  "api/DeclaratieForm/Reis/" + trainee
@@ -282,8 +262,6 @@ function putdeclaratie(id){
     console.log(declaratie);
     putReis(JSON.stringify(declaratie));
 }
-
-
 
 function putreis(id){
     var reis= {};
@@ -346,13 +324,13 @@ function putReis(data){
 function postDeclaratie(){
     var api =  "api/DeclaratieForm/" + trainee
     var declaratie= {};
-    declaratie.bedrag = "Bedrag";
-    declaratie.btw = "Bedrag minus btw";
+    declaratie.bedrag = "0";
+    declaratie.bedragminbtw = "0";
     declaratie.omschrijving = "omschrijving";
     data = JSON.stringify(declaratie);
     // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
-    console.log(api);
+    console.log(data);
     // als staat van het XMLHTTPRequest object verandert doe dan het volgende
     xhttp.onreadystatechange = function() {
         console.log(this.status)
@@ -364,7 +342,7 @@ function postDeclaratie(){
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
     xhttp.open("POST", "http://localhost:8082/"+api);
     xhttp.setRequestHeader("Content-type", "application/json");
-    // send request om data te gaan putten
+    // send request om data te gaan posten
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send(data);
 }
