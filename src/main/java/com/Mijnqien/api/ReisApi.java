@@ -1,5 +1,6 @@
 package com.Mijnqien.api;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import javax.ws.rs.Consumes;
@@ -50,6 +51,9 @@ public class ReisApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response postDeclaratie(Reis reis,@PathParam("FormID") long FormID) {
+		if(reis.getDatum()==null) {
+			reis.setDatum(LocalDate.now());
+		}
 		try {
 			DeclaratieForm decForm= declaratieFormService.findById(FormID);
 			Reis reisSaved= reisService.saveInForm(reis, decForm);	
