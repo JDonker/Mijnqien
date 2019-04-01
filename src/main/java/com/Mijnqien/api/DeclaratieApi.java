@@ -1,5 +1,6 @@
 package com.Mijnqien.api;
 
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Set;
 
@@ -16,6 +17,7 @@ import javax.ws.rs.core.Response.Status;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Exceptions.DeclaratieNotFoundException;
@@ -24,7 +26,7 @@ import com.Mijnqien.Trainee.DeclaratieForm;
 import com.Mijnqien.service.DeclaratieFormService;
 import com.Mijnqien.service.DeclaratieService;
 
-@Path("/DeclaratieForm/")
+@Path("/DeclaratieForm")
 @Component
 public class DeclaratieApi {
 	
@@ -38,7 +40,6 @@ public class DeclaratieApi {
 	@Path("/{FormID}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response listGroep(@PathParam("FormID") long FormID) {
-
 		try {
 			DeclaratieForm decForm= declaratieFormService.findById(FormID);
 			return Response.ok(decForm.getDeclaraties()).build();
@@ -48,18 +49,25 @@ public class DeclaratieApi {
 	}
 	
 	@POST
+	@CrossOrigin
 	@Path("/{FormID}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response postDeclaratie(Declaratie declaratie,@PathParam("FormID") long FormID) {
+	public Response postDeclaratie(@PathParam("FormID") long FormID,Declaratie declaratie) {
+		System.out.println("hier");
+		if(declaratie.getDatum()==null) {
+			declaratie.setDatum(LocalDate.now());
+		}
 		try {
 			DeclaratieForm decForm = declaratieFormService.findById(FormID);
+			System.out.println("hier");
 			Declaratie declaratiesaved= declaratieService.saveInForm(declaratie, decForm);	
 			return Response.accepted().build();
 		} catch (DeclaratieFormNotFoundException e) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
+	
 	
 	@PUT
 	@Path("/{FormID}")
