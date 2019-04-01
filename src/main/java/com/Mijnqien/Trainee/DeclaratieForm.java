@@ -25,6 +25,8 @@ public class DeclaratieForm {
 	Set <Declaratie> declaraties = new LinkedHashSet<>();
 	@OneToMany(fetch = FetchType.EAGER)
 	Set <Reis> reizen = new LinkedHashSet<>();
+	boolean verzonden;	// Door medewerker
+	boolean verwerkt; 	// Door Qien admin
 	
 	
 	public Set<Reis> getReizen() {

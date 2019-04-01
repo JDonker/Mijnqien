@@ -13,25 +13,15 @@ public class Declaratie {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long Id;				// unieke identifier
 	
-	int nummer;
 	LocalDate datum;
 	String omschrijving;
 	int bedrag;
-	int btw;
-	int totaal;
-	String code;
-	
+	int bedragminbtw;
 	public long getId() {
 		return Id;
 	}
 	public void setId(long id) {
 		Id = id;
-	}
-	public int getNummer() {
-		return nummer;
-	}
-	public void setNummer(int nummer) {
-		this.nummer = nummer;
 	}
 	public LocalDate getDatum() {
 		return datum;
@@ -51,24 +41,12 @@ public class Declaratie {
 	public void setBedrag(int bedrag) {
 		this.bedrag = bedrag;
 	}
-	public int getBtw() {
-		return btw;
+	public int getBedragminbtw() {
+		return bedragminbtw;
 	}
-	public void setBtw(int btw) {
-		this.btw = btw;
+	public void setBedragminbtw(int bedragminbtw) {
+		this.bedragminbtw = bedragminbtw;
 	}
-	public int getTotaal() {
-		return totaal;
-	}
-	public void setTotaal(int totaal) {
-		this.totaal = totaal;
-	}
-	public String getCode() {
-		return code;
-	}
-	public void setCode(String code) {
-		this.code = code;
-	}
-
+	
 	
 }

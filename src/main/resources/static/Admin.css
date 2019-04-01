@@ -1,0 +1,185 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+h1{
+  text-align: center;
+   color: #640080;
+}
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #640080;
+    overflow: hidden;
+  }
+  #logo{
+    padding: 5px 10px 5px 10px;
+
+  }
+  
+
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    background-color: rgb(216, 224, 217);
+    color: white;
+  }
+  #Uren {
+
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #Uren th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #Uren tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #Uren tr:hover {background-color: #ddd;}
+  
+  #Uren th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #640080;
+    color: white;
+  }
+  @media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #640080; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #640080;
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+
+td:nth-of-type(1):before { content: "Naam"; }
+td:nth-of-type(2):before { content: "Datum"; }
+td:nth-of-type(3):before { content: "Type"; }
+td:nth-of-type(4):before { content: "Status"; }
+td:nth-of-type(5):before { content: "Bewerk"; }
+
+}
+.wrapper {
+  max-width: 700px;
+  margin: 50px auto;
+}
+
+#login{
+  text-align: center;
+}
+
+#inlogformulier{
+  width: 30%;
+  margin: 0 auto;
+  padding: 5px;
+  border-color: #640080;
+  border-style: solid;
+  border-width: thin;
+
+}
+
+
+
+* {box-sizing: border-box;}
+
+.input-container {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  background: #640080;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 2px solid #9C4AF0;
+}
+
+/* Set a style for the submit button */
+.btn {
+  background-color: #640080;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn:hover {
+  opacity: 1;
+}
+
+form{
+  max-width:500px;
+  margin:auto
+}
+span.psw{
+  float: right;
+}
+
+#caps{
+  color:red
+}
+
+#email{
+  color:red
+}
+ 

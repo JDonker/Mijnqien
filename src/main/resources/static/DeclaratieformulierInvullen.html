@@ -4,7 +4,7 @@
 <head>
     <title>Oefening</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="DeclaratieformulierInvullen.css" />
+    <link rel="stylesheet" href="mijnQien.css" />
     <script src="DeclaratieformulierInvullen.js"></script>
 </head>
 
@@ -30,26 +30,10 @@
                 </tr>
             </thead>
             <tbody id="DeclaratieTableBody">
-                <tr>
-                    <td>1</td>
-                    <td><input type="date" name="datum1" class="userinput"/></td>
-                    <td><input type="text" name="omschrijving1" class="userinput" size="75"/></td>
-                    <td><input type="number" name="bedragbtw1" class="userinput" min="0" value="0" step=".01"/></td>
-                    <td>
-                        <select type="number" name="btw1" class="userinput">
-                                <option value="Kies BTW tarief">Kies BTW tarief</option>
-                                <option value="0%">0%</option>
-                                <option value="9%">9%</option>
-                                <option value="21%">21%</option>
-                        </select>
-                    </td>
-                    <td><input type="number" name="bedrag1" class="userinput" min="0" value="0" step=".01"/></td>
-                    <td><input type="file" name="bestand1" class="userinput"></td>
-                </tr>
             </tbody>
         </table>        
     </div>
-    <button onclick="DeclaratieToevoegen1()">Declaratie toevoegen</button>
+    <button onclick="postDeclaratie()">Declaratie toevoegen</button>
     <div class="Declaratiekmformulier">
             <table id="Declaratiekm" align="center">
                 <thead>
@@ -65,6 +49,6 @@
            
             </table>
         </div>
-        <button onclick="DeclaratieToevoegen2()">Declaratie toevoegen</button>
+        <button onclick="postReis()">Declaratie toevoegen</button>
 </body>
 </html>

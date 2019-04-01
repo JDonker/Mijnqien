@@ -40,7 +40,6 @@ public class DeclaratieService {
 		return declaratieRepository.save(declaratie);
 	}
 	
-	
 	@Transactional
 	public Declaratie saveInForm(Declaratie declaratie,DeclaratieForm form) throws DeclaratieFormNotFoundException  {
 		Optional<DeclaratieForm> AddToThisOpt = declaratieFormRepository.findById(form.getId());
