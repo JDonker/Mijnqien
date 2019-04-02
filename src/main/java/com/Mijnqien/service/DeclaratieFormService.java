@@ -32,9 +32,4 @@ public class DeclaratieFormService {
 		DeclaratieForm resultaat = declaratieFormRepository.save(form);
 		return resultaat;
 	}
-	
-	
-	
-	
-	
 }

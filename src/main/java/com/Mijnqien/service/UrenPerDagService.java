@@ -58,5 +58,4 @@ public class UrenPerDagService {
 		UpdatableUrenPerDag=urenPerDag;
 		return saveUrenPerDag(UpdatableUrenPerDag);
 	}
-	
 }

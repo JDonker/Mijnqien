@@ -1,5 +1,6 @@
 package com.Mijnqien.api;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import javax.ws.rs.Consumes;
@@ -50,6 +51,9 @@ public class ReisApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response postDeclaratie(Reis reis,@PathParam("FormID") long FormID) {
+		if(reis.getDatum()==null) {
+			reis.setDatum(LocalDate.now());
+		}
 		try {
 			DeclaratieForm decForm= declaratieFormService.findById(FormID);
 			Reis reisSaved= reisService.saveInForm(reis, decForm);	
@@ -64,14 +68,12 @@ public class ReisApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response putDeclaratie(@PathParam("FormID") long FormID,Reis reis) {
-		System.out.println(reis.getNaar());
-		System.out.println(reis.getVan());
-		System.out.println(reis.getId());
-		System.out.println(reis.getKilometers());
 		try {
 			Reis gevondenreis = reisService.findById(reis.getId());
 			DeclaratieForm decForm= declaratieFormService.findById(FormID);
+			
 			if (decForm.getReizen().contains(gevondenreis)) {
+				
 				Reis geupdateReis = reisService.Update(reis);
 				return Response.accepted(geupdateReis.getId()).build();
 			}
@@ -80,6 +82,6 @@ public class ReisApi {
 			return Response.status(Status.NOT_FOUND.getStatusCode(),e.toString()).build();
 		}
 	}
-	
-	
 }
+
+
