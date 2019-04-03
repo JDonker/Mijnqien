@@ -25,6 +25,8 @@ var gewensteMaand = maand[gewensteDatum.getMonth()];
 var gewensteDag = gewensteDatum.getDate();
 var gewenstJaar = gewensteDatum.getFullYear();
 
+var nuDatum = new Date();
+
 function starten(){
     alert(startDag + " " + startMaand);
 }
@@ -51,4 +53,7 @@ function volgendJaar(){
     jaarIndex++;
     gewensteDatum.setFullYear(jaarIndex);
     toonGewensteDatum();
+}
+function nu(){
+    alert(nuDatum);
 }
