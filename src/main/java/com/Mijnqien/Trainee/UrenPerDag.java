@@ -22,7 +22,7 @@ public class UrenPerDag {
 		this.id = id;
 	}
 
-	String opdracht;
+	int opdracht;
 	int overwerk;
 	int training;
 	int ziek;
@@ -31,11 +31,11 @@ public class UrenPerDag {
 	int overig;
 	String datum;
 
-	public String getOpdracht() {
+	public int getOpdracht() {
 		return opdracht;
 	}
 
-	public void setOpdracht(String opdracht) {
+	public void setOpdracht(int opdracht) {
 		this.opdracht = opdracht;
 	}
 
