@@ -25,28 +25,13 @@ public class DeclaratieForm {
 	Set <Declaratie> declaraties = new LinkedHashSet<>();
 	@OneToMany(fetch = FetchType.EAGER)
 	Set <Reis> reizen = new LinkedHashSet<>();
-	boolean verzonden;	// Door medewerker
-	boolean verwerkt; 	// Door Qien admin
-	boolean leeg; 	// Door Qien admin
+	Status status = Status.INAFWACHTING;
 	int totaalBedrag;
 	int totaalBTW;
 	int totaalTotaal;
 	int totaalReisKosten;
 	int totaalKilometers;
 
-
-	public boolean isVerzonden() {
-		return verzonden;
-	}
-	public void setVerzonden(boolean verzonden) {
-		this.verzonden = verzonden;
-	}
-	public boolean isVerwerkt() {
-		return verwerkt;
-	}
-	public void setVerwerkt(boolean verwerkt) {
-		this.verwerkt = verwerkt;
-	}
 	public Set<Reis> getReizen() {
 		return reizen;
 	}
