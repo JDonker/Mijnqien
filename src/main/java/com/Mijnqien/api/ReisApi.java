@@ -56,8 +56,12 @@ public class ReisApi {
 		}
 		try {
 			DeclaratieForm decForm= declaratieFormService.findById(FormID);
-			Reis reisSaved= reisService.saveInForm(reis, decForm);	
-			return Response.accepted(reisSaved.getId()).build();
+			if (decForm.bewerkbaar()) {
+				Reis reisSaved= reisService.saveInForm(reis, decForm);	
+				return Response.accepted(reisSaved.getId()).build();
+			} else {
+				return Response.status(Status.BAD_REQUEST).build();
+			}
 		} catch (DeclaratieFormNotFoundException e) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
@@ -71,9 +75,7 @@ public class ReisApi {
 		try {
 			Reis gevondenreis = reisService.findById(reis.getId());
 			DeclaratieForm decForm= declaratieFormService.findById(FormID);
-			
-			if (decForm.getReizen().contains(gevondenreis)) {
-				
+			if (decForm.getReizen().contains(gevondenreis)&&decForm.bewerkbaar()) {
 				Reis geupdateReis = reisService.Update(reis);
 				return Response.accepted(geupdateReis.getId()).build();
 			}

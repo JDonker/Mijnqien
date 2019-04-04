@@ -98,4 +98,25 @@ public class DeclaratieFormApi {
 	}
 	
 	
+	@PUT
+	@Path("/weiger/{FormID}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public Response weigerDeclaratieForm(@PathParam("FormID") long FormID) {
+		// check of iemand admin is
+		
+		try {
+			DeclaratieForm decForm= declaratieFormService.findById(FormID);
+			if (decForm.getStatus()==Stat.INGEDIEND) {
+				decForm.setStatus(Stat.WIJZIGEN);
+				ReadProperties.readConfig();
+				decForm = declaratieFormService.save(decForm);
+				emailserver.send("jasperdonker@gmail.com","Declaratie " + decForm.getMaand().getMonth().toString() + " " + decForm.getMaand().getYear() + " afgekeurd!","");
+				return Response.status(Status.ACCEPTED).build();
+			}
+			return Response.status(Status.BAD_REQUEST).build();
+		} catch (DeclaratieFormNotFoundException e) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
 }
