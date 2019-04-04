@@ -25,7 +25,14 @@ public class DeclaratieForm {
 	Set <Declaratie> declaraties = new LinkedHashSet<>();
 	@OneToMany(fetch = FetchType.EAGER)
 	Set <Reis> reizen = new LinkedHashSet<>();
-	Status status = Status.INAFWACHTING;
+	Stat status = Stat.INAFWACHTING;
+	
+	public Stat getStatus() {
+		return status;
+	}
+	public void setStatus(Stat status) {
+		this.status = status;
+	}
 	int totaalBedrag;
 	int totaalBTW;
 	int totaalTotaal;
