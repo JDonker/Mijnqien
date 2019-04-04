@@ -30,7 +30,7 @@ public class UrenForm {
 	public void setUrenPerDag(Set<UrenPerDag> urenPerDag) {
 		this.urenPerDag = urenPerDag;
 	}
-	//Set <UrenPerDag> uren;
+	
 	//Trainee trainee;
 
 	
