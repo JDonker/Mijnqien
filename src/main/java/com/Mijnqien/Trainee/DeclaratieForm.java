@@ -29,6 +29,18 @@ public class DeclaratieForm {
 	boolean verwerkt; 	// Door Qien admin
 	
 	
+	public boolean isVerzonden() {
+		return verzonden;
+	}
+	public void setVerzonden(boolean verzonden) {
+		this.verzonden = verzonden;
+	}
+	public boolean isVerwerkt() {
+		return verwerkt;
+	}
+	public void setVerwerkt(boolean verwerkt) {
+		this.verwerkt = verwerkt;
+	}
 	public Set<Reis> getReizen() {
 		return reizen;
 	}

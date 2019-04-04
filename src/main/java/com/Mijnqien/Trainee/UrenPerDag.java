@@ -22,20 +22,20 @@ public class UrenPerDag {
 		this.id = id;
 	}
 
-	String opdracht;
+	int opdracht;
 	int overwerk;
 	int training;
 	int ziek;
 	int verlof;
-	String VerklaringOverig;
+	String verklaringOverig;
 	int overig;
 	String datum;
 
-	public String getOpdracht() {
+	public int getOpdracht() {
 		return opdracht;
 	}
 
-	public void setOpdracht(String opdracht) {
+	public void setOpdracht(int opdracht) {
 		this.opdracht = opdracht;
 	}
 
@@ -72,11 +72,11 @@ public class UrenPerDag {
 	}
 
 	public String getVerklaringOverig() {
-		return VerklaringOverig;
+		return verklaringOverig;
 	}
 
 	public void setVerklaringOverig(String verklaringOverig) {
-		VerklaringOverig = verklaringOverig;
+		this.verklaringOverig = verklaringOverig;
 	}
 
 	public int getOverig() {
