@@ -20,6 +20,7 @@ public class UrenForm {
 	long id;
 	String opdracht;
 	String maand;
+	Stat stat = Stat.INAFWACHTING;
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	Set <UrenPerDag> urenPerDag = new LinkedHashSet<>();
