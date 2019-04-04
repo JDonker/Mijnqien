@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<  head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+            <link href="stylesheet.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div class="header">
+  <h1>mijn Qien</h1>
+  <h1>invoer controleren test</h1>
+</div>
+
+<div class="row">
+
+    <div class="col-6 col-s-9">
+
+        <form>    
+          
+                <br>voornaam: <input type = "text" name = "vn" pattern="^[A-Z].[a-z]{2,}$" title="Voer een geldige voornaam in, bestaande uit alleen letters, beginnend met een hoofdletter." >    
+                <br>tussenvoegsel: <input type = "text" title="Voer, indien van toepassing, een tussenvoegsel in (bijvoorbeeld van der)." name = "tv">    
+                <br>achternaam: <input type = "text" name = "an" pattern="^[A-Za-z]{2,}$" title="Voer een geldige achternaam in, bestaande uit alleen letters, beginnend met een hoofdletter."  >    
+                <br>geboortedatum: <input type = "date" name = "gd" title="Voer een geldige datum in." >    
+                <br>E-mail: <input type="email" name="em" title="Voer een geldig E-mailadres in." >
+                <br>gebruikersnaam: <input type="text" name="gn" pattern="^[A-Za-z0-9_]{6,20}$" title="Voer een gebruikersnaam in van minstens 6 en hoogstens 20 tekens met alleen cijfers, letters en/of een underscore (_)." >
+                <br>wachtwoord: <input type="password" name="ww" pattern="(?=^.{8,32}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" title="Voer een wachtwoord in van minstens 8 en hoogstens 32 tekens met minstens één cijfer of speciaal teken, één hoofdletter en één kleine letter." >
+                <br><input type="submit">
+           
+        </form> 
+       
+    </div>  
+
+</div>
+   
+</body>
+</html>

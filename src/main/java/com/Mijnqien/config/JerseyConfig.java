@@ -8,10 +8,11 @@ import com.Mijnqien.api.DeclaratieFormApi;
 import com.Mijnqien.api.EmailApi;
 import com.Mijnqien.api.ProfielAPI;
 import com.Mijnqien.api.ReisApi;
-import com.Mijnqien.api.TraineeAPI;
+import com.Mijnqien.api.TraineeApi;
 import com.Mijnqien.api.UrenFormAPI;
 import com.Mijnqien.api.UrenPerDagAPI;
 import com.Mijnqien.api.UurTypeAPI;
+import com.Mijnqien.api.UserApi;
 
 import javax.ws.rs.ApplicationPath;
 
@@ -19,7 +20,7 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("/api")
 public class JerseyConfig extends ResourceConfig {
 	public JerseyConfig() {
-		register(TraineeAPI.class);
+		register(TraineeApi.class);
 		register(DeclaratieApi.class);
 		register(DeclaratieFormApi.class);
 		register(ReisApi.class);
@@ -28,5 +29,6 @@ public class JerseyConfig extends ResourceConfig {
 		register(UrenFormAPI.class);
 		register(UrenPerDagAPI.class);
 		register(UurTypeAPI.class);
+		register(UserApi.class);
 	}
 }

@@ -1,6 +1,7 @@
 package com.Mijnqien.api;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -12,14 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.Mijnqien.Trainee.DeclaratieForm;
+import com.Mijnqien.Trainee.Profiel;
 import com.Mijnqien.Trainee.Trainee;
 import com.Mijnqien.service.DeclaratieFormService;
+import com.Mijnqien.service.ProfielService;
 import com.Mijnqien.service.TraineeService;
 
 @Component
 @Path("trainee")
 
-public class TraineeAPI {
+public class TraineeApi {
 
 	@Autowired
 	TraineeService traineeService;
@@ -49,4 +52,11 @@ public class TraineeAPI {
 			return Response.status(Status.NOT_FOUND.getStatusCode(),e.getMessage()).build();
 		}
 	}
+	
+	@POST
+	public Response inDatabaseStoppen(Trainee trainee) {
+		Trainee tr2 = traineeService.saveTrainee(trainee);
+		return Response.ok(tr2).build();
+	}
 }
+
