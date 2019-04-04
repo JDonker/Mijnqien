@@ -19,6 +19,7 @@ import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Ondersteunend.EmailServer;
 import com.Mijnqien.Ondersteunend.ReadProperties;
 import com.Mijnqien.Trainee.DeclaratieForm;
+import com.Mijnqien.Trainee.Stat;
 import com.Mijnqien.service.DeclaratieFormService;
 
 
@@ -48,6 +49,9 @@ public class DeclaratieFormApi {
 		return Response.accepted(declaratieFormGesaved.getId()).build();
 	}
 	
+	
+	
+	
 	@PUT
 	@Path("/verzend/{FormID}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -56,8 +60,8 @@ public class DeclaratieFormApi {
 		// bouw check in of het een bepaalde gebruiker is
 		try {
 			DeclaratieForm decForm= declaratieFormService.findById(FormID);
-			if (!decForm.isVerzonden()) {
-				decForm.setVerzonden(true);
+			if (decForm.getStatus()==Stat.INAFWACHTING) {
+				decForm.setStatus(Stat.INGEDIEND);
 				ReadProperties.readConfig();
 				decForm = declaratieFormService.save(decForm);
 				emailserver.send(ReadProperties.setAdminMail,"Gebruikersnaam" + "declaratie " + decForm.getMaand().getMonth().toString() + " " + decForm.getMaand().getYear(),"");
@@ -69,15 +73,19 @@ public class DeclaratieFormApi {
 		}
 	}
 	
+	
+	
 	@PUT
 	@Path("/verwerk/{FormID}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response verwerkDeclaratieForm(@PathParam("FormID") long FormID) {
+		// check of iemand admin is
+		
 		try {
 			DeclaratieForm decForm= declaratieFormService.findById(FormID);
-			if (!decForm.isVerwerkt()) {
-				decForm.setVerwerkt(true);
+			if (decForm.getStatus()==Stat.INGEDIEND) {
+				decForm.setStatus(Stat.GOEDGEKEURD);
 				ReadProperties.readConfig();
 				decForm = declaratieFormService.save(decForm);
 				emailserver.send("jasperdonker@gmail.com","Declaratie " + decForm.getMaand().getMonth().toString() + " " + decForm.getMaand().getYear() + " goedgekeurd!","");
@@ -88,4 +96,6 @@ public class DeclaratieFormApi {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
+	
+	
 }
