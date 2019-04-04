@@ -27,7 +27,7 @@ public class UrenPerDag {
 	int training;
 	int ziek;
 	int verlof;
-	String verklaringOverig;
+	String verklaringOverig = "";
 	int overig;
 	String datum;
 

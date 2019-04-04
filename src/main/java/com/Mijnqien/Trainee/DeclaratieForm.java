@@ -27,8 +27,14 @@ public class DeclaratieForm {
 	Set <Reis> reizen = new LinkedHashSet<>();
 	boolean verzonden;	// Door medewerker
 	boolean verwerkt; 	// Door Qien admin
-	
-	
+	boolean leeg; 	// Door Qien admin
+	int totaalBedrag;
+	int totaalBTW;
+	int totaalTotaal;
+	int totaalReisKosten;
+	int totaalKilometers;
+
+
 	public boolean isVerzonden() {
 		return verzonden;
 	}
@@ -47,11 +53,6 @@ public class DeclaratieForm {
 	public void setReizen(Set<Reis> reizen) {
 		this.reizen = reizen;
 	}
-	int totaalBedrag;
-	int totaalBTW;
-	int totaalTotaal;
-	int totaalReisKosten;
-	int totaalKilometers;
 	
 	
 	public long getId() {
