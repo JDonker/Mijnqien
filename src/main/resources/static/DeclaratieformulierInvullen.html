@@ -20,20 +20,23 @@
         <table id="Declaratie" align="center">
             <thead>
                 <tr>
-                    <th>Nr.</th>
                     <th>Datum</th>
                     <th>Omschrijving</th>
                     <th>Bedrag inclusief BTW (in euro's)</th>
-                    <th>BTW (%)</th>
-                    <th>Bedrag exclusief BTW (in euro's)</th>
                     <th>Upload bestand</th>
                 </tr>
             </thead>
             <tbody id="DeclaratieTableBody">
             </tbody>
-        </table>        
+            <tfoot id="Declaratiefoot">
+                <tr>
+                  <td >    <button type="submit" onclick="postDeclaratie()" class="button">+ Declaratie toevoegen</button></td>
+                </tr>
+              </tfoot>
+        </table>  
+    
     </div>
-    <button onclick="postDeclaratie()">Declaratie toevoegen</button>
+
     <div class="Declaratiekmformulier">
             <table id="Declaratiekm" align="center">
                 <thead>
@@ -46,9 +49,13 @@
                 </thead>
                 <tbody id="ReizenTableBody"></tbody>
                 </tbody>
+                <tfoot id="Declaratiefoot">
+                        <tr>
+                          <td >    <button type="submit" onclick="postReis()" class="button">+ Reis toevoegen</button></td>
+                        </tr>
+                      </tfoot>
            
             </table>
         </div>
-        <button onclick="postReis()">Declaratie toevoegen</button>
 </body>
 </html>

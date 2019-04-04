@@ -36,13 +36,27 @@ public class UrenPerDagAPI {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	
 	public Iterable<UrenPerDag> getUrenPerDag(){
 		Iterable<UrenPerDag> urenPerDag = urenPerDagService.findAlleUrenPerDag();
 		return urenPerDag;
 	}
 	
+	@GET
+	@Path("/{UrenPerDagID}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getUrenPerDag(@PathParam("UrenPerDagID") long UrenPerDagID){
+		try {
+			UrenPerDag urenPerDag = urenPerDagService.findById(UrenPerDagID);
+			return Response.ok(urenPerDag).build();
+		} catch(UrenPerDagNotFoundException e) {
+			return Response.status(Status.BAD_REQUEST).build();
+		}
+		
+	}
+	
 	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response inDatabaseStoppen(UrenPerDag urenPerDag) {
 		UrenPerDag urenPerDag2 = urenPerDagService.saveUrenPerDag(urenPerDag);
 		return Response.ok(urenPerDag2).build();
@@ -81,5 +95,26 @@ public class UrenPerDagAPI {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
+	
+	
+	
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response putUrenAndroid(UrenPerDag urenPerDag) {	
+		System.out.println("goooo");
+		try {
+				UrenPerDag gevondenUrenPerDag = urenPerDagService.findById(urenPerDag.getId());
+				gevondenUrenPerDag  = urenPerDagService.Update(urenPerDag);
+				return Response.accepted(gevondenUrenPerDag).build();
+		} catch (UrenPerDagNotFoundException e ) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
+	
+	
+	
 }
+
+
 

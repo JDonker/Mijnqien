@@ -109,6 +109,15 @@ td:nth-of-type(5):before { content: "Bewerk"; }
   text-align: center;
 }
 
+
+input {
+  background-color: transparent;
+  border: 0px solid;
+  height: 20px;
+  width: 160px;
+  color: #000;
+}
+
 #inlogformulier{
   width: 30%;
   margin: 0 auto;
@@ -145,6 +154,8 @@ td:nth-of-type(5):before { content: "Bewerk"; }
 }
 
 .input-field {
+
+
   width: 100%;
   padding: 10px;
   outline: none;
@@ -196,6 +207,10 @@ span.psw{
   #Declaratie tr:nth-child(even){background-color: #f2f2f2;}
   
   #Declaratie tr:hover {background-color: #ddd;}
+  #Declaratiefoot tr {background-color: #ffffff;}
+  #Declaratiefoot tr:hover {background-color: #ffffff;}
+
+
   
   #Declaratie th {
     padding-top: 12px;
@@ -218,6 +233,8 @@ span.psw{
   #Declaratiekm tr:nth-child(even){background-color: #f2f2f2;}
   
   #Declaratiekm tr:hover {background-color: #ddd;}
+
+  
   
   #Declaratiekm th {
     padding-top: 12px;
@@ -292,9 +309,10 @@ td:nth-of-type(8):before { content: "Verklaring"; }
     width: 100%;
   }
 
+  
 
 .button {
-    background-color: #4CAF50; /* Green */
+    background-color: #640080;/* Green */
     border: none;
     color: white;
     padding: 6px;

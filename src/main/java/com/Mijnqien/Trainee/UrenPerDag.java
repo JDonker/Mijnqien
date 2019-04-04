@@ -27,7 +27,7 @@ public class UrenPerDag {
 	int training;
 	int ziek;
 	int verlof;
-	String VerklaringOverig;
+	String verklaringOverig;
 	int overig;
 	String datum;
 
@@ -72,11 +72,11 @@ public class UrenPerDag {
 	}
 
 	public String getVerklaringOverig() {
-		return VerklaringOverig;
+		return verklaringOverig;
 	}
 
 	public void setVerklaringOverig(String verklaringOverig) {
-		VerklaringOverig = verklaringOverig;
+		this.verklaringOverig = verklaringOverig;
 	}
 
 	public int getOverig() {
