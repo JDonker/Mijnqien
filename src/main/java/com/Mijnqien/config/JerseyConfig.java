@@ -6,12 +6,14 @@ import org.springframework.stereotype.Component;
 import com.Mijnqien.api.DeclaratieApi;
 import com.Mijnqien.api.DeclaratieFormApi;
 import com.Mijnqien.api.EmailApi;
+import com.Mijnqien.api.FileUploadService;
 import com.Mijnqien.api.ProfielAPI;
 import com.Mijnqien.api.ReisApi;
 import com.Mijnqien.api.TraineeAPI;
 import com.Mijnqien.api.UrenFormAPI;
 import com.Mijnqien.api.UrenPerDagAPI;
 import com.Mijnqien.api.UurTypeAPI;
+
 
 import javax.ws.rs.ApplicationPath;
 
@@ -28,5 +30,7 @@ public class JerseyConfig extends ResourceConfig {
 		register(UrenFormAPI.class);
 		register(UrenPerDagAPI.class);
 		register(UurTypeAPI.class);
+		register(FileUploadService.class);
+		
 	}
 }

@@ -1,5 +1,7 @@
 package com.Mijnqien.api;
 
+import java.time.LocalDate;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -41,16 +43,16 @@ public class DeclaratieFormApi {
 		return Response.ok(gebruikers).build();
 	}
 	
+	
 	@POST
+	@Path("/newform/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response postDeclaratieForm(DeclaratieForm declaratieForm) {
+		// check of een user al declaratie formulier voor bepaalde maand heeft
 		DeclaratieForm declaratieFormGesaved = declaratieFormService.save(declaratieForm);
 		return Response.accepted(declaratieFormGesaved.getId()).build();
 	}
-	
-	
-	
 	
 	@PUT
 	@Path("/verzend/{FormID}")
