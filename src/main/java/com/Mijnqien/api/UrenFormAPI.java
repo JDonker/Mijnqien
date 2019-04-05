@@ -70,7 +70,7 @@ public class UrenFormAPI {
 	}
 	
 	@PUT
-	@Path("/verzend/{FormID}")
+	@Path("/afkeur/{FormID}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response afkeurUrenForm(@PathParam("FormID") long FormID) {
@@ -91,7 +91,7 @@ public class UrenFormAPI {
 	}
 	
 	@PUT
-	@Path("/verzend/{FormID}")
+	@Path("/goedkeur/{FormID}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response goedkeurUrenForm(@PathParam("FormID") long FormID) {
