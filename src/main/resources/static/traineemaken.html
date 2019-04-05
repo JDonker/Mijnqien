@@ -1,0 +1,63 @@
+<script>
+  
+    function go(form){
+      xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+
+        if(this.readyState == 4){
+            alert("Trainee toegevoegd aan database")
+            }
+      }
+      xhr.open("POST", "http://localhost:8082/api/tra", true);
+      var user = {};
+      user.username=form.un.value;
+      user.password=form.pw.value;
+      user.role="trainee";
+      xhr.setRequestHeader("Content-type", "application/json");
+      xhr.send(JSON.stringify(user));
+  }
+</script>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="header">
+  <h1>mijn Qien</h1>
+  <h1>trainee aanmaken</h1>
+</div>
+
+<div class="row">
+
+  <div class="col-6 col-s-9">
+
+   
+
+
+    <form name = "traineeinput" action="" method = "GET">    
+        <div class = "container">    
+            <div class = "form_group">    
+                <label>Geb ruikersnaam:</label>    
+                <input type = "text" name = "un" value = "" required/>    
+            </div>    
+            <div class = "form_group">    
+                <label>Wachtwoord:</label>    
+                <input type = "text" name = "pw" value = "" required />    
+            </div>    
+        </div> 
+           <br>
+           <input type=button value="trainee useraccount aanmaken" onclick=go(this.form)>   
+    </form>    
+  </div>
+  
+  </div>
+</div>
+
+</body>
+</html>
