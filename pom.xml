@@ -135,7 +135,7 @@
 							<directory>${project.basedir}/src/main/resources
 							</directory>
 						</resource>
-					</webResources>s
+					</webResources>
 				</configuration>
 			</plugin>
 		</plugins>
