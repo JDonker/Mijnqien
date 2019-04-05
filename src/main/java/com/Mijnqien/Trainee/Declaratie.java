@@ -17,12 +17,14 @@ public class Declaratie {
 	String omschrijving;
 	int bedrag;
 	int bedragminbtw;
+	
 	public long getId() {
 		return Id;
 	}
 	public void setId(long id) {
 		Id = id;
 	}
+	
 	public LocalDate getDatum() {
 		return datum;
 	}
@@ -47,6 +49,4 @@ public class Declaratie {
 	public void setBedragminbtw(int bedragminbtw) {
 		this.bedragminbtw = bedragminbtw;
 	}
-	
-	
 }

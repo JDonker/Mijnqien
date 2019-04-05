@@ -12,6 +12,7 @@ import java.util.Properties;
 public class ReadProperties {
 	public static String setUsername;
 	public static String setPassword;
+	public static String setAdminMail;
 	
 		public static void readConfig()
 		{
@@ -22,6 +23,7 @@ public class ReadProperties {
 			    pro.load(new FileInputStream(path));	   
 			    setUsername = pro.getProperty("setUsername");
 			    setPassword = pro.getProperty("setPassword");	   
+			    setAdminMail = pro.getProperty("setAdminMail");	
 			} catch(IOException e) {
 				System.out.println("Properties file not read.");	
 			}
