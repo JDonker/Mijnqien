@@ -1,72 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:x="urn:schemas-microsoft-com:office:excel">
 
 <head>
     <title>mijnQien - Admin</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="mijnQien.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="Admin.js"></script>
-    <style>.dropbtn {
-        background-color: #3498DB;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-      }
-      
-      .dropbtn:hover, .dropbtn:focus {
-        background-color: #2980B9;
-      }
-      
-      .dropdown {
-        position: relative;
-        display: inline-block;
-      }
-      
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        overflow: auto;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-      }
-      
-      .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        cursor: pointer;
-      }
-      
-      .dropdown a:hover {background-color: #ddd;}
-      
-      .show {display: block;}
-      </style>
+    <script src="mijnQien.js"></script>
+
 </head>
 
 <body>
-    <div class="topnav">
-        <a id="logo"><img class="logo" src="https://www.qien.nl/wp-content/uploads/2017/10/logo.svg"
-                style="height: auto; width: 25px"></a>
-    </div>
+
+        <ul id="nav-ul">
+                <a id="logo-qien"><img class="logo" src="https://www.qien.nl/wp-content/uploads/2017/10/logo.svg"
+                    style="height: auto; width: 25px"></a>
+                <i class="fa fa-user fa-fw icon-navbar"></i>
+            <li id="nav-li">
+                <a  id="nav-a">Gebruikersnaam</a>
+                <ul id="nav-ul" class="dropdown">
+                    <li id="nav-li"><a  id="nav-a" href="#">Uitloggen</a></li>
+                </ul>
+            </li>
+        </ul>
     <h1>Welkom Admin</h1>
 
 
     <div class="wrapper">
-            <h1>Uren overzicht</h1>
-            <h2>Totale urenoverzicht en ziekteverzuim overzicht</h2>
-      
-      <canvas id="bar-chart" width="800" height="350"></canvas>
-          </div>
-    <div>
-        <button type="button" id="Urenformulier" class="buttonToggle" onclick="Test()">Uren</button>
+        <h2>Totale urenoverzicht en ziekteverzuim overzicht</h2>
+
+        <canvas id="bar-chart" width="800" height="350"></canvas>
     </div>
+
+    <div id="trainee2" class="Trainee2">
+
+        <button type="button" class="button button1" onclick="showTrainees()">Trainees overzicht</button>
+
+        <div id="traineeTabel"></div>
+    </div>
+
+    <div>
+        <button type="button" id="Urenformulier" class="buttonToggle button button1" onclick="Test()">Uren</button>
+        <a href="#" id="testButton" class="button button1" onclick="fnExcelReport()">Download trainees overzicht</a>
+    </div>
+
     <div class="Urenformulier">
         <table id="Uren">
             <thead>
@@ -91,71 +70,28 @@
                     <td>21-04-2019</td>
                     <td>Urenformulier</td>
                     <td>Open</td>
-                    <td><button type="button">Bewerk</button></td>
+                    <td><button type="button" class="button button1">Bewerk</button></td>
                 </tr>
                 <tr>
                     <td>Jan Koevoets</td>
                     <td>21-02-2019</td>
                     <td>Urenformulier</td>
                     <td>Gefactureerd</td>
-                    <td><button type="button">Bewerk</button></td>
+                    <td><button type="button" class="button button1">Bewerk</button></td>
                 </tr>
                 <tr>
                     <td>Peter van der Velde</td>
                     <td>03-02-2019</td>
                     <td>Declaratieformulier</td>
                     <td>Uitbetaald</td>
-                    <td><button type="button">Bewerk</button></td>
+                    <td><button type="button" class="button button1">Bewerk</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div  class="Declaratieformulier">
-            <table id="Uren">
-                <thead>
-                    <tr>
-                        <th>Naam</th>
-                        <th>Datum</th>
-                        <th>Type</th>
-                        <th>Status</th>
-                        <th>Bewerk</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Jan Koevoets</td>
-                        <td>21-03-2019</td>
-                        <td>Urenformulier</td>
-                        <td>Geaccordeerd door klant</td>
-                        <td><button type="button" id="demo" onclick="Klik()">Bewerk</button></td>
-                    </tr>
-                    <tr>
-                        <td>Jan Koevoets</td>
-                        <td>21-04-2019</td>
-                        <td>Urenformulier</td>
-                        <td>Open</td>
-                        <td><button type="button">Bewerk</button></td>
-                    </tr>
-                    <tr>
-                        <td>Jan Koevoets</td>
-                        <td>21-02-2019</td>
-                        <td>Urenformulier</td>
-                        <td>Gefactureerd</td>
-                        <td><button type="button">Bewerk</button></td>
-                    </tr>
-                    <tr>
-                        <td>Peter van der Velde</td>
-                        <td>03-02-2019</td>
-                        <td>Declaratieformulier</td>
-                        <td>Uitbetaald</td>
-                        <td><button type="button">Bewerk</button></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
 
-        <script src="Admin.js"></script>
+    <script src="mijnQien.js"></script>
 </body>
 
 </html>
