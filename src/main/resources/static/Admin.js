@@ -76,6 +76,9 @@ function emailCheck(str) {
     document.getElementById("email").innerHTML = "";
   }
 }
+
+// Bewerk knop JS
+
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
 function toggleOpties() {
