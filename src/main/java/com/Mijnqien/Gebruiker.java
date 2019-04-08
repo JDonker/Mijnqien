@@ -49,5 +49,5 @@ public class Gebruiker {
 	public String getEmailAdres() {
 		return emailAdres;
 	}
-
+	
 }

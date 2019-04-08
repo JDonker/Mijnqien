@@ -60,7 +60,6 @@ public class DeclaratieApi {
 		}
 		try {
 			DeclaratieForm decForm = declaratieFormService.findById(FormID);
-			System.out.println("hier");
 			Declaratie declaratiesaved= declaratieService.saveInForm(declaratie, decForm);	
 			return Response.accepted().build();
 		} catch (DeclaratieFormNotFoundException e) {

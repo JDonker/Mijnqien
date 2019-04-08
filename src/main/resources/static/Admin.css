@@ -182,4 +182,10 @@ span.psw{
 #email{
   color:red
 }
- 
+
+.topnav .btn{
+  float:right;
+  width: 5%;
+  color: white;
+
+}

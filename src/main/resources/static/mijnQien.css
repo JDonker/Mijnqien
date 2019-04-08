@@ -109,6 +109,15 @@ td:nth-of-type(5):before { content: "Bewerk"; }
   text-align: center;
 }
 
+/*
+input {
+  background-color: transparent;
+  border: 0px solid;
+  height: 20px;
+  width: 160px;
+  color: #000;
+}
+*/
 #inlogformulier{
   width: 30%;
   margin: 0 auto;
@@ -196,6 +205,10 @@ span.psw{
   #Declaratie tr:nth-child(even){background-color: #f2f2f2;}
   
   #Declaratie tr:hover {background-color: #ddd;}
+  #Declaratiefoot tr {background-color: #ffffff;}
+  #Declaratiefoot tr:hover {background-color: #ffffff;}
+
+
   
   #Declaratie th {
     padding-top: 12px;
@@ -218,6 +231,8 @@ span.psw{
   #Declaratiekm tr:nth-child(even){background-color: #f2f2f2;}
   
   #Declaratiekm tr:hover {background-color: #ddd;}
+
+  
   
   #Declaratiekm th {
     padding-top: 12px;
@@ -292,6 +307,117 @@ td:nth-of-type(8):before { content: "Verklaring"; }
     width: 100%;
   }
 
+  
+
+.button {
+    background-color: #640080;/* Green */
+    border: none;
+    color: white;
+    padding: 6px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 2px 1px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  .button1:hover {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #9C4AF0;
+  }
+  
+  .button1 {
+    background-color: #9C4AF0 ;
+    color: white;
+  }
+  
+ .topnav .btn{
+  float:right;
+  width: 5%;
+  color: white;
+
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#nav-ul {
+  top: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: #640080;
+  text-align: right;
+}
+
+
+#nav-ul #nav-li {
+  display: inline-block;
+  position: relative;
+  line-height: 21px;
+  text-align: right;
+}
+
+#nav-ul #nav-li #nav-a {
+  display: block;
+  padding: 0px 10px 0px 0px;
+  color: white;
+  text-decoration: none;
+}
+
+#nav-ul #nav-li #nav-a:hover {
+  color: #fff;
+  background: #939393;
+}
+
+#nav-ul #nav-li #nav-ul.dropdown {
+  min-width: 125px;
+  /* Set width of the dropdown */
+  background: #f2f2f2;
+  display: none;
+  position: absolute;
+  z-index: 999;
+  left: 0;
+}
+
+#nav-ul #nav-li:hover #nav-ul.dropdown {
+  display: block;
+  /* Display the dropdown */
+}
+
+#nav-ul #nav-li #nav-ul.dropdown #nav-li {
+  display: block;
+}
+
+.icon-navbar{
+  padding: 10px;
+  background: #640080;
+  color: white;
+  min-width: 10px;
+  text-align: center;
+}
+.btn {
+    background-color: #640080;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+#logo-qien{
+  float:left;
+  padding: 1px 5px;
+}
 
 .button {
     background-color: #4CAF50; /* Green */
@@ -317,4 +443,9 @@ td:nth-of-type(8):before { content: "Verklaring"; }
   .button1 {
     background-color: #9C4AF0 ;
     color: white;
+  }
+
+  #myInput{
+    float: right;
+    width: 100px;
   }
