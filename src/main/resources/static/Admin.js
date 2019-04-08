@@ -76,3 +76,46 @@ function emailCheck(str) {
     document.getElementById("email").innerHTML = "";
   }
 }
+
+// Bewerk knop JS
+
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+var inputFormulier = 0;
+function toggleOpties(inputFormulier) {
+  var deId = "myDropdown" + inputFormulier.toString(10);
+  document.getElementById(deId).classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+var inputKeuze = 0;
+function keuzeMaken(inputFormulier, inputKeuze){
+  switch(inputKeuze){
+    case 1:
+    document.getElementById(inputFormulier).innerHTML = "In Afwachting";
+    break;
+    case 2:
+    document.getElementById(inputFormulier).innerHTML = "Ingediend";
+    break;
+    case 3:
+    document.getElementById(inputFormulier).innerHTML = "Wijzigen";
+    break;
+    case 4:
+    document.getElementById(inputFormulier).innerHTML = "Goedgekeurd";
+    break;
+
+  }
+}

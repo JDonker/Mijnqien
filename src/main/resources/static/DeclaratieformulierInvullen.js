@@ -6,7 +6,6 @@ var declaraties = "";
 var reizen = "";
 var formulier = {};
 formulier.datum = new Date();
-const moment = require('moment');
 
 function DeclaratieToevoegen1() {
     var table = document.getElementById("Declaratie");
@@ -143,8 +142,27 @@ function DeclaratieWegschrijven(){
             cellDeclaratie.appendChild(cellDeclaratieinput);
 
         }
-        // hier voeg ik een delete button toe dit is een nieuwe feature die nog moet worden geimplementeerd
         var cellDeclaratie = row.insertCell(-1);
+
+        var btn = document.createElement("button");
+        var inp = document.createElement("input");
+ 
+        inp.type = "file";
+        inp.name = "submit" + jsondata[i]["id"];
+        inp.id = "filename" + jsondata[i]["id"];
+
+        btn.type="submit";
+        btn.name="submit" + jsondata[i]["id"];
+        btn.id="submit" + jsondata[i]["id"];
+
+        btn.innerHTML="Upload";
+        btn.setAttribute("onclick","putBestand("+ jsondata[i]["id"] +" )")
+       
+        cellDeclaratie.appendChild(inp);
+        cellDeclaratie.appendChild(btn);
+   
+        // hier voeg ik een delete button toe dit is een nieuwe feature die nog moet worden geimplementeerd
+        
         var cellDeclaratie = row.insertCell(-1);
         var deleteButton = document.createElement("Button");
         deleteButton.setAttribute("class","button")
@@ -152,8 +170,27 @@ function DeclaratieWegschrijven(){
         deleteButton.setAttribute("onclick","DeleteDeclaratie("+ jsondata[i]["id"] + ")");
         cellDeclaratie.appendChild(deleteButton);
     }
-
 }
+
+function putBestand(id){
+
+    //server adres
+    var api =  "api/upload/" +  trainee + "/" + id;
+
+
+    var file = document.getElementById('filename' + id).files[0];
+    var xhttp = new XMLHttpRequest;
+
+    var formData = new FormData;
+    formData.append('multipart/form-data', file);
+
+    xhttp.open('POST', api, true);
+    xhttp.setRequestHeader("Content-type", "application/form-data");
+    xhttp.send(formData);
+}
+
+
+
 
 
 // code om de tabel reizen op te maken
@@ -294,14 +331,13 @@ function putdeclaratie(id){
     // maak een object van de te updaten reis
     var declaratie= {};
     // haal de velden op uit het formulier ze zijn makkelijk te vinden aan de hand van het meegegeven id
-    declaratie.omschrijving = document.getElementById("van" + id).value;
-    declaratie.bedrag = document.getElementById("naar" + id).value;
-    declaratie.btw = document.getElementById("kilometers" + id).value;
+    declaratie.omschrijving = document.getElementById("omschrijving" + id).value;
+    declaratie.bedrag = document.getElementById("bedrag" + id).value;
     declaratie.datum = document.getElementById("datum" + id).value;
     declaratie.id = id;
     console.log(declaratie);
         // maak een string van het te updaten declaratie object een stuur dat naar de put functie
-    putReis(JSON.stringify(declaratie));
+    putDeclaratie(JSON.stringify(declaratie));
 }
 
 function putreis(id){
@@ -435,3 +471,4 @@ function postReis(){
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send(data);
 }
+

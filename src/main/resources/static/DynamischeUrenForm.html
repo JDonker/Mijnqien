@@ -6,16 +6,33 @@
 <script src = "DynamischeUrenForm.js"></script>
 
 </head>
-
-<div class="topnav">
-    <a class="active" href="#home">Home</a>
-    <a href="#news">Trainees</a>
-    <a href="#contact">Contact</a>
-    <a href="#about">Over ons</a>
+<div id="topdiv"><img src="logo.svg" style="height: auto; width: 50px">
 </div>
-<h1 id = "titel"></h1>
-<body  onload = "loadtable()">
-<p id="hoi"></p>
 
+
+<body id="thebody" onload="onload()">
+    <h1>          mijnQien</h1>
+<br>
+<br>
+    <h1 id = "titel"></h1>
+    <div class ="Urenformulier">
+        <table id="Uren" align="center">
+            <thead>
+                <tr>
+                    <th>Datum</th>
+                    <th>Opdracht</th>
+                    <th>Overwerk</th>
+                    <th>Verlof</th>
+                    <th>Ziek</th>
+                    <th>Training</th>
+                    <th>Overig</th>
+                    <th>Verklaring</th>
+                </tr>
+            </thead>
+            <tbody id="UrenTableBody">
+            </tbody>
+        </table>
+    </div>
+    <button onclick="posturen()">Uren verzenden</button>
 </body>
 </html>

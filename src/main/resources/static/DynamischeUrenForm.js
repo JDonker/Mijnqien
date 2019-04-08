@@ -8,7 +8,7 @@ maand[5] = "juni";
 maand[6] = "juli";
 maand[7] = "augustus";
 maand[8] = "september";
-maand[9] = "october";
+maand[9] = "oktober";
 maand[10] = "november";
 maand[11] = "december";
 
@@ -26,6 +26,11 @@ aantalDagenPerMaand[9] = 31;
 aantalDagenPerMaand[10] = 30;
 aantalDagenPerMaand[11] = 31;
 
+var urenperdagen="";
+
+var cellnamen = ["datum", "opdracht", "overwerk", "verlof", "ziek", "training", "overig", "verklaring"];
+
+
 var datumNu = new Date();
 
 function loadTitle(){
@@ -34,44 +39,211 @@ function loadTitle(){
 }
 
 
-function loadtable(){
 
- //   var headerUrenformulier = document.createElement("header");
- //   headerUrenformulier.innerHTML = "Urenformulier "; //variabele maand moet gelinkt zijn aan de knop waar de user hiervoor op drukt.
 
-    var table = document.createElement("table");
-    table.setAttribute("id", "Uren");
-    var cellnamen = ["datum", "opdracht", "overwerk", "verlof", "ziek", "training", "overig", "verklaring"];
-    th = table.insertRow(-1);
-    th.setAttribute("id", 'Urenheader');
-    for (var h = 0; h < 8; h++){
-        var headerCell = th.insertCell(-1);
-        headerCell.setAttribute("id", "HeaderCell");
-        headerCell.setAttribute("name", "h" + cellnamen[h] + table.rows.length);
-        var htextfield = document.createElement("div");
-        htextfield.innerHTML = cellnamen[h];
-        headerCell.appendChild(htextfield);
+function onload(){
+    console.log(urenperdagen.length);
+    if(urenperdagen.length==0){
+        getUren();
+    }else{
+        urenWegschrijven();
     }
-    for (var i = 0; i < aantalDagenPerMaand[datumNu.getMonth()]; i++) { //het getal 31 moet de lengte zijn van de database van de maand.
-        tr = table.insertRow(-1);
-        var tabCell = tr.insertCell(-1);
-        tabCell.setAttribute("name", "datum" + (table.rows.length - 1));
-        var textfield = document.createElement("div");
-        textfield.setAttribute("id", (table.rows.length - 1) + "datumtext");
-        textfield.innerHTML = (table.rows.length - 1) + " " + maand[datumNu.getMonth()];
-        tabCell.appendChild(textfield);
-        for (var j = 0; j < 7; j++) {
-            var tabCell = tr.insertCell(-1);
-            tabCell.setAttribute("name", cellnamen[j + 1] + table.rows.length);
-            var input1 = document.createElement("input");
-            input1.setAttribute("type", "text");
-            if(j < 6){
-                input1.setAttribute("size", "1");
-            }
-            tabCell.appendChild(input1);
-        } 
-    }
-    var ding = document.getElementById("hoi");
-    ding.appendChild(table)
-    loadTitle();
 }
+
+function urenWegschrijven(){
+    loadTitle();
+    jsondata = JSON.parse(urenperdagen);
+    // console.log(jsondata);
+
+        var table = document.getElementById("UrenTableBody");
+        for (var i = 0; i < jsondata.length; i++) { //het getal 31 moet de lengte zijn van de database van de maand.
+            tr = table.insertRow(-1);
+            tr.setAttribute("id", "row" + jsondata[i]["id"]);
+            tr.setAttribute("onfocusout","puturen(" + jsondata[i]["id"] + ")");
+  //          tr.setAttribute("onfocusout", "puturen(" + jsondata[i]["id"] + ")");
+            var tabCell = tr.insertCell(-1);
+            tabCell.setAttribute("id", "datum" + jsondata[i]["id"]);
+            var textfield = document.createElement("div");
+            textfield.setAttribute("id", jsondata[i]["id"] + "datumtext");
+            textfield.innerHTML = (table.rows.length) + " " + maand[datumNu.getMonth()];
+            tabCell.appendChild(textfield);
+            for (var j = 0; j < 7; j++) {
+                var tabCell = tr.insertCell(-1);
+                var input1 = document.createElement("input");
+                input1.setAttribute("type", "text");
+                input1.setAttribute("id", cellnamen[j + 1] + jsondata[i]["id"]);
+                input1.value=jsondata[i][cellnamen[j + 1]];
+                             jsondata[i][cellnamen[j + 1]]
+                if(j < 6){
+                    input1.setAttribute("size", "1");
+                }
+                tabCell.appendChild(input1);
+            } 
+ //       }
+ //   } else {
+ //       getUren();
+ //   }
+}
+}
+
+function puturen(id){
+    var urenperdag = {};
+    urenperdag.datum = document.getElementById(id+"datumtext").innerText;
+    urenperdag.opdracht = document.getElementById("opdracht" + id).value;
+    urenperdag.overwerk = document.getElementById("overwerk" + id).value;
+    urenperdag.verlof = document.getElementById("verlof" + id).value;
+    urenperdag.ziek = document.getElementById("ziek" + id).value;
+    urenperdag.training = document.getElementById("training" + id).value;
+    urenperdag.overig = document.getElementById("overig" + id).value;
+    urenperdag.verklaringOverig = document.getElementById("verklaring" + id).value;
+    urenperdag.id = id;
+    putUren(JSON.stringify(urenperdag));
+        
+    }
+ //   urenperdag.datum = document.getElementById(id+"datumtext").innerText;
+ //   urenperdag.opdracht = document.getElementById("opdracht" + id).value;
+ //   urenperdag.overwerk = document.getElementById("overwerk" + id).value;
+ //   urenperdag.verlof = document.getElementById("verlof" + id).value;
+ //   urenperdag.ziek = document.getElementById("ziek" + id).value;
+ //   urenperdag.training = document.getElementById("training" + id).value;
+ //   urenperdag.overig = document.getElementById("overig" + id).value;
+ //   urenperdag.verklaringOverig = document.getElementById("verklaring" + id).value;
+ //   urenperdag.id = id;
+ //   puturen(JSON.stringify(uren));
+
+function putUren(data){
+    var api =  "api/urenperdag";
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+    xhttp.onreadystatechange = function() {
+        console.log(this.status)
+        if (this.readyState == 4){
+            if (this.status == 202){
+            }
+        }
+    };
+    // geef aan dt je data wil gaan pakken uit de database
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+    xhttp.open("PUT", "http://localhost:8082/"+api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    // send request om data te gaan putten
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+    xhttp.send(data);
+}
+
+function posturen(){
+        for (var i = 1; i <= aantalDagenPerMaand[datumNu.getMonth()]; i++){
+            var urenperdag = {};
+
+            urenperdag.datum = document.getElementById(i+"datumtext").innerText;
+            urenperdag.opdracht = document.getElementById("opdracht" + i).value;
+            urenperdag.overwerk = document.getElementById("overwerk" + i).value;
+            urenperdag.verlof = document.getElementById("verlof" + i).value;
+            urenperdag.ziek = document.getElementById("ziek" + i).value;
+            urenperdag.training = document.getElementById("training" + i).value;
+            urenperdag.overig = document.getElementById("overig" + i).value;
+            urenperdag.verklaringOverig = document.getElementById("verklaring" + i).value;
+            urenperdag.id = i;
+            postUren(JSON.stringify(urenperdag));
+    }
+}
+
+function postUren(data){
+     var api =  "api/urenperdag";
+
+    // maak een nieuw request volgens het http protecol
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+    // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+    xhttp.onreadystatechange = function() {
+        console.log(this.status)
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                var jsondata = JSON.parse(this.responseText);
+                if (jsondata.length>0){
+
+                }
+                // haal de lijst met reizen opnieuw op uit de database
+            //    loadReizen()
+            } else {
+                alert("Er gaat iets mis " + this.status )
+            }
+        }
+    };
+    // geef aan dt je data wil gaan updaten in de database
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+    xhttp.open("POST", "http://localhost:8082/"+api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    // send request om data te gaan putten
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+    xhttp.send(data);
+}
+
+function getUren(){
+    var api =  "api/urenperdag";
+    // maak een nieuw request volgens het http protecol
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+    // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4){
+            if (this.status == 200){
+
+                console.log(JSON.parse(this.responseText));
+
+                var jsondata = JSON.parse(this.responseText);
+                console.log(jsondata);
+
+
+                console.log(jsondata.length)
+
+                if (jsondata.length==0) {
+                    jsondata = [];
+                    for (var i = 0; i < aantalDagenPerMaand[datumNu.getMonth()]; i++) {
+                        
+                        x = {};
+                        x.datum = (i+1) + " " + maand[datumNu.getMonth()];
+                        x.id = i
+                        x.opdracht = 0
+                        x.overig = 0
+                        x.overwerk= 0
+                        x.training= 0
+                        x.verklaring= ""
+                        x.verlof= 
+                        x.ziek= 0
+
+                        jsondata[i] = x;
+
+                    }      
+                    //   console.log(jsondata);
+                      urenperdagen = JSON.stringify(jsondata);
+                    //   console.log(urenperdagen)
+                    //   console.log(JSON.parse(urenperdagen))
+
+                } else {
+
+                if (urenperdagen!=this.responseText) {
+                    urenperdagen = this.responseText;
+                }
+            }
+                
+                onload();
+
+            } else {
+                alert(this.status)
+
+                
+                     
+
+            }
+        } 
+      };
+    // geef aan dt je data wil gaan pakken uit de database
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+    xhttp.open("GET", "http://localhost:8082/"+api);
+    // send request om data te gaan getten body wordt genegeerd
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+    xhttp.send();
+}
+
+

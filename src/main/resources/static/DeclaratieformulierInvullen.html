@@ -2,20 +2,20 @@
 <html>
 
 <head>
-    <title>Oefening</title>
+    <title>Declaratieformulier</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="mijnQien.css" />
     <script src="DeclaratieformulierInvullen.js"></script>
 </head>
+<div id="topdiv"><img src="logo.svg" style="height: auto; width: 50px">
+</div>
 
-<body id="thebody" onload="onload()">
-    <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="#news">Trainees</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">Over ons</a>
-    </div>
-    <h1>Declaratieformulier maart</h1>
+
+<body onload="onload()">
+    <h1>          mijnQien</h1>
+<br>
+<br>
+  <h1>Declaratieformulier maart</h1>
     <div class="Declaratieformulier">
         <table id="Declaratie" align="center">
             <thead>
@@ -30,12 +30,13 @@
             </tbody>
             <tfoot id="Declaratiefoot">
                 <tr>
-                  <td >    <button type="submit" onclick="postDeclaratie()" class="button">+ Declaratie toevoegen</button></td>
+                  <td >    <button type="submit" class="button button1" onclick="postDeclaratie()" class="button">+ Declaratie toevoegen</button></td>
                 </tr>
               </tfoot>
         </table>  
     
     </div>
+    <br>
 
     <div class="Declaratiekmformulier">
             <table id="Declaratiekm" align="center">
@@ -51,7 +52,7 @@
                 </tbody>
                 <tfoot id="Declaratiefoot">
                         <tr>
-                          <td >    <button type="submit" onclick="postReis()" class="button">+ Reis toevoegen</button></td>
+                          <td >    <button class="button button1" type="submit" onclick="postReis()" class="button">+ Reis toevoegen</button></td>
                         </tr>
                       </tfoot>
            

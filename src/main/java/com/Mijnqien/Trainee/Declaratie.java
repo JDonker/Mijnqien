@@ -17,7 +17,34 @@ public class Declaratie {
 	String omschrijving;
 	int bedrag;
 	int bedragminbtw;
+	String bijlage = "";
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (Id ^ (Id >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Declaratie other = (Declaratie) obj;
+		if (Id != other.Id)
+			return false;
+		return true;
+	}
+	public String getBijlage() {
+		return bijlage;
+	}
+	public void setBijlage(String bijlage) {
+		this.bijlage = bijlage;
+	}
 	public long getId() {
 		return Id;
 	}

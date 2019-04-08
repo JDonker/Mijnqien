@@ -1,5 +1,6 @@
 package com.Mijnqien.Trainee;
 
+import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -19,7 +20,13 @@ public class UrenForm {
 	
 	long id;
 	String opdracht;
-	String maand;
+	public Stat getStat() {
+		return stat;
+	}
+	public void setStat(Stat stat) {
+		this.stat = stat;
+	}
+	LocalDate maand;
 	Stat stat = Stat.INAFWACHTING;
 	
 	@OneToMany(fetch = FetchType.EAGER)
@@ -41,10 +48,10 @@ public class UrenForm {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getMaand() {
+	public LocalDate getMaand() {
 		return maand;
 	}
-	public void setMaand(String maand) {
+	public void setMaand(LocalDate maand) {
 		this.maand = maand;
 	}
 	public String getOpdracht() {
@@ -53,6 +60,11 @@ public class UrenForm {
 	public void setOpdracht(String opdracht) {
 		this.opdracht = opdracht;
 	}
+	
+	public boolean bewerkbaar() {
+		return (this.stat==Stat.INAFWACHTING||this.stat==Stat.WIJZIGEN);	
+	}
+
 
 	
 }
