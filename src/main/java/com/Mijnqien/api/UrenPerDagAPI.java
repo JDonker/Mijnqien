@@ -67,9 +67,9 @@ public class UrenPerDagAPI {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response postUrenPerDag(UrenPerDag urenPerDag,@PathParam("UrenFormID") long UrenFormID) {
-		Optional<UrenForm> urenFormOpt = urenFormService.findById(UrenFormID);
 		try {
-			UrenForm urenForm= urenFormOpt.orElseThrow(UrenFormNotFoundException::new);
+			UrenForm urenFormOpt = urenFormService.findById(UrenFormID);
+			UrenForm urenForm= urenFormOpt;
 			UrenPerDag urenPerDagsaved= urenPerDagService.saveInForm(urenPerDag, urenForm);	
 			return Response.accepted().build();
 		} catch (UrenFormNotFoundException e) {
@@ -82,10 +82,11 @@ public class UrenPerDagAPI {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response putUrenPerDag(UrenPerDag urenPerDag,@PathParam("UrenFormID") long UrenFormID) {
-		Optional<UrenForm> urenFormOpt = urenFormService.findById(UrenFormID);		
+				
 		try {
+			UrenForm urenFormOpt = urenFormService.findById(UrenFormID);
 			UrenPerDag gevondenUrenPerDag = urenPerDagService.findById(urenPerDag.getId());
-			UrenForm urenForm= urenFormOpt.orElseThrow(UrenFormNotFoundException::new);
+			UrenForm urenForm= urenFormOpt;
 			if (urenForm.getUrenPerDag().contains(gevondenUrenPerDag)) {
 				UrenPerDag geupdateUrenPerDag = urenPerDagService.Update(urenPerDag);
 				return Response.accepted(geupdateUrenPerDag.getId()).build();

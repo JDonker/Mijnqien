@@ -17,7 +17,14 @@ public class Declaratie {
 	String omschrijving;
 	int bedrag;
 	int bedragminbtw;
+	String bijlage = "";
 	
+	public String getBijlage() {
+		return bijlage;
+	}
+	public void setBijlage(String bijlage) {
+		this.bijlage = bijlage;
+	}
 	public long getId() {
 		return Id;
 	}
