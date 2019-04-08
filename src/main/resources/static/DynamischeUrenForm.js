@@ -39,6 +39,8 @@ function loadTitle(){
 }
 
 
+
+
 function onload(){
     console.log(urenperdagen.length);
     if(urenperdagen.length==0){
@@ -54,21 +56,22 @@ function urenWegschrijven(){
     // console.log(jsondata);
 
         var table = document.getElementById("UrenTableBody");
-        for (var i = 0; i < aantalDagenPerMaand[datumNu.getMonth()]; i++) { //het getal 31 moet de lengte zijn van de database van de maand.
+        for (var i = 0; i < jsondata.length; i++) { //het getal 31 moet de lengte zijn van de database van de maand.
             tr = table.insertRow(-1);
-            tr.setAttribute("id", "row" + table.rows.length);
+            tr.setAttribute("id", "row" + jsondata[i]["id"]);
+            tr.setAttribute("onfocusout","puturen(" + jsondata[i]["id"] + ")");
   //          tr.setAttribute("onfocusout", "puturen(" + jsondata[i]["id"] + ")");
             var tabCell = tr.insertCell(-1);
-            tabCell.setAttribute("id", "datum" + (table.rows.length));
+            tabCell.setAttribute("id", "datum" + jsondata[i]["id"]);
             var textfield = document.createElement("div");
-            textfield.setAttribute("id", (table.rows.length) + "datumtext");
+            textfield.setAttribute("id", jsondata[i]["id"] + "datumtext");
             textfield.innerHTML = (table.rows.length) + " " + maand[datumNu.getMonth()];
             tabCell.appendChild(textfield);
             for (var j = 0; j < 7; j++) {
                 var tabCell = tr.insertCell(-1);
                 var input1 = document.createElement("input");
                 input1.setAttribute("type", "text");
-                input1.setAttribute("id", cellnamen[j + 1] + table.rows.length);
+                input1.setAttribute("id", cellnamen[j + 1] + jsondata[i]["id"]);
                 input1.value=jsondata[i][cellnamen[j + 1]];
                              jsondata[i][cellnamen[j + 1]]
                 if(j < 6){
@@ -98,8 +101,19 @@ function puturen(id){
     urenperdag.overig = document.getElementById("overig" + id).value;
     urenperdag.verklaringOverig = document.getElementById("verklaring" + id).value;
     urenperdag.id = id;
-    puturen(JSON.stringify(uren));
-}
+    putUren(JSON.stringify(urenperdag));
+        
+    }
+ //   urenperdag.datum = document.getElementById(id+"datumtext").innerText;
+ //   urenperdag.opdracht = document.getElementById("opdracht" + id).value;
+ //   urenperdag.overwerk = document.getElementById("overwerk" + id).value;
+ //   urenperdag.verlof = document.getElementById("verlof" + id).value;
+ //   urenperdag.ziek = document.getElementById("ziek" + id).value;
+ //   urenperdag.training = document.getElementById("training" + id).value;
+ //   urenperdag.overig = document.getElementById("overig" + id).value;
+ //   urenperdag.verklaringOverig = document.getElementById("verklaring" + id).value;
+ //   urenperdag.id = id;
+ //   puturen(JSON.stringify(uren));
 
 function putUren(data){
     var api =  "api/urenperdag";
@@ -109,7 +123,6 @@ function putUren(data){
         console.log(this.status)
         if (this.readyState == 4){
             if (this.status == 202){
-                alert("Je uren zijn aangepast");
             }
         }
     };
@@ -150,7 +163,11 @@ function postUren(data){
         console.log(this.status)
         if (this.readyState == 4) {
             if (this.status == 200) {
-                alert("Je urenformulier is verzonden")// haal de lijst met reizen opnieuw op uit de database
+                var jsondata = JSON.parse(this.responseText);
+                if (jsondata.length>0){
+
+                }
+                // haal de lijst met reizen opnieuw op uit de database
             //    loadReizen()
             } else {
                 alert("Er gaat iets mis " + this.status )
@@ -191,7 +208,7 @@ function getUren(){
                         x = {};
                         x.datum = (i+1) + " " + maand[datumNu.getMonth()];
                         x.id = i
-                        x.opdracht = ""
+                        x.opdracht = 0
                         x.overig = 0
                         x.overwerk= 0
                         x.training= 0
