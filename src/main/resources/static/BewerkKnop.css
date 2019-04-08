@@ -1,13 +1,5 @@
 /* Dropdown Button */
-.dropbtn {
-  background-color: #640080;
-  color: white;
-  padding: 15px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-  }
+
   
 
   /* Dropdown button on hover & focus */
@@ -24,7 +16,8 @@
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
-    position: absolute;
+    position: relative;
+float: right;
     background-color: #f1f1f1;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
