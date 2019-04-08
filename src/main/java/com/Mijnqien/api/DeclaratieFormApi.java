@@ -1,5 +1,7 @@
 package com.Mijnqien.api;
 
+import java.time.LocalDate;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -21,6 +23,7 @@ import com.Mijnqien.Ondersteunend.ReadProperties;
 import com.Mijnqien.Trainee.DeclaratieForm;
 import com.Mijnqien.Trainee.Stat;
 import com.Mijnqien.service.DeclaratieFormService;
+import com.Mijnqien.service.DeclaratieService;
 
 
 //adress in de api
@@ -32,6 +35,9 @@ public class DeclaratieFormApi {
 	DeclaratieFormService declaratieFormService;
 	
 	@Autowired
+	DeclaratieService declaratieService;
+	
+	@Autowired
 	EmailServer emailserver; 
 	
 	@GET
@@ -41,16 +47,16 @@ public class DeclaratieFormApi {
 		return Response.ok(gebruikers).build();
 	}
 	
+	
 	@POST
+	@Path("/newform/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response postDeclaratieForm(DeclaratieForm declaratieForm) {
+		// check of een user al declaratie formulier voor bepaalde maand heeft
 		DeclaratieForm declaratieFormGesaved = declaratieFormService.save(declaratieForm);
 		return Response.accepted(declaratieFormGesaved.getId()).build();
 	}
-	
-	
-	
 	
 	@PUT
 	@Path("/verzend/{FormID}")
@@ -98,4 +104,25 @@ public class DeclaratieFormApi {
 	}
 	
 	
+	@PUT
+	@Path("/weiger/{FormID}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public Response weigerDeclaratieForm(@PathParam("FormID") long FormID) {
+		// check of iemand admin is
+		
+		try {
+			DeclaratieForm decForm= declaratieFormService.findById(FormID);
+			if (decForm.getStatus()==Stat.INGEDIEND) {
+				decForm.setStatus(Stat.WIJZIGEN);
+				ReadProperties.readConfig();
+				decForm = declaratieFormService.save(decForm);
+				emailserver.send("jasperdonker@gmail.com","Declaratie " + decForm.getMaand().getMonth().toString() + " " + decForm.getMaand().getYear() + " afgekeurd!","");
+				return Response.status(Status.ACCEPTED).build();
+			}
+			return Response.status(Status.BAD_REQUEST).build();
+		} catch (DeclaratieFormNotFoundException e) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
 }
