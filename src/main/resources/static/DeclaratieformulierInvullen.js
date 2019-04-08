@@ -154,7 +154,7 @@ function DeclaratieWegschrijven(){
         cellDeclaratie.appendChild(deleteButton);
     }
 
-}
+
 
 
 // code om de tabel reizen op te maken

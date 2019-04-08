@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.Mijnqien.Exceptions.UrenFormNotFoundException;
 import com.Mijnqien.Trainee.UrenForm;
 import com.Mijnqien.repository.UrenFormRepository;
 
@@ -27,8 +28,8 @@ public class UrenFormService {
 
 }
 	
-	public Optional<UrenForm> findById(long id){
-	Optional<UrenForm> resultaat = urenFormRepository.findById(id);
+	public UrenForm findById(long id) throws UrenFormNotFoundException{
+	UrenForm resultaat = urenFormRepository.findById(id).orElseThrow(UrenFormNotFoundException::new);
 	return resultaat;
 }
 	
