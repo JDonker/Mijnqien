@@ -133,7 +133,7 @@ public class FileUploadService {
 
 		// create our destination folder, if it not exists
 		try {
-			createFolderIfNotExists(UPLOAD_FOLDER);
+			createFolderIfNotExists(UPLOAD_FOLDER.toString());
 		} catch (SecurityException se) {
 			return Response.status(500)
 					.entity("Can not create destination folder on server")
@@ -158,7 +158,7 @@ public class FileUploadService {
 
 		// create our destination folder, if it not exists
 		try {
-			createFolderIfNotExists(UPLOAD_FOLDER);
+			createFolderIfNotExists(UPLOAD_FOLDER.toString());
 		} catch (SecurityException se) {
 			return Response.status(500)
 					.entity("Can not create destination folder on server")
