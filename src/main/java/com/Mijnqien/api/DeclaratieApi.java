@@ -23,6 +23,7 @@ import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Exceptions.DeclaratieNotFoundException;
 import com.Mijnqien.Trainee.Declaratie;
 import com.Mijnqien.Trainee.DeclaratieForm;
+import com.Mijnqien.Trainee.Stat;
 import com.Mijnqien.service.DeclaratieFormService;
 import com.Mijnqien.service.DeclaratieService;
 
@@ -60,8 +61,12 @@ public class DeclaratieApi {
 		}
 		try {
 			DeclaratieForm decForm = declaratieFormService.findById(FormID);
-			Declaratie declaratiesaved= declaratieService.saveInForm(declaratie, decForm);	
-			return Response.accepted().build();
+			if (decForm.bewerkbaar()) {
+				Declaratie declaratiesaved= declaratieService.saveInForm(declaratie, decForm);	
+				return Response.accepted().build();
+			} else {
+				return Response.status(Status.BAD_REQUEST).build();
+			}
 		} catch (DeclaratieFormNotFoundException e) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
@@ -77,7 +82,7 @@ public class DeclaratieApi {
 			try  {
 				Declaratie gevondenDeclaratie = declaratieService.findById(declaratie.getId());
 				DeclaratieForm decForm= declaratieFormService.findById(FormID);
-				if (decForm.getDeclaraties().contains(gevondenDeclaratie)) {
+				if (decForm.getDeclaraties().contains(gevondenDeclaratie)&&decForm.bewerkbaar()) {
 					Declaratie geupdateDeclaratie = declaratieService.Update(declaratie);
 					return Response.accepted(geupdateDeclaratie.getId()).build();
 				}
@@ -88,4 +93,6 @@ public class DeclaratieApi {
 		} 
 		return Response.status(Status.BAD_REQUEST).build();
 	}
+	
+
 }

@@ -135,6 +135,7 @@ function DeclaratieWegschrijven(){
                              // haal uit de de database: record i en daarvan het field bedrag
                     cellDeclaratieinput.value=jsondata[i]["bedrag"];
                     break;
+                case 3: 
                     
                 default:
                     break;

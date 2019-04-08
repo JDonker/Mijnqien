@@ -119,6 +119,10 @@ public class DeclaratieForm {
 	public void setTotaalKilometers(int totaalKilometers) {
 		this.totaalKilometers = totaalKilometers;
 	}
+	
+	public boolean bewerkbaar() {
+		return (this.status==Stat.INAFWACHTING||this.status==Stat.WIJZIGEN);	
+	}
 
 	
 }
