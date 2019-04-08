@@ -6,9 +6,10 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="mijnQien.css" />
+    <link rel="stylesheet" href="BewerkKnop.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="DropdownTest.js"></script>
+    <script src="Admin.js"></script>
 
 </head>
 
@@ -62,8 +63,9 @@
                     <td>Jan Koevoets</td>
                     <td>21-03-2019</td>
                     <td>Urenformulier</td>
-                    <td>Default</td>
-                    <td><button id = "demo" type="button" class="button button1" onclick="Klik()">Bewerk</button>
+                    <td id = "status1">In Afwachting</td>
+                    <td><button onclick="toggleOpties()" class="dropbtn">Dropdown</button></td>
+                    <!-- <td><button id = "demo" type="button" class="button button1" onclick="Klik()">Bewerk</button> -->
                         <div id="myDropdown" class="dropdown-content">
                                 <a onclick="keuzeMaken(1)">In Afwachting</a>
                                 <a onclick="keuzeMaken(2)">Ingediend</a>
@@ -96,7 +98,6 @@
             </tbody>
         </table>
     </div>
-
 
     <script src="mijnQien.js"></script>
 </body>

@@ -99,20 +99,21 @@ window.onclick = function(event) {
   }
 }
 
-var input = 0;
-function keuzeMaken(input){
-  switch(input){
+var inputFornulier = 0;
+var inputKeuze = 0
+function keuzeMaken(inputKeuze){
+  switch(inputKeuze){
     case 1:
-    document.getElementById("keuze").innerHTML = "In afwachting";
+    document.getElementById("status1").innerHTML = "In Afwachting";
     break;
     case 2:
-    document.getElementById("keuze").innerHTML = "Ingediend";
+    document.getElementById("status1").innerHTML = "Ingediend";
     break;
     case 3:
-    document.getElementById("keuze").innerHTML = "Wijzigen";
+    document.getElementById("status1").innerHTML = "Wijzigen";
     break;
     case 4:
-    document.getElementById("keuze").innerHTML = "Goedgekeurd";
+    document.getElementById("status1").innerHTML = "Goedgekeurd";
     break;
 
   }

@@ -189,37 +189,3 @@ span.psw{
   color: white;
 
 }
-
-/* Dropdown CSS */
-
-/* Dropdown Button */
-.dropbtn {
-  background-color: #640080;
-  color: white;
-  padding: 15px 20px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-  }
-
-/* Dropdown button on hover & focus */
-  .dropbtn:hover, .dropbtn:focus {
-  opacity: 1;
-  }
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
