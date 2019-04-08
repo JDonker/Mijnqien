@@ -63,37 +63,55 @@
                     <td>Jan Koevoets</td>
                     <td>21-03-2019</td>
                     <td>Urenformulier</td>
-                    <td id = "status1">In Afwachting</td>
-                    <td><button onclick="toggleOpties()" class="dropbtn">Dropdown</button></td>
+                    <td id = "1">In Afwachting</td>
+                    <td><button onclick="toggleOpties(1)" class="dropbtn">Bewerk</button></td>
                     <!-- <td><button id = "demo" type="button" class="button button1" onclick="Klik()">Bewerk</button> -->
-                        <div id="myDropdown" class="dropdown-content">
-                                <a onclick="keuzeMaken(1)">In Afwachting</a>
-                                <a onclick="keuzeMaken(2)">Ingediend</a>
-                                <a onclick="keuzeMaken(3)">Wijzigen</a>
-                                <a onclick="keuzeMaken(4)">Goedgekeurd</a>
+                        <div id="myDropdown1" class="dropdown-content">
+                                <a onclick="keuzeMaken('1',1)">In Afwachting</a>
+                                <a onclick="keuzeMaken('1',2)">Ingediend</a>
+                                <a onclick="keuzeMaken('1',3)">Wijzigen</a>
+                                <a onclick="keuzeMaken('1',4)">Goedgekeurd</a>
                               </div>
-                            </td>
+                            <!-- </td> -->
                 </tr>
                 <tr>
                     <td>Jan Koevoets</td>
                     <td>21-04-2019</td>
                     <td>Urenformulier</td>
-                    <td>Open</td>
-                    <td><button type="button" class="button button1">Bewerk</button></td>
+                    <td id = "2">In Afwachting</td>
+                    <td><button onclick="toggleOpties(2)" class="dropbtn">Bewerk</button></td>
+                    <div id="myDropdown2" class="dropdown-content">
+                            <a onclick="keuzeMaken('2',1)">In Afwachting</a>
+                            <a onclick="keuzeMaken('2',2)">Ingediend</a>
+                            <a onclick="keuzeMaken('2',3)">Wijzigen</a>
+                            <a onclick="keuzeMaken('2',4)">Goedgekeurd</a>
+                          </div>
                 </tr>
                 <tr>
                     <td>Jan Koevoets</td>
                     <td>21-02-2019</td>
                     <td>Urenformulier</td>
-                    <td>Gefactureerd</td>
-                    <td><button type="button" class="button button1">Bewerk</button></td>
+                    <td id = "3">In Afwachting</td>
+                    <td><button onclick="toggleOpties(3)" class="dropbtn">Bewerk</button></td>
+                    <div id="myDropdown3" class="dropdown-content">
+                            <a onclick="keuzeMaken('3',1)">In Afwachting</a>
+                            <a onclick="keuzeMaken('3',2)">Ingediend</a>
+                            <a onclick="keuzeMaken('3',3)">Wijzigen</a>
+                            <a onclick="keuzeMaken('3',4)">Goedgekeurd</a>
+                          </div>
                 </tr>
                 <tr>
                     <td>Peter van der Velde</td>
                     <td>03-02-2019</td>
                     <td>Declaratieformulier</td>
-                    <td>Uitbetaald</td>
-                    <td><button type="button" class="button button1">Bewerk</button></td>
+                    <td id = "4">In Afwachting</td>
+                    <td><button onclick="toggleOpties(4)" class="dropbtn">Bewerk</button></td>
+                    <div id="myDropdown4" class="dropdown-content">
+                            <a onclick="keuzeMaken('4',1)">In Afwachting</a>
+                            <a onclick="keuzeMaken('4',2)">Ingediend</a>
+                            <a onclick="keuzeMaken('4',3)">Wijzigen</a>
+                            <a onclick="keuzeMaken('4',4)">Goedgekeurd</a>
+                          </div>
                 </tr>
             </tbody>
         </table>
