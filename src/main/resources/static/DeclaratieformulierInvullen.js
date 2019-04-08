@@ -149,10 +149,11 @@ function DeclaratieWegschrijven(){
  
         inp.type = "file";
         inp.name = "submit" + jsondata[i]["id"];
-        inp.id = "filename";
+        inp.id = "filename" + jsondata[i]["id"];
 
         btn.type="submit";
         btn.name="submit" + jsondata[i]["id"];
+        btn.id="submit" + jsondata[i]["id"];
 
         btn.innerHTML="Upload";
         btn.setAttribute("onclick","putBestand("+ jsondata[i]["id"] +" )")
@@ -177,16 +178,14 @@ function putBestand(id){
     var api =  "api/upload/" +  trainee + "/" + id;
 
 
-    var file = document.getElementById('submit' + id).files[0];
+    var file = document.getElementById('filename' + id).files[0];
     var xhttp = new XMLHttpRequest;
 
     var formData = new FormData;
     formData.append('multipart/form-data', file);
 
-    xhttp.upload.addEventListener("progress", myProgressHandler, false);
-    xhttp.setRequestHeader("Content-type", "multipart/form-data");
-    xhttp.addEventListener('load', myOnLoadHandler, false);
-    xhttp.open('POST', 'api', true);
+    xhttp.open('POST', api, true);
+    xhttp.setRequestHeader("Content-type", "application/form-data");
     xhttp.send(formData);
 }
 
@@ -473,21 +472,3 @@ function postReis(){
     xhttp.send(data);
 }
 
-function putBestand(id){
-
-    //server adres
-    var api =  "api/upload/" +  trainee + "/" + id;
-
-
-    var file = document.getElementById('input' + id).files[0];
-    var xhttp = new XMLHttpRequest;
-
-    var formData = new FormData;
-    formData.append('multipart/form-data', file);
-
-    xhttp.upload.addEventListener("progress", myProgressHandler, false);
-    xhttp.setRequestHeader("Content-type", "multipart/form-data");
-    xhttp.addEventListener('load', myOnLoadHandler, false);
-    xhttp.open('POST', 'api', true);
-    xhttp.send(formData);
-}
