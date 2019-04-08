@@ -84,10 +84,6 @@ function urenWegschrijven(){
  //       getUren();
  //   }
 }
-var textje = document.createElement("div");
-textje.innerHTML = urenperdagen;
-document.getElementById("thebody").appendChild(textje);
-//loadUren();
 }
 
 function puturen(id){
