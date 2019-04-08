@@ -155,17 +155,11 @@ function DeclaratieWegschrijven(){
         btn.name="submit" + jsondata[i]["id"];
 
         btn.innerHTML="Upload";
-        btn.setAttribute("onclick",)
+        btn.setAttribute("onclick","putBestand("+ jsondata[i]["id"] +" )")
        
-        addfile.appendChild(inp);
-        addfile.appendChild(btn);
+        cellDeclaratie.appendChild(inp);
+        cellDeclaratie.appendChild(btn);
    
-        
-
-        cellDeclaratie.appendChild(addfile);
-      
-
-
         // hier voeg ik een delete button toe dit is een nieuwe feature die nog moet worden geimplementeerd
         
         var cellDeclaratie = row.insertCell(-1);
@@ -183,7 +177,7 @@ function putBestand(id){
     var api =  "api/upload/" +  trainee + "/" + id;
 
 
-    var file = document.getElementById('input' + id).files[0];
+    var file = document.getElementById('submit' + id).files[0];
     var xhttp = new XMLHttpRequest;
 
     var formData = new FormData;
@@ -338,14 +332,13 @@ function putdeclaratie(id){
     // maak een object van de te updaten reis
     var declaratie= {};
     // haal de velden op uit het formulier ze zijn makkelijk te vinden aan de hand van het meegegeven id
-    declaratie.omschrijving = document.getElementById("van" + id).value;
-    declaratie.bedrag = document.getElementById("naar" + id).value;
-    declaratie.btw = document.getElementById("kilometers" + id).value;
+    declaratie.omschrijving = document.getElementById("omschrijving" + id).value;
+    declaratie.bedrag = document.getElementById("bedrag" + id).value;
     declaratie.datum = document.getElementById("datum" + id).value;
     declaratie.id = id;
     console.log(declaratie);
         // maak een string van het te updaten declaratie object een stuur dat naar de put functie
-    putReis(JSON.stringify(declaratie));
+    putDeclaratie(JSON.stringify(declaratie));
 }
 
 function putreis(id){
