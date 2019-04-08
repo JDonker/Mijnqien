@@ -48,7 +48,8 @@ public class FileUploadService {
 	DeclaratieFormService declaratieFormService;
 
 	/** The path to the folder where we want to store the uploaded files */
-	private static final java.nio.file.Path UPLOAD_FOLDER = Paths.get(System.getProperty("user.dir")) ;
+	private static final java.nio.file.Path SYSDIR = Paths.get(System.getProperty("user.dir")) ;
+	private static final java.nio.file.Path UPLOAD_FOLDER = SYSDIR.resolve(Paths.get("src/main/resources/fileDB/"));
 
 	public FileUploadService() {
 	}
@@ -65,68 +66,12 @@ public class FileUploadService {
 	 */
 	
 	@POST
-	@Path("/{FormID}/{declaratieID}")
-	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response uploadDeclaratieBijlage(
-			@FormDataParam("file") InputStream uploadedInputStream,
-			@FormDataParam("file") FormDataContentDisposition fileDetail,@PathParam("FormID") long FormID,@PathParam("declaratieID") long declaratieID) {
-
-		// huidge user ophalen 
-		long traineeID = 1;
-		java.nio.file.Path UPLOAD_FOLDER_LOCAL=Paths.get(traineeID + "/" + FormID + "/" + declaratieID  + "/");  
-
-		java.nio.file.Path folder = UPLOAD_FOLDER.resolve(UPLOAD_FOLDER_LOCAL);
-		
-		// check if all form parameters are provided
-		if (uploadedInputStream == null || fileDetail == null)
-			return Response.status(400).entity("Invalid form data").build();
-		// create our destination folder, if it not exists
-		
-		try {
-			Files.createDirectory(folder);
-			System.out.println(folder.toString());
-		} catch (IOException se) {
-			return Response.status(500)
-					.entity("Can not create destination folder on server")
-					.build();
-		}
-		
-		// nu declaratie beijken bouw nog check voor access
-		try {
-			DeclaratieForm decForm = declaratieFormService.findById(FormID);
-			Declaratie declaratie = declaratieService.findById(declaratieID);
-			if (decForm.bewerkbaar() && decForm.getDeclaraties().contains(declaratie)) {
-				declaratie.setBijlage(fileDetail.getFileName());
-				declaratieService.save(declaratie);
-			} else {
-				return Response.status(Status.BAD_REQUEST).build();
-			}
-		} catch (DeclaratieFormNotFoundException| DeclaratieNotFoundException e) {
-			return Response.status(Status.NOT_FOUND).build();
-		}
-		
-		
-		
-		System.out.println(System.getProperty("user.dir"));
-		String uploadedFileLocation = folder.relativize(Paths.get(fileDetail.getFileName())).toString()  ;
-		try {
-			saveToFile(uploadedInputStream, uploadedFileLocation);
-		} catch (IOException e) {
-			return Response.status(500).entity("Can not save file").build();
-		}
-
-		return Response.status(200)
-				.entity("Huidig bestand:  " + fileDetail.getFileName()).build();
-	}
-	
-	
-	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
 	public Response uploadFile(
 			@FormDataParam("file") InputStream uploadedInputStream,
 			@FormDataParam("file") FormDataContentDisposition fileDetail) {
 
-		
+System.out.println(UPLOAD_FOLDER.toString());
 		// check if all form parameters are provided
 		if (uploadedInputStream == null || fileDetail == null)
 			return Response.status(400).entity("Invalid form data").build();
@@ -140,7 +85,7 @@ public class FileUploadService {
 					.build();
 		}
 		System.out.println(System.getProperty("user.dir"));
-		String uploadedFileLocation = UPLOAD_FOLDER + fileDetail.getFileName();
+		String uploadedFileLocation = UPLOAD_FOLDER.resolve(Paths.get(fileDetail.getFileName())).toString();
 		try {
 			saveToFile(uploadedInputStream, uploadedFileLocation);
 		} catch (IOException e) {
@@ -150,6 +95,63 @@ public class FileUploadService {
 		return Response.status(200)
 				.entity("File saved to " + uploadedFileLocation).build();
 	}
+	
+	@POST
+	@Path("/{FormID}/{declaratieID}")
+	@Consumes(MediaType.MULTIPART_FORM_DATA)
+	public Response uploadDeclaratieBijlage(
+			@FormDataParam("file") InputStream uploadedInputStream,
+			@FormDataParam("file") FormDataContentDisposition fileDetail,@PathParam("FormID") long FormID,@PathParam("declaratieID") long declaratieID) {
+		System.out.println("cool");
+		// huidge user ophalen 
+		long traineeID = 1;
+		java.nio.file.Path UPLOAD_FOLDER_LOCAL=Paths.get(traineeID + "/" + FormID + "/" + declaratieID  + "/");  
+		java.nio.file.Path folder = UPLOAD_FOLDER.resolve(UPLOAD_FOLDER_LOCAL);
+		// check if all form parameters are provided
+		if (uploadedInputStream == null || fileDetail == null)
+			return Response.status(400).entity("Invalid form data").build();
+		// create our destination folder, if it not exists
+		try {
+			System.out.println(folder.toString());
+			Files.createDirectories(folder);
+			//createFolderIfNotExists(folder.toString());
+		} catch (IOException se) {
+			return Response.status(500)
+					.entity("Can not create destination folder on server")
+					.build();
+		}
+		
+		// nu declaratie beijken bouw nog check voor access
+		try {
+			DeclaratieForm decForm = declaratieFormService.findById(FormID);
+			Declaratie declaratie = declaratieService.findById(declaratieID);
+			System.out.println("" + decForm.bewerkbaar() + decForm.getDeclaraties().contains(declaratie));
+			if (decForm.bewerkbaar() && decForm.getDeclaraties().contains(declaratie)) {
+				declaratie.setBijlage(fileDetail.getFileName());
+				declaratieService.save(declaratie);
+			} else {
+				return Response.status(Status.BAD_REQUEST).build();
+			}
+		} catch (DeclaratieFormNotFoundException| DeclaratieNotFoundException e) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		
+		
+		
+		System.out.println(System.getProperty("user.dir"));
+		String uploadedFileLocation = folder.resolve(Paths.get(fileDetail.getFileName())).toString()  ;
+		try {
+			saveToFile(uploadedInputStream, uploadedFileLocation);
+		} catch (IOException e) {
+			return Response.status(500).entity("Can not save file").build();
+		}
+
+		return Response.status(200)
+				.entity("Huidig bestand:  " + fileDetail.getFileName()).build();
+	}
+	
+	
+
 	
 	@PUT
 	public Response deleteUploadFile(

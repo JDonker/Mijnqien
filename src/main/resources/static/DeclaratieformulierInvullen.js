@@ -6,7 +6,6 @@ var declaraties = "";
 var reizen = "";
 var formulier = {};
 formulier.datum = new Date();
-const moment = require('moment');
 
 function DeclaratieToevoegen1() {
     var table = document.getElementById("Declaratie");
@@ -135,7 +134,6 @@ function DeclaratieWegschrijven(){
                              // haal uit de de database: record i en daarvan het field bedrag
                     cellDeclaratieinput.value=jsondata[i]["bedrag"];
                     break;
-                case 3: 
                     
                 default:
                     break;
@@ -144,8 +142,26 @@ function DeclaratieWegschrijven(){
             cellDeclaratie.appendChild(cellDeclaratieinput);
 
         }
-        // hier voeg ik een delete button toe dit is een nieuwe feature die nog moet worden geimplementeerd
         var cellDeclaratie = row.insertCell(-1);
+
+        var btn = document.createElement("button");
+        var inp = document.createElement("input");
+ 
+        inp.type = "file";
+        inp.name = "submit" + jsondata[i]["id"];
+        inp.id = "filename";
+
+        btn.type="submit";
+        btn.name="submit" + jsondata[i]["id"];
+
+        btn.innerHTML="Upload";
+        btn.setAttribute("onclick","putBestand("+ jsondata[i]["id"] +" )")
+       
+        cellDeclaratie.appendChild(inp);
+        cellDeclaratie.appendChild(btn);
+   
+        // hier voeg ik een delete button toe dit is een nieuwe feature die nog moet worden geimplementeerd
+        
         var cellDeclaratie = row.insertCell(-1);
         var deleteButton = document.createElement("Button");
         deleteButton.setAttribute("class","button")
@@ -153,6 +169,27 @@ function DeclaratieWegschrijven(){
         deleteButton.setAttribute("onclick","DeleteDeclaratie("+ jsondata[i]["id"] + ")");
         cellDeclaratie.appendChild(deleteButton);
     }
+}
+
+function putBestand(id){
+
+    //server adres
+    var api =  "api/upload/" +  trainee + "/" + id;
+
+
+    var file = document.getElementById('submit' + id).files[0];
+    var xhttp = new XMLHttpRequest;
+
+    var formData = new FormData;
+    formData.append('multipart/form-data', file);
+
+    xhttp.upload.addEventListener("progress", myProgressHandler, false);
+    xhttp.setRequestHeader("Content-type", "multipart/form-data");
+    xhttp.addEventListener('load', myOnLoadHandler, false);
+    xhttp.open('POST', 'api', true);
+    xhttp.send(formData);
+}
+
 
 
 
@@ -295,14 +332,13 @@ function putdeclaratie(id){
     // maak een object van de te updaten reis
     var declaratie= {};
     // haal de velden op uit het formulier ze zijn makkelijk te vinden aan de hand van het meegegeven id
-    declaratie.omschrijving = document.getElementById("van" + id).value;
-    declaratie.bedrag = document.getElementById("naar" + id).value;
-    declaratie.btw = document.getElementById("kilometers" + id).value;
+    declaratie.omschrijving = document.getElementById("omschrijving" + id).value;
+    declaratie.bedrag = document.getElementById("bedrag" + id).value;
     declaratie.datum = document.getElementById("datum" + id).value;
     declaratie.id = id;
     console.log(declaratie);
         // maak een string van het te updaten declaratie object een stuur dat naar de put functie
-    putReis(JSON.stringify(declaratie));
+    putDeclaratie(JSON.stringify(declaratie));
 }
 
 function putreis(id){
@@ -435,4 +471,23 @@ function postReis(){
     // send request om data te gaan putten
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send(data);
+}
+
+function putBestand(id){
+
+    //server adres
+    var api =  "api/upload/" +  trainee + "/" + id;
+
+
+    var file = document.getElementById('input' + id).files[0];
+    var xhttp = new XMLHttpRequest;
+
+    var formData = new FormData;
+    formData.append('multipart/form-data', file);
+
+    xhttp.upload.addEventListener("progress", myProgressHandler, false);
+    xhttp.setRequestHeader("Content-type", "multipart/form-data");
+    xhttp.addEventListener('load', myOnLoadHandler, false);
+    xhttp.open('POST', 'api', true);
+    xhttp.send(formData);
 }
