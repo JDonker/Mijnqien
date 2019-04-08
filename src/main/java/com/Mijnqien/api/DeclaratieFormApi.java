@@ -23,6 +23,7 @@ import com.Mijnqien.Ondersteunend.ReadProperties;
 import com.Mijnqien.Trainee.DeclaratieForm;
 import com.Mijnqien.Trainee.Stat;
 import com.Mijnqien.service.DeclaratieFormService;
+import com.Mijnqien.service.DeclaratieService;
 
 
 //adress in de api
@@ -32,6 +33,9 @@ public class DeclaratieFormApi {
 	
 	@Autowired
 	DeclaratieFormService declaratieFormService;
+	
+	@Autowired
+	DeclaratieService declaratieService;
 	
 	@Autowired
 	EmailServer emailserver; 
