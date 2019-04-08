@@ -60,6 +60,11 @@ public class UrenForm {
 	public void setOpdracht(String opdracht) {
 		this.opdracht = opdracht;
 	}
+	
+	public boolean bewerkbaar() {
+		return (this.stat==Stat.INAFWACHTING||this.stat==Stat.WIJZIGEN);	
+	}
+
 
 	
 }
