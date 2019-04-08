@@ -43,6 +43,7 @@ public class UrenPerDagAPI {
 	}
 	
 	@POST
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response inDatabaseStoppen(UrenPerDag urenPerDag) {
 		UrenPerDag urenPerDag2 = urenPerDagService.saveUrenPerDag(urenPerDag);
 		return Response.ok(urenPerDag2).build();

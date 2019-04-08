@@ -124,7 +124,7 @@ function DeclaratieWegschrijven(){
         }
     }
 
-}
+
 
 function ReizenWegschrijven(){
     var table = document.getElementById("ReizenTableBody");
