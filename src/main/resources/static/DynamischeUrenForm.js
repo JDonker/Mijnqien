@@ -26,6 +26,8 @@ aantalDagenPerMaand[9] = 31;
 aantalDagenPerMaand[10] = 30;
 aantalDagenPerMaand[11] = 31;
 
+var urenperdagen="";
+
 var cellnamen = ["datum", "opdracht", "overwerk", "verlof", "ziek", "training", "overig", "verklaring"];
 
 
@@ -57,6 +59,36 @@ function urenWegschrijven(){
             tr.setAttribute("id", "row" + table.rows.length);
   //          tr.setAttribute("onfocusout", "puturen(" + jsondata[i]["id"] + ")");
             var tabCell = tr.insertCell(-1);
+            tabCell.setAttribute("id", "datum" + (table.rows.length));
+            var textfield = document.createElement("div");
+            textfield.setAttribute("id", (table.rows.length) + "datumtext");
+            textfield.innerHTML = (table.rows.length) + " " + maand[datumNu.getMonth()];
+            tabCell.appendChild(textfield);
+            for (var j = 0; j < 7; j++) {
+                var tabCell = tr.insertCell(-1);
+                var input1 = document.createElement("input");
+                input1.setAttribute("type", "text");
+                input1.setAttribute("id", cellnamen[j + 1] + table.rows.length);
+                input1.value=jsondata[i][cellnamen[j + 1]];
+                             jsondata[i][cellnamen[j + 1]]
+                if(j < 6){
+                    input1.setAttribute("size", "1");
+                }
+                tabCell.appendChild(input1);
+            } 
+ //       }
+ //   } else {
+ //       getUren();
+ //   }
+}
+var textje = document.createElement("div");
+textje.innerHTML = urenperdagen;
+document.getElementById("thebody").appendChild(textje);
+//loadUren();
+}
+
+function puturen(id){
+    var urenperdag = {};
     urenperdag.datum = document.getElementById(id+"datumtext").innerText;
     urenperdag.opdracht = document.getElementById("opdracht" + id).value;
     urenperdag.overwerk = document.getElementById("overwerk" + id).value;
@@ -201,4 +233,4 @@ function getUren(){
     xhttp.send();
 }
 
-}
+
