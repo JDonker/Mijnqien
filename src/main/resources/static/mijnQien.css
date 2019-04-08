@@ -2,14 +2,46 @@
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
 }
+div#topdiv {
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:50%;
+	padding:8px;
+}
+
+div#topdivr {
+text-align: right;
+	/* position:fixed; */
+	top:0px;
+	left:0px;
+	width:10%;
+	padding:8px;
+}
 
 h1{
   text-align: center;
-   color: #640080;
+   color: #ffffff;
+}
+.kleinetekst{
+  
+   color: #ffffff;
+}
+.uitlog{
+  float: right;
+  color: #ffffff;
+}
+#nav-li {
+ display: inline-block;
+ position: relative;
+ line-height: 21px;
+ text-align: right;
+ color: white;
 }
 
 h2{
     text-align: center;
+    color: #ffffff;
   }
 /* Add a black background color to the top navigation */
 .topnav {
@@ -20,7 +52,14 @@ h2{
     padding: 5px 10px 5px 10px;
 
   }
-  
+  a:link {
+    color: #ffffff;
+}
+
+/* A link that has been visited */
+a:visited {
+    color:#dddddd;
+}
 
   /* Style the links inside the navigation bar */
   .topnav a {
@@ -49,8 +88,9 @@ h2{
   }
   
   #Uren tr:nth-child(even){background-color: #f2f2f2;}
+  #Uren tr:nth-child(odd){background-color: #ddd;}
   
-  #Uren tr:hover {background-color: #ddd;}
+  #Uren tr:hover {background-color: #aaa;}
   
   #Uren th {
     padding-top: 12px;
@@ -169,7 +209,39 @@ input {
 .btn:hover {
   opacity: 1;
 }
+.container{
+  
+  color: #ffffff;
+}
 
+form {
+  width: 80%;
+  margin: 0 auto;
+}
+
+label, input {
+  /* in order to define widths */
+  display: inline-block;
+}
+
+label {
+  width: 30%;
+  /* positions the label text beside the input */
+  text-align: right;
+}
+
+label + input {
+  width: 30%;
+  /* large margin-right to force the next element to the new-line
+     and margin-left to create a gutter between the label and input */
+  margin: 0 30% 0 4%;
+}
+
+/* only the submit button is matched by this selector,
+ but to be sure you could use an id or class for that button */
+input + input {
+  float: right;
+}
 form{
   max-width:500px;
   margin:auto
@@ -177,7 +249,10 @@ form{
 span.psw{
   float: right;
 }
+#bar-chart{
 
+  background-color: #fff;
+}
 #caps{
   color:red
 }
@@ -255,7 +330,10 @@ only screen and (max-width: 760px),
   margin: 50px auto;
 }
  body{
-    border-bottom-width: 10px;
+  padding: 10px 10px 10px 10px;  
+  background-image: url("achtergrond.jpg");
+  background-size: contain;
+  background-size: 100%;
 }
 
   @media 
@@ -325,14 +403,16 @@ td:nth-of-type(8):before { content: "Verklaring"; }
   }
   
   .button1:hover {
-    background-color: white; 
-    color: black; 
-    border: 2px solid #9C4AF0;
+    background-color: #640080; 
+    color: white; 
+    border: 2px solid #640080;
+    
   }
   
   .button1 {
-    background-color: #9C4AF0 ;
-    color: white;
+    background-color: #fff ;
+    color: #000000;
+    border: 2px solid #640080;
   }
   
  .topnav .btn{
@@ -419,31 +499,9 @@ body {
   padding: 1px 5px;
 }
 
-.button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 2px 1px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-  }
+
   
-  .button1:hover {
-    background-color: white; 
-    color: black; 
-    border: 2px solid #9C4AF0;
-  }
   
-  .button1 {
-    background-color: #9C4AF0 ;
-    color: white;
-  }
 
   #myInput{
     float: right;
