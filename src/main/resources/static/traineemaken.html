@@ -5,16 +5,34 @@
       xhr.onreadystatechange = function(){
 
         if(this.readyState == 4){
+            alert("User toegevoegd aan database")
+
+            xhr2 = new XMLHttpRequest();
+      xhr2.onreadystatechange = function(){
+
+        if(this.readyState == 4){
             alert("Trainee toegevoegd aan database")
             }
       }
-      xhr.open("POST", "http://localhost:8082/api/tra", true);
+      xhr2.open("POST", "http://localhost:8082/api/trainee", true);
+      var trainee = {};
+      trainee.achternaam=form.an.value;
+      trainee.voornaam=form.vn.value;
+      trainee.tussenvoegsel=form.tv.value;
+      trainee.personeelsnummer=form.pn.value;
+      xhr2.setRequestHeader("Content-type", "application/json");
+      xhr2.send(JSON.stringify(trainee));
+            }
+      }
+      xhr.open("POST", "http://localhost:8082/api/user", true);
       var user = {};
       user.username=form.un.value;
       user.password=form.pw.value;
       user.role="trainee";
       xhr.setRequestHeader("Content-type", "application/json");
       xhr.send(JSON.stringify(user));
+
+      
   }
 </script>
 
@@ -24,14 +42,21 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-<link href="stylesheet.css" rel="stylesheet" type="text/css">
+<link href="mijnQien.css" rel="stylesheet" type="text/css">
 </head>
-<body>
-
-<div class="header">
-  <h1>mijn Qien</h1>
-  <h1>trainee aanmaken</h1>
+<div id="topdiv"><img src="logo.svg" style="height: auto; width: 50px">
 </div>
+
+
+<body>
+    <h1>          mijnQien</h1>
+<br>
+<br>
+
+
+ 
+  <h1>trainee aanmaken</h1>
+<br>
 
 <div class="row">
 
@@ -41,18 +66,34 @@
 
 
     <form name = "traineeinput" action="" method = "GET">    
-        <div class = "container">    
+        <div class = "container">
             <div class = "form_group">    
-                <label>Geb ruikersnaam:</label>    
+                <label>gebruikersnaam:</label>    
                 <input type = "text" name = "un" value = "" required/>    
             </div>    
             <div class = "form_group">    
-                <label>Wachtwoord:</label>    
+                <label>wachtwoord:</label>    
                 <input type = "text" name = "pw" value = "" required />    
-            </div>    
+            </div>  
+            <div class = "form_group">    
+              <label>voornaam:</label>    
+              <input type = "text" name = "vn" value = "" required />    
+          </div>
+          <div class = "form_group">    
+            <label>tussenvoegsel:</label>    
+            <input type = "text" name = "tv" value = "" required />    
+        </div>
+        <div class = "form_group">    
+          <label>achternaam:</label>    
+          <input type = "text" name = "an" value = "" required />    
+      </div>
+      <div class = "form_group">    
+        <label>personeelsnummer:</label>    
+        <input type = "text" name = "pn" value = "" required />    
+    </div>  
         </div> 
            <br>
-           <input type=button value="trainee useraccount aanmaken" onclick=go(this.form)>   
+           <input type=button class="button button1" value="trainee useraccount aanmaken" onclick=go(this.form)>   
     </form>    
   </div>
   
