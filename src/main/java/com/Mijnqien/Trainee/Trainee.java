@@ -3,6 +3,7 @@ package com.Mijnqien.Trainee;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import com.Mijnqien.Gebruiker;
+import com.Mijnqien.Exceptions.TraineeNotFoundException;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -23,6 +24,8 @@ public class Trainee extends Gebruiker {
 	private String voornaam;
 	private String achternaam;
 	private String tussenvoegsel;
+	String emailAdres;
+
 	//Profiel profiel;
 	private int personeelsnummer;
 	//Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
@@ -38,6 +41,13 @@ public class Trainee extends Gebruiker {
 		this.declaratieFormulieren = declaratieFormulieren;
 	}
 
+	public String getEmailAdres() {
+		return emailAdres;
+	}
+
+	public void setEmailAdres(String emailAdres) {
+		this.emailAdres = emailAdres;
+	}
 
 
 	public long getId() {
@@ -91,5 +101,12 @@ public class Trainee extends Gebruiker {
 	public void setPersoneelsnummer(int personeelsnummer) {
 		this.personeelsnummer = personeelsnummer;
 	}
+	
+	public static Trainee getSecuredTrainee() throws TraineeNotFoundException{
+	//	SecurityContext securityContext = SecurityContextHolder.getContext();
+	//	return trainee = traineeService.findByEmailAdres(securityContext.getAuthentication().getUsername());
+		return new Trainee();
+	}
+	
 
 }

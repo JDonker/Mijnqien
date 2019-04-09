@@ -25,6 +25,11 @@ public class TraineeService {
 	public Trainee findTraineeById(long id) throws TraineeNotFoundException {
 		return traineeRepository.findById(id).orElseThrow(TraineeNotFoundException::new);
 	}
+	
+	public Trainee findTraineeByEmail(String email) throws TraineeNotFoundException {
+		return traineeRepository.findByEmailAdres(email).orElseThrow(TraineeNotFoundException::new);
+	}
+
 
 	public Trainee saveTrainee(Trainee trainee) {
 	return traineeRepository.save(trainee);

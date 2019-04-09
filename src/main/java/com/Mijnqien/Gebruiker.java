@@ -13,7 +13,7 @@ public class Gebruiker {
 	@Column(unique = true)
 	String gebruikersnaam;
 	String wachtwoord;
-	String emailAdres;
+
 	String rol; // trainee of admin
 
 	public long getId() {
@@ -42,12 +42,5 @@ public class Gebruiker {
 		this.rol = rol;
 	}
 	
-	public void setEmailAdres(String emailAdres) {
-		this.emailAdres = emailAdres;
-	}
-	
-	public String getEmailAdres() {
-		return emailAdres;
-	}
 	
 }
