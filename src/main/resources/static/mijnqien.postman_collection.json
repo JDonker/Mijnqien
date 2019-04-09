@@ -19,10 +19,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"prijsPerKilometer\": 19,\n    \"naam\": \"Jasper\",\n    \"masterclassEditie\": \"Februari2019\",\n    \"declaraties\": [],\n    \"totaalBedrag\": 0,\n    \"totaalBTW\": 0,\n    \"totaalTotaal\": 0,\n    \"totaalReisKosten\": 0,\n    \"totaalKilometers\": 0,\n    \"id\": 3,\n    \"iban\": null\n}"
+					"raw": "{\n    \"maand\": \"2019-03-01\",\n    \"prijsPerKilometer\": 19,\n    \"naam\": \"Jasper\",\n    \"masterclassEditie\": \"Februari2019\",\n    \"declaraties\": [],\n    \"totaalBedrag\": 0,\n    \"totaalBTW\": 0,\n    \"totaalTotaal\": 0,\n    \"totaalReisKosten\": 0,\n    \"totaalKilometers\": 0,\n    \"id\": 3,\n    \"iban\": null\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/DeclaratieForm",
+					"raw": "http://localhost:8082/api/DeclaratieForm/newform/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -30,7 +30,9 @@
 					"port": "8082",
 					"path": [
 						"api",
-						"DeclaratieForm"
+						"DeclaratieForm",
+						"newform",
+						""
 					]
 				}
 			},
@@ -50,10 +52,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"prijsPerKilometer\": 19,\n    \"naam\": \"Robert\",\n    \"masterclassEditie\": \"Februari2019\",\n    \"declaraties\": [],\n    \"totaalBedrag\": 0,\n    \"totaalBTW\": 0,\n    \"totaalTotaal\": 0,\n    \"totaalReisKosten\": 0,\n    \"totaalKilometers\": 0,\n    \"id\": 3,\n    \"iban\": null\n}"
+					"raw": "{\n    \"maand\": \"2019-03-01\",\n    \"prijsPerKilometer\": 19,\n    \"naam\": \"Robert\",\n    \"masterclassEditie\": \"Februari2019\",\n    \"declaraties\": [],\n    \"totaalBedrag\": 0,\n    \"totaalBTW\": 0,\n    \"totaalTotaal\": 0,\n    \"totaalReisKosten\": 0,\n    \"totaalKilometers\": 0,\n    \"id\": 3,\n    \"iban\": null\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8082/api/DeclaratieForm",
+					"raw": "http://localhost:8082/api/DeclaratieForm/newform/",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -61,7 +63,9 @@
 					"port": "8082",
 					"path": [
 						"api",
-						"DeclaratieForm"
+						"DeclaratieForm",
+						"newform",
+						""
 					]
 				}
 			},
@@ -115,7 +119,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nummer\" : 1,\n\t\"omschrijving\" : \"Hello\",\n\t\"bedrag\" : 200,\n\t\"btw\" : 400,\n\t\"totaal\" : 600,\n\t\"code\": \"324234\"\n}"
+					"raw": "{\n\t\"omschrijving\" : \"Hello\",\n\t\"bedrag\" : 200,\n\t\"bedragminbtw\" : 400\n\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8082/api/DeclaratieForm/1",
@@ -147,7 +151,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nummer\" : 2,\n\t\"omschrijving\" : \"Hello\",\n\t\"bedrag\" : 200,\n\t\"btw\" : 400,\n\t\"totaal\" : 600,\n\t\"code\": \"324234\"\n}"
+					"raw": "{\n\t\"omschrijving\" : \"Hello\",\n\t\"bedrag\" : 200,\n\t\"bedragminbtw\" : 400\n\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8082/api/DeclaratieForm/2",
@@ -179,7 +183,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nummer\" : 1,\n\t\"omschrijving\" : \"Udemy cursus\",\n\t\"bedrag\" : 21900,\n\t\"btw\" : 1100,\n\t\"totaal\" : 23000,\n\t\"code\": \"324f1234\"\n}"
+					"raw": "{\n\t\"nummer\" : 1,\n\t\"omschrijving\" : \"Udemy cursus\",\n\t\"bedrag\" : 21900,\n\t\"bedragminbtw\" : 400,\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8082/api/DeclaratieForm/2",
@@ -246,7 +250,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"van\": \"Hilversum\",\n\t\"naar\": \"Utrecht\",\n\t\"ov\": true,\n\t\"ovkosten\": 3000\n\t\n}"
+					"raw": "{\n\t\"datum\": \"2019-02-01\",\n\t\"van\": \"Hilversum\",\n\t\"naar\": \"Utrecht\",\n\t\"kilometers\": 20\n\t\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8082/api/DeclaratieForm/Reis/2",
@@ -279,7 +283,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"van\" : \"Hilversum\",\n\t\"naar\" : \"Utrecht\",\n\t\"kilometers\" : 44,\n\t\"ov\" : false\n\t\n}"
+					"raw": "{\n\t\"datum\": \"2019-02-01\",\n\t\"van\" : \"Hilversum\",\n\t\"naar\" : \"Utrecht\",\n\t\"kilometers\": 23\n\t\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8082/api/DeclaratieForm/Reis/2",
@@ -335,7 +339,7 @@
 			"response": []
 		},
 		{
-			"name": "Post Reis Robert 2 Copy",
+			"name": "Verstuur e-mail",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -348,7 +352,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"subject\" : \"Hilversum\",\n\t\"content\" : \"Utrecht\",\n\t\"email\" : \"jasperdonker@gmail.com\"\n\t\n}"
+					"raw": "{\n\t\"subject\" : \"Test bericht\",\n\t\"content\" : \"Dit is een test bericht\",\n\t\"email\" : \"jasperdonker@gmail.com\"\n\t\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8082/api/Email/",

@@ -120,6 +120,26 @@ public class DeclaratieForm {
 		this.totaalKilometers = totaalKilometers;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (Id ^ (Id >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DeclaratieForm other = (DeclaratieForm) obj;
+		if (Id != other.Id)
+			return false;
+		return true;
+	}
 	public boolean bewerkbaar() {
 		return (this.status==Stat.INAFWACHTING||this.status==Stat.WIJZIGEN);	
 	}

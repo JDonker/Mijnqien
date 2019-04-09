@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.Mijnqien.User;
 import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Exceptions.DeclaratieNotFoundException;
 import com.Mijnqien.Trainee.Declaratie;
@@ -26,6 +27,8 @@ import com.Mijnqien.Trainee.DeclaratieForm;
 import com.Mijnqien.Trainee.Stat;
 import com.Mijnqien.service.DeclaratieFormService;
 import com.Mijnqien.service.DeclaratieService;
+import com.Mijnqien.service.UserService;
+
 
 @Path("/DeclaratieForm")
 @Component
@@ -36,6 +39,10 @@ public class DeclaratieApi {
 	
 	@Autowired
 	DeclaratieFormService declaratieFormService;
+	
+	@Autowired
+	UserService userService;
+	
 	
 	@GET
 	@Path("/{FormID}")
@@ -73,6 +80,7 @@ public class DeclaratieApi {
 	}
 	
 	
+	//@PreAuthorize("isAuthenticated()")
 	@PUT
 	@Path("/{FormID}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -81,6 +89,7 @@ public class DeclaratieApi {
 		if(declaratie!=null) {
 			try  {
 				Declaratie gevondenDeclaratie = declaratieService.findById(declaratie.getId());
+				User user = new User();	
 				DeclaratieForm decForm= declaratieFormService.findById(FormID);
 				if (decForm.getDeclaraties().contains(gevondenDeclaratie)&&decForm.bewerkbaar()) {
 					Declaratie geupdateDeclaratie = declaratieService.Update(declaratie);
