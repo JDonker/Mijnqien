@@ -37,7 +37,6 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 // with the following modification
 // https://stackoverflow.com/questions/30653012/multipart-form-data-no-injection-source-found-for-a-parameter-of-type-public-ja
 
-
 @Path("/upload")
 public class FileUploadService {
 	
@@ -149,9 +148,6 @@ System.out.println(UPLOAD_FOLDER.toString());
 		return Response.status(200)
 				.entity("Huidig bestand:  " + fileDetail.getFileName()).build();
 	}
-	
-	
-
 	
 	@PUT
 	public Response deleteUploadFile(
