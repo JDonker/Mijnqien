@@ -1,4 +1,13 @@
-
+var input = 0;
+function myFunction(input2) {
+  var deId2 = "dropdown-test" + input2.toString(10);
+  var x = document.getElementById(deId2);
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
 
 
 function Klik() {
