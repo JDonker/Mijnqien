@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.Mijnqien.Trainee.DeclaratieForm;
-import com.Mijnqien.Trainee.Stat;
+import com.Mijnqien.domain.trainee.DeclaratieForm;
+import com.Mijnqien.domain.trainee.Stat;
 
 public interface DeclaratieFormRepository extends CrudRepository <DeclaratieForm, Long>  {
 	

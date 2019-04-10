@@ -26,8 +26,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Exceptions.DeclaratieNotFoundException;
-import com.Mijnqien.Trainee.Declaratie;
-import com.Mijnqien.Trainee.DeclaratieForm;
+import com.Mijnqien.domain.trainee.Declaratie;
+import com.Mijnqien.domain.trainee.DeclaratieForm;
 import com.Mijnqien.service.DeclaratieFormService;
 import com.Mijnqien.service.DeclaratieService;
 

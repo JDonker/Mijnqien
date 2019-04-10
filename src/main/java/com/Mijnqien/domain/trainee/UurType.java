@@ -1,4 +1,4 @@
-package com.Mijnqien.Trainee;
+package com.Mijnqien.domain.trainee;
 
 import java.time.LocalDate;
 
@@ -8,13 +8,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Profiel {
+public class UurType {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	long id;
-	String foto;
-	String adres;
-	LocalDate geboorteDatum;
-	String IBAN;
+	String naam;
+	double SalarisPercentage;
+	LocalDate startdatum;
+	LocalDate einddatum;
 }

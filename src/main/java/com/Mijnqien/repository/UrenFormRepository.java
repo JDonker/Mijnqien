@@ -5,9 +5,9 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.Mijnqien.Trainee.DeclaratieForm;
-import com.Mijnqien.Trainee.Stat;
-import com.Mijnqien.Trainee.UrenForm;
+import com.Mijnqien.domain.trainee.DeclaratieForm;
+import com.Mijnqien.domain.trainee.Stat;
+import com.Mijnqien.domain.trainee.UrenForm;
 
 @Repository
 public interface UrenFormRepository extends CrudRepository <UrenForm, Long> {
