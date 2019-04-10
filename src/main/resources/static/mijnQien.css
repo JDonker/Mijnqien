@@ -87,8 +87,7 @@ a:visited {
     padding: 8px;
   }
   
-  #Uren tr:nth-child(even){background-color: #f2f2f2;}
-  #Uren tr:nth-child(odd){background-color: #ddd;}
+  
   
   #Uren tr:hover {background-color: #aaa;}
   
@@ -512,7 +511,20 @@ body {
   
   
 
-  #myInput{
-    float: right;
-    width: 100px;
-  }
+#myInput{
+  float: right;
+  width: 100px;
+}
+
+#weekend{
+  background-color: #640080;
+  color: white;
+}
+
+#row:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+#row:nth-child(odd){
+  background-color: #ddd;
+}

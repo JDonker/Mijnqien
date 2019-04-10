@@ -26,6 +26,15 @@ aantalDagenPerMaand[9] = 31;
 aantalDagenPerMaand[10] = 30;
 aantalDagenPerMaand[11] = 31;
 
+var dagenPerWeek = new Array();
+dagenPerWeek[0]= "zondag";
+dagenPerWeek[1]= "maandag";
+dagenPerWeek[2]= "dinsdag";
+dagenPerWeek[3]= "woensdag";
+dagenPerWeek[4]= "donderdag";
+dagenPerWeek[5]= "vrijdag";
+dagenPerWeek[6]= "zaterdag";
+
 var urenperdagen="";
 
 var cellnamen = ["datum", "opdracht", "overwerk", "verlof", "ziek", "training", "overig", "verklaring"];
@@ -57,15 +66,28 @@ function urenWegschrijven(){
 
         var table = document.getElementById("UrenTableBody");
         for (var i = 0; i < jsondata.length; i++) { //het getal 31 moet de lengte zijn van de database van de maand.
+            var myDate = new Date();
+            myDate.setDate(i + 1);
             tr = table.insertRow(-1);
-            tr.setAttribute("id", "row" + jsondata[i]["id"]);
+            if(myDate.getDay() == 0 || myDate.getDay() == 6){
+                tr.setAttribute("id", "weekend");
+            }
+            else if((myDate.getMonth() == 0 && myDate.getDate() == 1) || 
+                (myDate.getMonth() == 3 && (myDate.getDate() == 21 || myDate.getDate() == 22 || myDate.getDate() == 27)) ||
+                (myDate.getMonth() == 4 && myDate.getDate() == 30) ||
+                (myDate.getMonth() == 5 && (myDate.getDate() == 9 || myDate.getDate() == 10)) ||
+                (myDate.getMonth() == 11 && (myDate.getDate() == 25 || myDate.getDate() == 26))){
+                    tr.setAttribute("id", "weekend");
+                } else{
+                tr.setAttribute("id", "row");
+            }
             tr.setAttribute("onfocusout","puturen(" + jsondata[i]["id"] + ")");
   //          tr.setAttribute("onfocusout", "puturen(" + jsondata[i]["id"] + ")");
             var tabCell = tr.insertCell(-1);
             tabCell.setAttribute("id", "datum" + jsondata[i]["id"]);
             var textfield = document.createElement("div");
             textfield.setAttribute("id", jsondata[i]["id"] + "datumtext");
-            textfield.innerHTML = (table.rows.length) + " " + maand[datumNu.getMonth()];
+            textfield.innerHTML = dagenPerWeek[myDate.getDay()] + " " + (i+1) + " " + maand[datumNu.getMonth()];
             tabCell.appendChild(textfield);
             for (var j = 0; j < 7; j++) {
                 var tabCell = tr.insertCell(-1);
