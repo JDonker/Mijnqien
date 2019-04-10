@@ -54,8 +54,10 @@ public class DeclaratieService {
 	public Declaratie Update(Declaratie declaratie) throws DeclaratieNotFoundException {
 		Optional<Declaratie> UpdatableDeclaratieOpt = declaratieRepository.findById(declaratie.getId());
 		Declaratie UpdatableDeclaratie = UpdatableDeclaratieOpt.orElseThrow(DeclaratieNotFoundException::new);
-		// welke velden mogen later nog aangepast worden
-		UpdatableDeclaratie=declaratie;
+		UpdatableDeclaratie.setBedrag(declaratie.getBedrag());
+		UpdatableDeclaratie.setDatum(declaratie.getDatum());
+		UpdatableDeclaratie.setOmschrijving(declaratie.getOmschrijving());
+		UpdatableDeclaratie.setBedragminbtw(declaratie.getBedragminbtw());
 		return save(UpdatableDeclaratie);
 	}
 	

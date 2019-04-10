@@ -17,7 +17,6 @@ public class UrenForm {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	
 	long id;
 	String opdracht;
 	public Stat getStat() {

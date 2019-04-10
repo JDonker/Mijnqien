@@ -40,7 +40,7 @@ public class UrenPerDagAPI {
 		Iterable<UrenPerDag> urenPerDag = urenPerDagService.findAlleUrenPerDag();
 		return urenPerDag;
 	}
-	
+
 	@GET
 	@Path("/{UrenPerDagID}")
 	@Produces(MediaType.APPLICATION_JSON)

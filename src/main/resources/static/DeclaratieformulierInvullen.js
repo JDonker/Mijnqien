@@ -1,4 +1,4 @@
-var trainee = 2;
+var declaratieformid = 2;
 var jsoninputs = {};
 
 
@@ -6,60 +6,6 @@ var declaraties = "";
 var reizen = "";
 var formulier = {};
 formulier.datum = new Date();
-
-function DeclaratieToevoegen1() {
-    var table = document.getElementById("Declaratie");
-    console.log(table);
-    var row = table.insertRow(document.getElementById("Declaratie").rows.length);
-    
-    var cell1 = row.insertCell(0);
-    cell1.innerHTML = row.rowIndex;
-    var cell2 = row.insertCell(1);
-    cell2.setAttribute("name", "datum" + row.rowIndex);
-    var input2 = document.createElement("input");
-    input2.setAttribute("type", "date");
-    cell2.appendChild(input2);
-    var cell3 = row.insertCell(2);
-    cell3.setAttribute("name", "omschrijving" + row.rowIndex);
-    var input3 = document.createElement("input");
-    input3.setAttribute("type", "text");
-    input3.setAttribute("size", "75");
-    cell3.appendChild(input3);
-    var cell4 = row.insertCell(3);
-    cell4.setAttribute("name", "bedragbtw" + row.rowIndex);
-    var input4 = document.createElement("input");
-    input4.setAttribute("type", "number");
-    input4.setAttribute("min", "0");
-    input4.setAttribute("value", "0");
-    input4.setAttribute("step", ".01");
-    cell4.appendChild(input4);
-    var cell5 = row.insertCell(4);
-    cell5.setAttribute("name", "btw" + row.rowIndex);
-    var input5 = document.createElement("select");
-    var array = ["Kies BTW tarief", "0%", "9%", "21%"];
-    input5.id = "mySelect";
-    cell5.appendChild(input5);
-    for (var j = 0; j < array.length; j++) {
-        var option = document.createElement("option");
-        option.value = array[j];
-        option.text = array[j];
-        input5.appendChild(option);
-    }
-    var cell6 = row.insertCell(5);
-    cell6.setAttribute("name", "bedrag" + row.rowIndex);
-    var input6 = document.createElement("input");
-    input6.setAttribute("type", "number");
-    input6.setAttribute("min", "0");
-    input6.setAttribute("value", "0");
-    input6.setAttribute("step", ".01");
-    cell6.appendChild(input6); 
-    var cell7 = row.insertCell(6);
-    cell7.setAttribute("name", "bestand" + row.rowIndex);
-    var input7 = document.createElement("input");
-    input7.setAttribute("type", "file");   
-    cell7.appendChild(input7);
-}
-
 
 // code om de tabel declaraties op te maken
 function DeclaratieWegschrijven(){
@@ -75,11 +21,14 @@ function DeclaratieWegschrijven(){
     for (var i = 0; i < jsondata.length; i++) {
         // voeg nieuwe rij toe
         var row = table.insertRow(-1);
+       
         // voeg functie onfocusout toe : als je het input veld verlaat wordt de functie putdeclaratie aan geroepen die het record update
-        row.setAttribute("onfocusout","putdeclaratie(" + jsondata[i]["id"] + ")");
+  
         for(var k=1;k<4;k++){
+        
             // voeg een cell aan de rij toe
             var cellDeclaratie = row.insertCell(-1);
+            cellDeclaratie .setAttribute("onfocusout","putdeclaratie(" + jsondata[i]["id"] + ")");
             // maak een input element
             var cellDeclaratieinput = document.createElement("input");
            //cellDeclaratieinput.setAttribute("onfocusout","putdeclaratie(" + jsondata[i]["id"] + ")");
@@ -143,51 +92,104 @@ function DeclaratieWegschrijven(){
 
         }
         var cellDeclaratie = row.insertCell(-1);
-
-        var btn = document.createElement("button");
-        var inp = document.createElement("input");
- 
-        inp.type = "file";
-        inp.name = "submit" + jsondata[i]["id"];
-        inp.id = "filename" + jsondata[i]["id"];
-
-        btn.type="submit";
-        btn.name="submit" + jsondata[i]["id"];
-        btn.id="submit" + jsondata[i]["id"];
-
-        btn.innerHTML="Upload";
-        btn.setAttribute("onclick","putBestand("+ jsondata[i]["id"] +" )")
-       
-        cellDeclaratie.appendChild(inp);
-        cellDeclaratie.appendChild(btn);
-   
-        // hier voeg ik een delete button toe dit is een nieuwe feature die nog moet worden geimplementeerd
+        if (jsondata[i]["bijlage"].length<1){
+            var btn = document.createElement("button");
+            var inp = document.createElement("input");
         
-        var cellDeclaratie = row.insertCell(-1);
-        var deleteButton = document.createElement("Button");
-        deleteButton.setAttribute("class","button")
-        deleteButton.innerHTML= "X"
-        deleteButton.setAttribute("onclick","DeleteDeclaratie("+ jsondata[i]["id"] + ")");
-        cellDeclaratie.appendChild(deleteButton);
+            cellDeclaratie.id = "upload" + jsondata[i]["id"];
+
+            inp.type = "file";
+            inp.name = "submit" + jsondata[i]["id"];
+            inp.id = "filename" + jsondata[i]["id"];
+            inp.setAttribute("class","button");
+
+            btn.type="submit";
+            btn.name="submit" + jsondata[i]["id"];
+            btn.id="submit" + jsondata[i]["id"];
+            btn.setAttribute("class","button button1");
+            btn.innerHTML="Upload";
+            btn.setAttribute("onclick","putBestand("+ jsondata[i]["id"] +" )")
+        
+            cellDeclaratie.appendChild(inp);
+            cellDeclaratie.appendChild(btn);
+        } else {
+            var btn = document.createElement("button");
+            btn.name="delete" + jsondata[i]["id"];
+            btn.id="delete" + jsondata[i]["id"];
+            btn.setAttribute("class","button button1");
+            btn.innerHTML="Delete";
+            btn.setAttribute("onclick","deleteBestand("+ jsondata[i]["id"] +" )")
+            cellDeclaratie.innerHTML=jsondata[i]["bijlage"]
+            cellDeclaratie.appendChild(btn);
+        }
+        if(false) {
+            // hier voeg ik een delete button toe dit is een nieuwe feature die nog moet worden geimplementeerd
+            
+            var cellDeclaratie = row.insertCell(-1);
+            var deleteButton = document.createElement("Button");
+            deleteButton.setAttribute("class","button")
+            deleteButton.innerHTML= "X"
+            deleteButton.setAttribute("onclick","DeleteDeclaratie("+ jsondata[i]["id"] + ")");
+            cellDeclaratie.appendChild(deleteButton);
+        }
     }
 }
 
 function putBestand(id){
 
     //server adres
-    var api =  "api/upload/" +  trainee + "/" + id;
-
-
+    var api =  "api/upload/" + declaratieformid + "/" + id;
     var file = document.getElementById('filename' + id).files[0];
     var xhttp = new XMLHttpRequest();
-
+    console.log(file.name);
     var formData = new FormData();
-    formData.append('multipart/form-data', file);
+    formData.append('file', file);
 
-    xhttp.open('POST', api, true);
-    xhttp.setRequestHeader("Content-type", "application/form-data");
-    xhttp.send(formData);
+    $.ajax({
+        url : 'http://localhost:8082/'+api,
+        type : 'POST',
+        data : formData,
+        cache : false,
+        contentType : false,
+        processData : false,
+        success : function(data, textStatus, jqXHR) {
+              var message = jqXHR.responseText;
+              document.getElementById('upload' +id ).innerHTML = jqXHR.responseText;
+              $("#messages").append("<li>" + message + "</li>");
+              loadDeclaraties();
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+              $("#messages").append("<li style='color: red;'>" + textStatus + "</li>");
+        }
+      });
 }
+
+function deleteBestand(id){
+   //server adres
+    var api =  "api/upload/" + declaratieformid + "/" + id;
+
+    // maak een nieuw request volgens het http protecol
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+    // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 202) {
+            // laad alle declaraties weer opnieuw (ze worden naar de declaraties variable geschreven)
+            loadDeclaraties()
+        }
+    };
+    // geef aan dt je data wil gaan updaten in de database
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+    xhttp.open("PUT", "http://localhost:8082/"+api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    // send request om data te gaan putten
+    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+    xhttp.send();
+ 
+
+}
+
+
 
 
 
@@ -255,7 +257,7 @@ function ReizenWegschrijven(){
 
 // de tabellen (her)laden
 function onload() {
-    console.log(declaraties.length);
+    console.log(declaraties);
     if(declaraties.length==0) {
         // declaraties nog niet opgehaald haal ze nu op
         loadDeclaraties();
@@ -276,7 +278,7 @@ function onload() {
 
 function loadDeclaraties(){
         // Dit is het adres waar de declaraties vandaan kunnen wordt opgevraagd
-        var api =  "api/DeclaratieForm/" + trainee
+        var api =  "api/DeclaratieForm/" + declaratieformid
         // maak een nieuw request volgens het http protecol
         var xhttp = new XMLHttpRequest();
         console.log(api);
@@ -303,7 +305,7 @@ function loadDeclaraties(){
 
 function loadReizen(){
     // server adres om reizen op te halen
-    var api =  "api/DeclaratieForm/Reis/" + trainee
+    var api =  "api/DeclaratieForm/Reis/" + declaratieformid
 
     // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
@@ -355,7 +357,7 @@ function putreis(id){
 }
 
 function putDeclaratie(data){
-    var api =  "api/DeclaratieForm/" + trainee
+    var api =  "api/DeclaratieForm/" + declaratieformid
 
     // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
@@ -381,7 +383,7 @@ function putDeclaratie(data){
 
 function putReis(data){
     // stuur de nieuwe reis op naar de server op het onderstaande adres
-    var api =  "api/DeclaratieForm/Reis/" + trainee
+    var api =  "api/DeclaratieForm/Reis/" + declaratieformid
 
     // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
@@ -408,7 +410,7 @@ function putReis(data){
 // Maak een nieuwe declaratie aan
 function postDeclaratie(){
     // adres van server
-    var api =  "api/DeclaratieForm/" + trainee
+    var api =  "api/DeclaratieForm/" + declaratieformid
     // maak nieuw declaratie object
     var declaratie= {};
     declaratie.bedrag = "0";
@@ -441,7 +443,7 @@ function postDeclaratie(){
 function postReis(){
 
     //server adres
-    var api =  "api/DeclaratieForm/Reis/" + trainee
+    var api =  "api/DeclaratieForm/Reis/" + declaratieformid
 
     // nieuwe reis maken
     var reis= {};

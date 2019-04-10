@@ -20,6 +20,7 @@ import com.Mijnqien.Exceptions.UrenFormNotFoundException;
 import com.Mijnqien.Ondersteunend.EmailServer;
 import com.Mijnqien.Ondersteunend.ReadProperties;
 import com.Mijnqien.Trainee.UrenForm;
+import com.Mijnqien.Trainee.UrenPerDag;
 import com.Mijnqien.service.UrenFormService;
 import com.Mijnqien.Trainee.Stat;
 
@@ -41,8 +42,29 @@ public class UrenFormAPI {
 		Iterable<UrenForm> urenForms = urenFormService.findAlleUrenForms();
 		return urenForms;
 	}
+	
+	@GET
+	@Path("/admin/")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Iterable<UrenForm> getUrenFormsInAfwachting(){
+		Iterable<UrenForm> urenForms =urenFormService.findAlleByStat(Stat.INAFWACHTING);
+		return urenForms;
+	}
+	
+	@GET
+	@Path("/admin2/")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Iterable<UrenForm> getUrenFormsIngediend(){
+		Iterable<UrenForm> urenForms =urenFormService.findAlleByStat(Stat.INGEDIEND);
+		return urenForms;
+	}
+	
+	
+	
 
 	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response inDatabaseStoppen(UrenForm urenForm) {
 		UrenForm urenForm2 = urenFormService.saveUrenForm(urenForm);
 		return Response.ok(urenForm2).build();

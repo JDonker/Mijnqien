@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.Mijnqien.Exceptions.UrenFormNotFoundException;
+import com.Mijnqien.Trainee.Stat;
 import com.Mijnqien.Trainee.UrenForm;
 import com.Mijnqien.repository.UrenFormRepository;
 
@@ -20,6 +21,11 @@ public class UrenFormService {
 	
 	public Iterable<UrenForm> findAlleUrenForms(){
 		Iterable<UrenForm> resultaat = urenFormRepository.findAll();
+		return resultaat;
+	}
+	
+	public Iterable<UrenForm> findAlleByStat(Stat stat){
+		Iterable<UrenForm> resultaat = urenFormRepository.findAllByStat(stat);
 		return resultaat;
 	}
 

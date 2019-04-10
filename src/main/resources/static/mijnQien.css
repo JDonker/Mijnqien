@@ -151,15 +151,6 @@ td:nth-of-type(5):before { content: "Bewerk"; }
   text-align: center;
 }
 
-/*
-input {
-  background-color: transparent;
-  border: 0px solid;
-  height: 20px;
-  width: 160px;
-  color: #000;
-}
-*/
 #inlogformulier{
   width: 30%;
   margin: 0 auto;
