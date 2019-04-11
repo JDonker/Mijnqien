@@ -202,21 +202,26 @@ function DeclaratieFormsWegschrijven(){
       var dropdown_contentIdString = "dropdown-test" + (i+1);
       dropdown_content.id = dropdown_contentIdString;
 
+      var keuzeMakenString1 = "keuzeMaken(" + i + ", 1)";
+      var keuzeMakenString2 = "keuzeMaken(" + i + ", 2)";
+      var keuzeMakenString3 = "keuzeMaken(" + i + ", 3)";
+      var keuzeMakenString4 = "keuzeMaken(" + i + ", 4)";
+
       var optie1 = document.createElement("a");
       optie1.innerHTML = "In afwachting";
-      //optie1.setAttribute("onclick", keuzeMaken(i, 1));
+      optie1.setAttribute("onclick", keuzeMakenString1);
 
       var optie2 = document.createElement("a");
       optie2.innerHTML = "Ingediend";
-      //optie2.setAttribute("onclick", keuzeMaken(i, 2));
+      optie2.setAttribute("onclick", keuzeMakenString2);
 
       var optie3 = document.createElement("a");
       optie3.innerHTML = "Wijzigen";
-      //optie3.setAttribute("onclick", keuzeMaken(i, 3));
+      optie3.setAttribute("onclick", keuzeMakenString3);
 
       var optie4 = document.createElement("a");
       optie4.innerHTML = "Goedgekeurd";
-     // optie4.setAttribute("onclick", keuzeMaken(i, 4));
+      optie4.setAttribute("onclick", keuzeMakenString4);
 
       dropdown_content.appendChild(optie1);
       dropdown_content.appendChild(optie2);
