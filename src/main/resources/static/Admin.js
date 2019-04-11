@@ -1,4 +1,5 @@
 var input = 0;
+var trainee = 2;
 function myFunction(input2) {
   var deId2 = "dropdown-test" + input2.toString(10);
   var x = document.getElementById(deId2);
@@ -127,4 +128,30 @@ function keuzeMaken(inputFormulier, inputKeuze){
     break;
 
   }
+}
+
+function loadDeclaraties(){
+  // Dit is het adres waar de declaraties vandaan kunnen wordt opgevraagd
+  var api =  "api/DeclaratieForm/" + trainee;
+  // maak een nieuw request volgens het http protecol
+  var xhttp = new XMLHttpRequest();
+  console.log(api);
+  // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+          // als de string  is aangepast ga er dan mee aan de slag
+          if (declaraties!=this.responseText) {
+              // schrijf de jsonstring die je van de server krijt naar de globale variable declaraties
+              declaraties = this.responseText;
+              console.log("nu hier");
+              // herlaad de pagina
+          }
+      }
+    };
+  // geef aan dt je data wil gaan pakken uit de database
+  // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+  xhttp.open("GET", "http://localhost:8082/"+api);
+  // send request om data te gaan getten body wordt genegeerd
+  // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+  xhttp.send();
 }
