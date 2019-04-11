@@ -1,14 +1,20 @@
 var input = 0;
 var trainee = 2;
-function myFunction(input2) {
-  var deId2 = "dropdown-test" + input2.toString(10);
-  var x = document.getElementById(deId2);
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
+declaratieForms = [];
+
+var maand = new Array();
+maand[0] = "januari";
+maand[1] = "februari";
+maand[2] = "maart";
+maand[3] = "april";
+maand[4] = "mei";
+maand[5] = "juni";
+maand[6] = "juli";
+maand[7] = "augustus";
+maand[8] = "september";
+maand[9] = "oktober";
+maand[10] = "november";
+maand[11] = "december";
 
 
 function Klik() {
@@ -87,52 +93,24 @@ function emailCheck(str) {
   }
 }
 
-// Bewerk knop JS
 
-/* When the user clicks on the button, 
-toggle between hiding and showing the dropdown content */
-var inputFormulier = 0;
-function toggleOpties(inputFormulier) {
-  var deId = "myDropdown" + inputFormulier.toString(10);
-  document.getElementById(deId).classList.toggle("show");
-}
 
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
+
+function onload() {
+  console.log(declaratieForms.length);
+  if(declaratieForms.length==0) {
+      // declaratieforms nog niet opgehaald haal ze nu op
+      loadDeclaratieForms();
+  } else {
+      // maak declaratieform tabel
+      DeclaratieFormsWegschrijven();
   }
+
 }
 
-var inputKeuze = 0;
-function keuzeMaken(inputFormulier, inputKeuze){
-  switch(inputKeuze){
-    case 1:
-    document.getElementById(inputFormulier).innerHTML = "In Afwachting";
-    break;
-    case 2:
-    document.getElementById(inputFormulier).innerHTML = "Ingediend";
-    break;
-    case 3:
-    document.getElementById(inputFormulier).innerHTML = "Wijzigen";
-    break;
-    case 4:
-    document.getElementById(inputFormulier).innerHTML = "Goedgekeurd";
-    break;
-
-  }
-}
-
-function loadDeclaraties(){
-  // Dit is het adres waar de declaraties vandaan kunnen wordt opgevraagd
-  var api =  "api/DeclaratieForm/" + trainee;
+function loadDeclaratieForms(){
+  // Dit is het adres waar de declaratieforms vandaan kunnen wordt opgevraagd
+  var api =  "api/DeclaratieForm/";
   // maak een nieuw request volgens het http protecol
   var xhttp = new XMLHttpRequest();
   console.log(api);
@@ -140,11 +118,12 @@ function loadDeclaraties(){
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           // als de string  is aangepast ga er dan mee aan de slag
-          if (declaraties!=this.responseText) {
-              // schrijf de jsonstring die je van de server krijt naar de globale variable declaraties
-              declaraties = this.responseText;
+          if (declaratieForms!=this.responseText) {
+              // schrijf de jsonstring die je van de server krijt naar de globale variable declaratieforms
+              declaratieForms = this.responseText;
               console.log("nu hier");
               // herlaad de pagina
+              onload();
           }
       }
     };
@@ -154,4 +133,113 @@ function loadDeclaraties(){
   // send request om data te gaan getten body wordt genegeerd
   // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
   xhttp.send();
+}
+
+// code om de tabel declaratieforms op te maken
+function DeclaratieFormsWegschrijven(){
+
+  // vraag de body van de declaratieform tabel op en gooi hem leeg
+  var table = document.getElementById("DeclaratieFormTableBody");
+  table.innerHTML="";
+
+  // declaratieform string met alle objecten is een globale variabel hier maak je er een lijst met jsonobjecten van
+  jsondata =JSON.parse(declaratieForms);
+  console.log(declaratieForms)
+  // loop over de collomen van de jsontabel
+  for (var i = 0; i < jsondata.length; i++) {
+      // voeg nieuwe rij toe
+      var row = table.insertRow(-1);
+      for(var k=1;k<5;k++){
+          // voeg een cell aan de rij toe
+          var cellDeclaratieForm = row.insertCell(-1);
+          // switch op het rij nummer 
+          switch(k){
+              case 1: 
+                cellDeclaratieForm.innerHTML=jsondata[i]["naam"];
+                break;
+              case 2:
+                var DeclaratieFormMaand = new Date(jsondata[i]["maand"]);
+                cellDeclaratieForm.innerHTML=maand[DeclaratieFormMaand.getMonth()];
+                break; 
+              case 3:
+                  cellDeclaratieForm.innerHTML="Declaratieformulier";
+                  break;
+              case 4: 
+              cellDeclaratieForm.innerHTML=jsondata[i]["status"];
+              cellDeclaratieForm.id="status" + i;
+                break;
+              default:
+                  break;
+          }
+
+
+      }
+      var cellDeclaratieForm = row.insertCell(-1);
+      var dropdown = document.createElement("div");
+      dropdown.className = "dropdown";
+      var btn = document.createElement("button");
+
+      btn.className = "dropbtn";
+      btn.innerHTML="Bewerken";
+
+      myFunctionString = "myFunction(" + (i+1) + ")";
+      btn.setAttribute("onclick", myFunctionString);
+
+      var dropdown_content = document.createElement("div");
+      dropdown_content.className = "dropdown-content";
+      var dropdown_contentIdString = "dropdown-test" + (i+1);
+      dropdown_content.id = dropdown_contentIdString;
+
+      var optie1 = document.createElement("a");
+      optie1.innerHTML = "In afwachting";
+      //optie1.setAttribute("onclick", keuzeMaken(i, 1));
+      var optie2 = document.createElement("a");
+
+      optie2.innerHTML = "Ingediend";
+      var optie3 = document.createElement("a");
+      optie3.innerHTML = "Wijzigen";
+      var optie4 = document.createElement("a");
+      optie4.innerHTML = "Goedgekeurd";
+
+      dropdown_content.appendChild(optie1);
+      dropdown_content.appendChild(optie2);
+      dropdown_content.appendChild(optie3);
+      dropdown_content.appendChild(optie4);
+
+      btn.appendChild(dropdown_content);
+      dropdown.appendChild(btn);
+     cellDeclaratieForm.appendChild(dropdown);
+ 
+  }
+}
+
+function myFunction(input2) {
+  var deId2 = "dropdown-test" + input2.toString(10);
+  var x = document.getElementById(deId2);
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
+var inputId = 0;
+var inputKeuze = 0;
+function keuzeMaken(inputId, inputKeuze){
+  var statusIdString = "status" + inputId;
+  switch(inputKeuze){
+    case 1:
+    document.getElementById(statusIdString).innerHTML = "In Afwachting";
+    break;
+    case 2:
+    document.getElementById(statusIdString).innerHTML = "Ingediend";
+    break;
+    case 3:
+    document.getElementById(statusIdString).innerHTML = "Wijzigen";
+    break;
+    case 4:
+    document.getElementById(statusIdString).innerHTML = "Goedgekeurd";
+    break;
+
+  }
 }

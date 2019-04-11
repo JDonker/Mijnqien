@@ -30,7 +30,7 @@
 </div> -->
 
 
-<body>
+<body onload="onload()">
     <h1>          mijnQien</h1>
 <br>
 <br>
@@ -60,14 +60,14 @@
             <thead>
                 <tr>
                     <th>Naam</th>
-                    <th>Datum</th>
+                    <th>Maand</th>
                     <th>Type</th>
                     <th>Status</th>
                     <th>Bewerk</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
+            <tbody id="DeclaratieFormTableBody">
+                <!-- <tr>
                     <td>Jan Koevoets</td>
                     <td>21-03-2019</td>
                     <td id = typeFormulier>Declaratieformulier</td>
@@ -126,7 +126,7 @@
                             <a onclick="keuzeMaken('4',4)">Goedgekeurd</a>
                         </div>
                         </td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
     </div>
