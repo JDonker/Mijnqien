@@ -520,3 +520,23 @@ body {
     float: right;
     width: 100px;
   }
+
+  
+  a:visited.button1 {
+      color: #ffffff;
+  }
+  
+  #testTabel tr:nth-child(even){background-color: #f2f2f2;}
+  #testTabel tr:nth-child(odd){background-color: #ddd;}
+  
+  #testTabel tr:hover {background-color: #aaa;}
+  
+  .voorbeeldknop{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  width: 150px;
+  }
+ 
+ 
