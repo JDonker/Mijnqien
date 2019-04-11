@@ -165,8 +165,20 @@ function DeclaratieFormsWegschrijven(){
                   cellDeclaratieForm.innerHTML="Declaratieformulier";
                   break;
               case 4: 
-              cellDeclaratieForm.innerHTML=jsondata[i]["status"];
+              if(jsondata[i]["status"] == "INAFWACHTING"){
+                cellDeclaratieForm.innerHTML = "In Afwachting";
+              }else if(jsondata[i]["status"] == "INGEDIEND"){
+                cellDeclaratieForm.innerHTML = "Ingediend";
+              }else if(jsondata[i]["status"] == "WIJZIGEN"){
+                cellDeclaratieForm.innerHTML = "Wijzigen";
+              }else if(jsondata[i]["status"] == "GOEDGEKEURD"){
+                cellDeclaratieForm.innerHTML = "Goedgekeurd";
+              }else{
+                cellDeclaratieForm.innerHTML = "foutje";
+              }
+              
               cellDeclaratieForm.id="status" + i;
+              console.log(cellDeclaratieForm.id);
                 break;
               default:
                   break;
@@ -193,13 +205,18 @@ function DeclaratieFormsWegschrijven(){
       var optie1 = document.createElement("a");
       optie1.innerHTML = "In afwachting";
       //optie1.setAttribute("onclick", keuzeMaken(i, 1));
-      var optie2 = document.createElement("a");
 
+      var optie2 = document.createElement("a");
       optie2.innerHTML = "Ingediend";
+      //optie2.setAttribute("onclick", keuzeMaken(i, 2));
+
       var optie3 = document.createElement("a");
       optie3.innerHTML = "Wijzigen";
+      //optie3.setAttribute("onclick", keuzeMaken(i, 3));
+
       var optie4 = document.createElement("a");
       optie4.innerHTML = "Goedgekeurd";
+     // optie4.setAttribute("onclick", keuzeMaken(i, 4));
 
       dropdown_content.appendChild(optie1);
       dropdown_content.appendChild(optie2);
