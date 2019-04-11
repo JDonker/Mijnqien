@@ -103,7 +103,6 @@ public class UrenPerDagAPI {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response putUrenAndroid(UrenPerDag urenPerDag) {	
-		System.out.println("goooo");
 		try {
 				UrenPerDag gevondenUrenPerDag = urenPerDagService.findById(urenPerDag.getId());
 				gevondenUrenPerDag  = urenPerDagService.Update(urenPerDag);

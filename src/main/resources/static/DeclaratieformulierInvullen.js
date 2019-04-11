@@ -179,9 +179,9 @@ function putBestand(id){
 
 
     var file = document.getElementById('filename' + id).files[0];
-    var xhttp = new XMLHttpRequest;
+    var xhttp = new XMLHttpRequest();
 
-    var formData = new FormData;
+    var formData = new FormData();
     formData.append('multipart/form-data', file);
 
     xhttp.open('POST', api, true);
