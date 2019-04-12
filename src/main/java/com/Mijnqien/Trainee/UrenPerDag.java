@@ -56,6 +56,7 @@ public class UrenPerDag {
 
 	int overig;
 	LocalDate datum;
+
 	public int getOpdracht() {
 		return opdracht;
 	}
