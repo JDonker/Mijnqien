@@ -9,6 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 
+import com.Mijnqien.service.UserService;
+
 
 
 @SpringBootApplication
@@ -23,5 +25,9 @@ public class MijnqienApplication {
 		//sm.execute(check);
 	}
 	
+    @Bean
+    CommandLineRunner init(UserService userService) {
+        return (args) -> userService.initUsers();
+    }
 
 }
