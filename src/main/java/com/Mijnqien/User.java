@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -19,6 +20,7 @@ public class User {
 	private long Id;			
 	@NotBlank
 	private String username,role,password;
+	
 	public long getId() {
 		return Id;
 	}
@@ -37,6 +39,7 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
 	public String getPassword() {
 		return password;
 	}

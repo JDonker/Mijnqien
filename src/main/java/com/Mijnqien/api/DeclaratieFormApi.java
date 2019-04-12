@@ -20,8 +20,9 @@ import org.springframework.stereotype.Component;
 import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Ondersteunend.EmailServer;
 import com.Mijnqien.Ondersteunend.ReadProperties;
-import com.Mijnqien.Trainee.DeclaratieForm;
-import com.Mijnqien.Trainee.Stat;
+import com.Mijnqien.domain.trainee.DeclaratieForm;
+import com.Mijnqien.domain.trainee.Stat;
+import com.Mijnqien.domain.trainee.UrenForm;
 import com.Mijnqien.service.DeclaratieFormService;
 import com.Mijnqien.service.DeclaratieService;
 
@@ -125,4 +126,37 @@ public class DeclaratieFormApi {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 	}
+	
+	@GET
+	@Path("/admin/inafwachting")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Iterable<DeclaratieForm> getDeclaratieFormsInAfwachting(){
+		Iterable<DeclaratieForm> decForms = declaratieFormService.findAllByStat(Stat.INAFWACHTING);
+		return decForms;
+	}
+	
+	@GET
+	@Path("/admin/ingediend")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Iterable<DeclaratieForm> getDeclaratieFormsIngediend(){
+		Iterable<DeclaratieForm> decForms =declaratieFormService.findAllByStat(Stat.INGEDIEND);
+		return decForms;
+	}
+	
+	@GET
+	@Path("/admin/wijzigen")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Iterable<DeclaratieForm> getDeclaratieFormsWijzigen(){
+		Iterable<DeclaratieForm> decForms =declaratieFormService.findAllByStat(Stat.WIJZIGEN);
+		return decForms;
+	}
+	
+	@GET
+	@Path("/admin/goedgekeurd")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Iterable<DeclaratieForm> getDeclaratieFormsGoedgekeurd(){
+		Iterable<DeclaratieForm> decForms =declaratieFormService.findAllByStat(Stat.GOEDGEKEURD);
+		return decForms;
+	}
+	
 }

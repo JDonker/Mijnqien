@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
-import com.Mijnqien.Trainee.DeclaratieForm;
-import com.Mijnqien.Trainee.Trainee;
+import com.Mijnqien.domain.trainee.DeclaratieForm;
+import com.Mijnqien.domain.trainee.Stat;
+import com.Mijnqien.domain.trainee.Trainee;
+import com.Mijnqien.domain.trainee.UrenForm;
 import com.Mijnqien.repository.DeclaratieFormRepository;
 import com.Mijnqien.repository.DeclaratieRepository;
 import com.Mijnqien.repository.ReisRepository;
@@ -20,6 +22,11 @@ public class DeclaratieFormService {
 	
 	public Iterable<DeclaratieForm> findAlleDeclaratieForms(){
 		Iterable<DeclaratieForm> resultaat = declaratieFormRepository.findAll();
+		return resultaat;
+	}
+	
+	public Iterable<DeclaratieForm> findAllByStat(Stat stat){
+		Iterable<DeclaratieForm> resultaat = declaratieFormRepository.findAllByStatus(stat);
 		return resultaat;
 	}
 	
