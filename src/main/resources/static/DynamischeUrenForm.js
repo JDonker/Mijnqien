@@ -80,8 +80,8 @@ function urenWegschrijven(){
             if(myDate.getDay() == 0 || myDate.getDay() == 6){
                 tr.setAttribute("id", "weekend");
             }
-            // else if((myDate.getMonth() == 0 && myDate.getDate() == 1) || 
-            //     (myDate.getMonth() == 3 && (myDate.getDate() == 21 || myDate.getDate() == 22 || myDate.getDate() == 27)) ||
+            //else if((myDate.getMonth() == 0 && myDate.getDate() == 1) || 
+            //(myDate.getMonth() == 3 && (myDate.getDate() == 21 || myDate.getDate() == 22 || myDate.getDate() == 27)) ||
             //     (myDate.getMonth() == 4 && myDate.getDate() == 30) ||
             //     (myDate.getMonth() == 5 && (myDate.getDate() == 9 || myDate.getDate() == 10)) ||
             //     (myDate.getMonth() == 11 && (myDate.getDate() == 25 || myDate.getDate() == 26))){
