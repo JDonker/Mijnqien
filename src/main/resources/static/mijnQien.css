@@ -150,15 +150,6 @@ td:nth-of-type(5):before { content: "Bewerk"; }
   text-align: center;
 }
 
-/*
-input {
-  background-color: transparent;
-  border: 0px solid;
-  height: 20px;
-  width: 160px;
-  color: #000;
-}
-*/
 #inlogformulier{
   width: 30%;
   margin: 0 auto;
@@ -281,8 +272,7 @@ span.psw{
   #Declaratie tr:nth-child(even){background-color: #f2f2f2;}
   
   #Declaratie tr:hover {background-color: #ddd;}
-  #Declaratiefoot tr {background-color: #ffffff;}
-  #Declaratiefoot tr:hover {background-color: #ffffff;}
+
 
 
   
@@ -296,6 +286,7 @@ span.psw{
 
   #Declaratie tr:nth-child(even){background-color: #f2f2f2;}
   #Declaratie tr:nth-child(odd){background-color: #ddd;}
+
 
   #Declaratiekm {
     border-collapse: collapse;

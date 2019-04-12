@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Exceptions.DeclaratieNotFoundException;
-import com.Mijnqien.Trainee.Declaratie;
-import com.Mijnqien.Trainee.DeclaratieForm;
+import com.Mijnqien.domain.trainee.Declaratie;
+import com.Mijnqien.domain.trainee.DeclaratieForm;
 import com.Mijnqien.repository.DeclaratieFormRepository;
 import com.Mijnqien.repository.DeclaratieRepository;
 import com.Mijnqien.repository.ReisRepository;
@@ -54,8 +54,10 @@ public class DeclaratieService {
 	public Declaratie Update(Declaratie declaratie) throws DeclaratieNotFoundException {
 		Optional<Declaratie> UpdatableDeclaratieOpt = declaratieRepository.findById(declaratie.getId());
 		Declaratie UpdatableDeclaratie = UpdatableDeclaratieOpt.orElseThrow(DeclaratieNotFoundException::new);
-		// welke velden mogen later nog aangepast worden
-		UpdatableDeclaratie=declaratie;
+		UpdatableDeclaratie.setBedrag(declaratie.getBedrag());
+		UpdatableDeclaratie.setDatum(declaratie.getDatum());
+		UpdatableDeclaratie.setOmschrijving(declaratie.getOmschrijving());
+		UpdatableDeclaratie.setBedragminbtw(declaratie.getBedragminbtw());
 		return save(UpdatableDeclaratie);
 	}
 	

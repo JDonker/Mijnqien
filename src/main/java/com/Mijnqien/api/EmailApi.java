@@ -10,8 +10,8 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.Mijnqien.Admin.EmailBericht;
 import com.Mijnqien.Ondersteunend.EmailServer;
+import com.Mijnqien.domain.EmailBericht;
 @Path("/Email/")
 @Component
 public class EmailApi {

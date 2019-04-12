@@ -24,8 +24,6 @@ public class UserApi {
 	UserService userService;
 	
 	@GET
-	
-	
 	public Iterable<User> getUsers(){
 		Iterable<User> users = userService.findAlleUsers();
 		return users;

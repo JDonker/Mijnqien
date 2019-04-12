@@ -19,8 +19,8 @@ import org.springframework.stereotype.Component;
 
 import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Exceptions.ReisNotFoundException;
-import com.Mijnqien.Trainee.DeclaratieForm;
-import com.Mijnqien.Trainee.Reis;
+import com.Mijnqien.domain.trainee.DeclaratieForm;
+import com.Mijnqien.domain.trainee.Reis;
 import com.Mijnqien.service.DeclaratieFormService;
 import com.Mijnqien.service.ReisService;
 

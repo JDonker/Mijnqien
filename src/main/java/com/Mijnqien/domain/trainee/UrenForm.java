@@ -1,4 +1,4 @@
-package com.Mijnqien.Trainee;
+package com.Mijnqien.domain.trainee;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -20,15 +21,22 @@ public class UrenForm {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	
 	long id;
 	String opdracht;
+	String naam;
+	public String getNaam() {
+		return naam;
+	}
+	public void setNaam(String naam) {
+		this.naam = naam;
+	}
 	public Stat getStat() {
 		return stat;
 	}
 	public void setStat(Stat stat) {
 		this.stat = stat;
 	}
+
 	LocalDate maand;
 	Stat stat = Stat.INAFWACHTING;
 	
@@ -69,7 +77,7 @@ public class UrenForm {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + naam.hashCode() + maand.getYear() + maand.getMonthValue();
 		return result;
 	}
 	@Override
@@ -81,7 +89,11 @@ public class UrenForm {
 		if (getClass() != obj.getClass())
 			return false;
 		UrenForm other = (UrenForm) obj;
-		if (id != other.id)
+		if (!naam.equals(other.getNaam()))
+			return false;
+		if (maand.getYear() != other.getMaand().getYear())
+			return false;
+		if (maand.getMonthValue() != other.getMaand().getMonthValue())
 			return false;
 		return true;
 	}

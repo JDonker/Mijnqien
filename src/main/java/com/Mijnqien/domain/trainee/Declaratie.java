@@ -1,4 +1,4 @@
-package com.Mijnqien.Trainee;
+package com.Mijnqien.domain.trainee;
 
 import java.time.LocalDate;
 

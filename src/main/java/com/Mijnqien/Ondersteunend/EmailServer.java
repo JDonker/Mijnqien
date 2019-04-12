@@ -9,8 +9,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.stereotype.Component;
+
+import com.Mijnqien.domain.EmailBericht;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import com.Mijnqien.Admin.EmailBericht;
 
 @Component
 public class EmailServer{
