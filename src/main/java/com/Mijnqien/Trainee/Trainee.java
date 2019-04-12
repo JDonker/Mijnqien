@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Trainee extends Gebruiker {
@@ -29,9 +30,13 @@ public class Trainee extends Gebruiker {
 	//Profiel profiel;
 	private int personeelsnummer;
 	//Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
-	@OneToMany
-	@JsonIgnore
+	@OneToMany(mappedBy = "trainee")
+	@JsonIgnoreProperties("trainee")
 	Set<DeclaratieForm> declaratieFormulieren = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "trainee")
+	@JsonIgnoreProperties("trainee")
+	Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
 
 	public Set<DeclaratieForm> getDeclaratieFormulieren() {
 		return declaratieFormulieren;
