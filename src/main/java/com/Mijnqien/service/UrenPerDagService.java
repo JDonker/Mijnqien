@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 import com.Mijnqien.Exceptions.UrenFormNotFoundException;
 import com.Mijnqien.Exceptions.UrenPerDagNotFoundException;
-import com.Mijnqien.Trainee.UrenForm;
-import com.Mijnqien.Trainee.UrenPerDag;
+import com.Mijnqien.domain.trainee.UrenForm;
+import com.Mijnqien.domain.trainee.UrenPerDag;
 import com.Mijnqien.repository.UrenFormRepository;
 import com.Mijnqien.repository.UrenPerDagRepository;
 

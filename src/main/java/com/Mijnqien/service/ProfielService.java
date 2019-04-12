@@ -5,7 +5,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.Mijnqien.Trainee.Profiel;
+import com.Mijnqien.domain.trainee.Profiel;
 import com.Mijnqien.repository.ProfielRepository;
 
 @Component

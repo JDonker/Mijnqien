@@ -1,4 +1,4 @@
-package com.Mijnqien.Trainee;
+package com.Mijnqien.domain.trainee;
 
 import java.time.LocalDate;
 
@@ -117,8 +117,8 @@ public class UrenPerDag {
 		return datum;
 	}
 
-	public void setDatum(LocalDate datum) {
-		this.datum = datum;
+	public void setDatum(LocalDate string) {
+		this.datum = string;
 	}
 
 }
