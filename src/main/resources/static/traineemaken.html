@@ -1,39 +1,26 @@
 <script>
   
     function go(form){
-      xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function(){
-
-        if(this.readyState == 4){
-            alert("User toegevoegd aan database")
-
-            xhr2 = new XMLHttpRequest();
+      xhr2 = new XMLHttpRequest();
       xhr2.onreadystatechange = function(){
 
         if(this.readyState == 4){
             alert("Trainee toegevoegd aan database")
-            }
+       
+            xhr2.open("POST", "http://localhost:8082/api/trainee", true);
+            var trainee = {};
+            trainee.emailAdres=form.ea.value;
+            trainee.achternaam=form.an.value;
+            trainee.voornaam=form.vn.value;
+            trainee.tussenvoegsel=form.tv.value;
+            trainee.personeelsnummer=form.pn.value;
+            console.log(trainee)
+            xhr2.setRequestHeader("Content-type", "application/json");
+            xhr2.send(JSON.stringify(trainee));
+        }
       }
-      xhr2.open("POST", "http://localhost:8082/api/trainee", true);
-      var trainee = {};
-      trainee.achternaam=form.an.value;
-      trainee.voornaam=form.vn.value;
-      trainee.tussenvoegsel=form.tv.value;
-      trainee.personeelsnummer=form.pn.value;
-      xhr2.setRequestHeader("Content-type", "application/json");
-      xhr2.send(JSON.stringify(trainee));
-            }
-      }
-      xhr.open("POST", "http://localhost:8082/api/user", true);
-      var user = {};
-      user.username=form.un.value;
-      user.password=form.pw.value;
-      user.role="trainee";
-      xhr.setRequestHeader("Content-type", "application/json");
-      xhr.send(JSON.stringify(user));
+    }  
 
-      
-  }
 </script>
 
 <!DOCTYPE html>
@@ -68,32 +55,29 @@
     <form name = "traineeinput" action="" method = "GET">    
         <div class = "container">
             <div class = "form_group">    
-                <label>gebruikersnaam:</label>    
-                <input type = "text" name = "un" value = "" required/>    
+                <label>e-mailadres:</label>    
+                <input type = "email" name = "ea" value = "" maxlength="40" onblur: required/>    
             </div>    
-            <div class = "form_group">    
-                <label>wachtwoord:</label>    
-                <input type = "text" name = "pw" value = "" required />    
-            </div>  
+            
             <div class = "form_group">    
               <label>voornaam:</label>    
-              <input type = "text" name = "vn" value = "" required />    
+              <input type = "text" name = "vn" value = "" maxlength="20" required />    
           </div>
           <div class = "form_group">    
             <label>tussenvoegsel:</label>    
-            <input type = "text" name = "tv" value = "" required />    
+            <input type = "text" name = "tv" maxlength="15" value = "" >    
         </div>
         <div class = "form_group">    
           <label>achternaam:</label>    
-          <input type = "text" name = "an" value = "" required />    
+          <input type = "text" name = "an" maxlength="50" value = "" required />    
       </div>
       <div class = "form_group">    
         <label>personeelsnummer:</label>    
-        <input type = "text" name = "pn" value = "" required />    
+        <input type = "text" name = "pn" value = "" minlength="9" maxlength="9" required />    
     </div>  
         </div> 
            <br>
-           <input type=button class="button button1" value="trainee useraccount aanmaken" onclick=go(this.form)>   
+           <input type=submit class="button button1" value="trainee aanmaken" onclick=go(this.form)>   
     </form>    
   </div>
   
