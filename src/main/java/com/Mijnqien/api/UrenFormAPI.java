@@ -19,9 +19,10 @@ import org.springframework.stereotype.Component;
 import com.Mijnqien.Exceptions.UrenFormNotFoundException;
 import com.Mijnqien.Ondersteunend.EmailServer;
 import com.Mijnqien.Ondersteunend.ReadProperties;
-import com.Mijnqien.Trainee.UrenForm;
+import com.Mijnqien.domain.trainee.Stat;
+import com.Mijnqien.domain.trainee.UrenForm;
+import com.Mijnqien.domain.trainee.UrenPerDag;
 import com.Mijnqien.service.UrenFormService;
-import com.Mijnqien.Trainee.Stat;
 
 @Component
 @Path("urenform")
@@ -41,8 +42,42 @@ public class UrenFormAPI {
 		Iterable<UrenForm> urenForms = urenFormService.findAlleUrenForms();
 		return urenForms;
 	}
+	
+	@GET
+	@Path("/admin/inafwachting")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Iterable<UrenForm> getUrenFormsInAfwachting(){
+		Iterable<UrenForm> urenForms =urenFormService.findAlleByStat(Stat.INAFWACHTING);
+		return urenForms;
+	}
+	
+	@GET
+	@Path("/admin/ingediend")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Iterable<UrenForm> getUrenFormsIngediend(){
+		Iterable<UrenForm> urenForms =urenFormService.findAlleByStat(Stat.INGEDIEND);
+		return urenForms;
+	}
+	
+	@GET
+	@Path("/admin/wijzigen")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Iterable<UrenForm> getUrenFormsWijzigen(){
+		Iterable<UrenForm> urenForms =urenFormService.findAlleByStat(Stat.WIJZIGEN);
+		return urenForms;
+	}
+	
+	@GET
+	@Path("/admin/goedgekeurd")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Iterable<UrenForm> getUrenFormsGoedgekeurd(){
+		Iterable<UrenForm> urenForms =urenFormService.findAlleByStat(Stat.GOEDGEKEURD);
+		return urenForms;
+	}
 
 	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response inDatabaseStoppen(UrenForm urenForm) {
 		UrenForm urenForm2 = urenFormService.saveUrenForm(urenForm);
 		return Response.ok(urenForm2).build();
@@ -59,7 +94,7 @@ public class UrenFormAPI {
 				urenForm.setStat(Stat.INGEDIEND);
 				ReadProperties.readConfig();
 				urenForm = urenFormService.saveUrenForm(urenForm);
-				emailserver.send(ReadProperties.setAdminMail,"Gebruikersnaam" + "urenForm " + urenForm.getMaand().getMonth().toString() + " " + urenForm.getMaand().getYear(),"");
+		//		emailserver.send(ReadProperties.setAdminMail,"Gebruikersnaam" + "urenForm " + urenForm.getMaand().getMonth().toString() + " " + urenForm.getMaand().getYear(),"");
 				return Response.status(Status.ACCEPTED).build();
 			}
 			return Response.status(Status.BAD_REQUEST).build();			

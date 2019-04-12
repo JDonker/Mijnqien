@@ -1,4 +1,4 @@
-package com.Mijnqien.Admin;
+package com.Mijnqien.domain;
 
 public class EmailBericht {
 	

@@ -1,8 +1,9 @@
-package com.Mijnqien.Trainee;
+package com.Mijnqien.domain.trainee;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 import com.Mijnqien.Gebruiker;
+import com.Mijnqien.User;
 import com.Mijnqien.Exceptions.TraineeNotFoundException;
 
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.validation.constraints.NotBlank;
@@ -17,19 +19,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-public class Trainee extends Gebruiker {
+public class Trainee implements  Gebruiker {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	private String voornaam;
-	private String achternaam;
-	private String tussenvoegsel;
+	private String voornaam="";
+	private String achternaam="";
+	private String tussenvoegsel="";
+	@NotBlank
 	String emailAdres;
-
-	//Profiel profiel;
-	private int personeelsnummer;
-	//Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
+	@JsonIgnore
+	@OneToOne
+	User user;
+	
 	@OneToMany(mappedBy = "trainee")
 	@JsonIgnoreProperties("trainee")
 	Set<DeclaratieForm> declaratieFormulieren = new LinkedHashSet<>();
@@ -37,6 +40,30 @@ public class Trainee extends Gebruiker {
 	@OneToMany(mappedBy = "trainee")
 	@JsonIgnoreProperties("trainee")
 	Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	//Profiel profiel;
+	private int personeelsnummer;
+	//Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
+
+
+	public Set<UrenForm> getUrenFormulieren() {
+		return urenFormulieren;
+	}
+
+	public void setUrenFormulieren(Set<UrenForm> urenFormulieren) {
+		this.urenFormulieren = urenFormulieren;
+	}
+
+
+
 
 	public Set<DeclaratieForm> getDeclaratieFormulieren() {
 		return declaratieFormulieren;
@@ -89,14 +116,6 @@ public class Trainee extends Gebruiker {
 		this.achternaam = achternaam;
 	}
 
-
-//	public Profiel getProfiel() {
-//		return profiel;
-//	}
-//
-//	public void setProfiel(Profiel profiel) {
-//		this.profiel = profiel;
-//	}
 
 
 	public int getPersoneelsnummer() {

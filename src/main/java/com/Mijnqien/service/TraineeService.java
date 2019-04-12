@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.Mijnqien.Exceptions.TraineeNotFoundException;
-import com.Mijnqien.Trainee.Trainee;
+import com.Mijnqien.domain.trainee.Trainee;
 import com.Mijnqien.repository.TraineeRepository;
 
 

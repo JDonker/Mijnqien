@@ -10,7 +10,7 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.Mijnqien.Trainee.Profiel;
+import com.Mijnqien.domain.trainee.Profiel;
 import com.Mijnqien.service.ProfielService;
 
 @Component

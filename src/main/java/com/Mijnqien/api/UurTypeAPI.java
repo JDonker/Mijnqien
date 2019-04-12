@@ -10,7 +10,7 @@ import javax.ws.rs.core.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.Mijnqien.Trainee.UurType;
+import com.Mijnqien.domain.trainee.UurType;
 import com.Mijnqien.service.UurTypeService;
 
 @Component

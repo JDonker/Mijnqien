@@ -1,4 +1,4 @@
-package com.Mijnqien.Trainee;
+package com.Mijnqien.domain.trainee;
 
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
@@ -147,8 +147,13 @@ public class DeclaratieForm {
 		if (getClass() != obj.getClass())
 			return false;
 		DeclaratieForm other = (DeclaratieForm) obj;
-		if (Id != other.Id)
+		if (!naam.equals(other.getNaam()))
 			return false;
+		if (maand.getYear() != other.getMaand().getYear())
+			return false;
+		if (maand.getMonthValue() != other.getMaand().getMonthValue())
+			return false;
+		
 		return true;
 	}
 	public boolean bewerkbaar() {
