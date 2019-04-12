@@ -1,4 +1,4 @@
-var declaratieformid = 2;
+var declaratieformid = 1;
 var jsoninputs = {};
 
 
