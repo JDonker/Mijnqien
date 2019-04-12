@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Trainee implements  Gebruiker {
@@ -31,6 +32,14 @@ public class Trainee implements  Gebruiker {
 	@JsonIgnore
 	@OneToOne
 	User user;
+	
+	@OneToMany(mappedBy = "trainee")
+	@JsonIgnoreProperties("trainee")
+	Set<DeclaratieForm> declaratieFormulieren = new LinkedHashSet<>();
+	
+	@OneToMany(mappedBy = "trainee")
+	@JsonIgnoreProperties("trainee")
+	Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
 
 	public User getUser() {
 		return user;
@@ -43,13 +52,7 @@ public class Trainee implements  Gebruiker {
 	//Profiel profiel;
 	private int personeelsnummer;
 	//Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
-	@OneToMany(fetch = FetchType.EAGER)
-	@JsonIgnore
-	Set<DeclaratieForm> declaratieFormulieren = new LinkedHashSet<>();
-	
-	@OneToMany(fetch = FetchType.EAGER)
-	@JsonIgnore
-	Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
+
 
 	public Set<UrenForm> getUrenFormulieren() {
 		return urenFormulieren;
@@ -58,6 +61,9 @@ public class Trainee implements  Gebruiker {
 	public void setUrenFormulieren(Set<UrenForm> urenFormulieren) {
 		this.urenFormulieren = urenFormulieren;
 	}
+
+
+
 
 	public Set<DeclaratieForm> getDeclaratieFormulieren() {
 		return declaratieFormulieren;

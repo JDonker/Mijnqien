@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -20,12 +21,15 @@ public class DeclaratieForm {
 	String naam;					// fetch van tainee op moment van wijzigen/indienen
 	String masterclassEditie;		// fetch van trainee op moment van wijzigen/indienen
 	LocalDate maand;				// automatisch genereren op moment van van aanmaken
-	String IBAN;					// fetch van trainee op moment van wijzigen/indienen
+	String iBAN;					// fetch van trainee op moment van wijzigen/indienen
 	@OneToMany(fetch = FetchType.EAGER)
 	Set <Declaratie> declaraties = new LinkedHashSet<>();
 	@OneToMany(fetch = FetchType.EAGER)
 	Set <Reis> reizen = new LinkedHashSet<>();
 	Stat status = Stat.INAFWACHTING;
+	
+	@ManyToOne
+	Trainee trainee;
 	
 	public Stat getStatus() {
 		return status;
@@ -39,11 +43,14 @@ public class DeclaratieForm {
 	int totaalReisKosten;
 	int totaalKilometers;
 
-	public Set<Reis> getReizen() {
-		return reizen;
-	}
-	public void setReizen(Set<Reis> reizen) {
-		this.reizen = reizen;
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (Id ^ (Id >>> 32));
+		return result;
 	}
 	
 	
@@ -77,17 +84,29 @@ public class DeclaratieForm {
 	public void setMaand(LocalDate maand) {
 		this.maand = maand;
 	}
-	public String getIBAN() {
-		return IBAN;
+	public String getiBAN() {
+		return iBAN;
 	}
-	public void setIBAN(String iBAN) {
-		IBAN = iBAN;
+	public void setiBAN(String iBAN) {
+		this.iBAN = iBAN;
 	}
 	public Set<Declaratie> getDeclaraties() {
 		return declaraties;
 	}
 	public void setDeclaraties(Set<Declaratie> declaraties) {
 		this.declaraties = declaraties;
+	}
+	public Set<Reis> getReizen() {
+		return reizen;
+	}
+	public void setReizen(Set<Reis> reizen) {
+		this.reizen = reizen;
+	}
+	public Trainee getTrainee() {
+		return trainee;
+	}
+	public void setTrainee(Trainee trainee) {
+		this.trainee = trainee;
 	}
 	public int getTotaalBedrag() {
 		return totaalBedrag;
@@ -118,14 +137,6 @@ public class DeclaratieForm {
 	}
 	public void setTotaalKilometers(int totaalKilometers) {
 		this.totaalKilometers = totaalKilometers;
-	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (Id ^ (Id >>> 32));
-		return result;
 	}
 	@Override
 	public boolean equals(Object obj) {

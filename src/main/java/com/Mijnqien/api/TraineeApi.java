@@ -18,12 +18,10 @@ import org.springframework.stereotype.Component;
 
 import com.Mijnqien.User;
 import com.Mijnqien.domain.trainee.DeclaratieForm;
-import com.Mijnqien.domain.trainee.Profiel;
 import com.Mijnqien.domain.trainee.Trainee;
 import com.Mijnqien.domain.trainee.UrenForm;
 import com.Mijnqien.domain.trainee.UrenPerDag;
 import com.Mijnqien.service.DeclaratieFormService;
-import com.Mijnqien.service.ProfielService;
 import com.Mijnqien.service.TraineeService;
 import com.Mijnqien.service.UrenFormService;
 import com.Mijnqien.service.UrenPerDagService;
@@ -106,7 +104,7 @@ public class TraineeApi {
 					LocalDate day = urenForm.getMaand().withDayOfMonth(1);
 					while(urenForm.getMaand().getMonthValue()==day.getMonthValue()) {
 						UrenPerDag dezedag = new UrenPerDag();
-						dezedag.setDatum(day.toString());
+						dezedag.setDatum(day);
 						urenPerDagService.saveInForm(dezedag,urenForm);
 						day=day.plusDays(1);
 						

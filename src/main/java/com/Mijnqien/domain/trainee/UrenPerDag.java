@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class UrenPerDag {
@@ -17,6 +18,9 @@ public class UrenPerDag {
 	public long getId() {
 		return id;
 	}
+	
+	@ManyToOne
+	UrenForm urenform;
 
 	public void setId(long id) {
 		this.id = id;
@@ -51,7 +55,7 @@ public class UrenPerDag {
 	}
 
 	int overig;
-	String datum;
+	LocalDate datum;
 
 	public int getOpdracht() {
 		return opdracht;
@@ -109,12 +113,12 @@ public class UrenPerDag {
 		this.overig = overig;
 	}
 
-	public String getDatum() {
+	public LocalDate getDatum() {
 		return datum;
 	}
 
-	public void setDatum(String datum) {
-		this.datum = datum;
+	public void setDatum(LocalDate string) {
+		this.datum = string;
 	}
 
 }

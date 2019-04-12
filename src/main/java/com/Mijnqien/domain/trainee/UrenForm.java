@@ -9,8 +9,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -37,7 +40,8 @@ public class UrenForm {
 	LocalDate maand;
 	Stat stat = Stat.INAFWACHTING;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "urenform" , fetch = FetchType.EAGER)
+	@JsonIgnoreProperties("urenform")
 	Set <UrenPerDag> urenPerDag = new LinkedHashSet<>();
 	
 	public Set<UrenPerDag> getUrenPerDag() {
@@ -46,8 +50,8 @@ public class UrenForm {
 	public void setUrenPerDag(Set<UrenPerDag> urenPerDag) {
 		this.urenPerDag = urenPerDag;
 	}
-	
-	//Trainee trainee;
+	@ManyToOne
+	Trainee trainee;
 
 	
 	public long getId() {
