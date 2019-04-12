@@ -87,7 +87,8 @@ a:visited {
     padding: 8px;
   }
   
-  
+  #Uren tr:nth-child(even){background-color: #f2f2f2;}
+  #Uren tr:nth-child(odd){background-color: #ddd;}
   
   #Uren tr:hover {background-color: #aaa;}
   
@@ -477,6 +478,7 @@ body {
     border: 1px solid;
     border-color: rgba(255,255,255, 0.7);
     text-align: center;
+
     cursor: pointer;
 }
 
@@ -519,21 +521,27 @@ body {
     color: white;
   }
 
+  #myInput{
+    float: right;
+    width: 100px;
+  }
 
-#myInput{
-  float: right;
-  width: 100px;
-}
-
-#weekend{
-  background-color: #640080;
-  color: white;
-}
-
-#row:nth-child(even){
-  background-color: #f2f2f2;
-}
-
-#row:nth-child(odd){
-  background-color: #ddd;
-}
+  
+  a:visited.button1 {
+      color: #ffffff;
+  }
+  
+  #testTabel tr:nth-child(even){background-color: #f2f2f2;}
+  #testTabel tr:nth-child(odd){background-color: #ddd;}
+  
+  #testTabel tr:hover {background-color: #aaa;}
+  
+  .voorbeeldknop{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  width: 150px;
+  }
+ 
+ 
