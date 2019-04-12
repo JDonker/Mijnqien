@@ -35,6 +35,14 @@ dagenPerWeek[4]= "donderdag";
 dagenPerWeek[5]= "vrijdag";
 dagenPerWeek[6]= "zaterdag";
 
+var ufDatum = new Date(2020, 1, 2);
+
+
+function daysInMonth(ufDatum) {
+    return new Date(ufDatum.getFullYear(), 
+                    ufDatum.getMonth()+1, 
+                    0).getDate();}
+
 var urenperdagen="";
 
 var cellnamen = ["datum", "opdracht", "overwerk", "verlof", "ziek", "training", "overig", "verklaring"];
@@ -44,7 +52,7 @@ var datumNu = new Date();
 
 function loadTitle(){
     var title = document.getElementById("titel");
-    title.innerHTML = "Urenformulier " + maand[datumNu.getMonth()];
+    title.innerHTML = "Urenformulier " + maand[ufDatum.getMonth()] + " " + ufDatum.getFullYear();
 }
 
 
@@ -66,19 +74,20 @@ function urenWegschrijven(){
 
         var table = document.getElementById("UrenTableBody");
         for (var i = 0; i < jsondata.length; i++) { //het getal 31 moet de lengte zijn van de database van de maand.
-            var myDate = new Date();
+            var myDate = ufDatum;
             myDate.setDate(i + 1);
             tr = table.insertRow(-1);
             if(myDate.getDay() == 0 || myDate.getDay() == 6){
                 tr.setAttribute("id", "weekend");
             }
-            else if((myDate.getMonth() == 0 && myDate.getDate() == 1) || 
-                (myDate.getMonth() == 3 && (myDate.getDate() == 21 || myDate.getDate() == 22 || myDate.getDate() == 27)) ||
-                (myDate.getMonth() == 4 && myDate.getDate() == 30) ||
-                (myDate.getMonth() == 5 && (myDate.getDate() == 9 || myDate.getDate() == 10)) ||
-                (myDate.getMonth() == 11 && (myDate.getDate() == 25 || myDate.getDate() == 26))){
-                    tr.setAttribute("id", "weekend");
-                } else{
+            // else if((myDate.getMonth() == 0 && myDate.getDate() == 1) || 
+            //     (myDate.getMonth() == 3 && (myDate.getDate() == 21 || myDate.getDate() == 22 || myDate.getDate() == 27)) ||
+            //     (myDate.getMonth() == 4 && myDate.getDate() == 30) ||
+            //     (myDate.getMonth() == 5 && (myDate.getDate() == 9 || myDate.getDate() == 10)) ||
+            //     (myDate.getMonth() == 11 && (myDate.getDate() == 25 || myDate.getDate() == 26))){
+            //         tr.setAttribute("id", "weekend");
+            //     } 
+            else{
                 tr.setAttribute("id", "row");
             }
             tr.setAttribute("onfocusout","puturen(" + jsondata[i]["id"] + ")");
@@ -87,7 +96,7 @@ function urenWegschrijven(){
             tabCell.setAttribute("id", "datum" + jsondata[i]["id"]);
             var textfield = document.createElement("div");
             textfield.setAttribute("id", jsondata[i]["id"] + "datumtext");
-            textfield.innerHTML = dagenPerWeek[myDate.getDay()] + " " + (i+1) + " " + maand[datumNu.getMonth()];
+            textfield.innerHTML = dagenPerWeek[myDate.getDay()] + " " + (i+1) + " " + maand[myDate.getMonth()];
             tabCell.appendChild(textfield);
             for (var j = 0; j < 7; j++) {
                 var tabCell = tr.insertCell(-1);
@@ -154,7 +163,7 @@ function putUren(data){
 }
 
 function posturen(){
-        for (var i = 1; i <= aantalDagenPerMaand[datumNu.getMonth()]; i++){
+        for (var i = 1; i <= daysInMonth(ufDatum); i++){
             var urenperdag = {};
 
             urenperdag.datum = document.getElementById(i+"datumtext").innerText;
@@ -209,7 +218,6 @@ function getUren(){
     // als staat van het XMLHTTPRequest object verandert doe dan het volgende
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4){
-            if (this.status == 200){
 
                 console.log(JSON.parse(this.responseText));
 
@@ -221,11 +229,13 @@ function getUren(){
 
                 if (jsondata.length==0) {
                     jsondata = [];
-                    for (var i = 0; i < aantalDagenPerMaand[datumNu.getMonth()]; i++) {
+                    for (var i = 0; i < daysInMonth(ufDatum); i++) {
                         
                         x = {};
-                        x.datum = (i+1) + " " + maand[datumNu.getMonth()];
-                        x.id = i
+                        var newDate = new Date();
+                        newDate.setDate(i+1);
+                        x.datum = newDate;
+                        x.id = i;
                         x.opdracht = 0
                         x.overig = 0
                         x.overwerk= 0
@@ -235,31 +245,17 @@ function getUren(){
                         x.ziek= 0
 
                         jsondata[i] = x;
+                        postUren(JSON.stringify(x));
 
                     }      
-                    //   console.log(jsondata);
-                      urenperdagen = JSON.stringify(jsondata);
-                    //   console.log(urenperdagen)
-                    //   console.log(JSON.parse(urenperdagen))
-
-                } else {
-
-                if (urenperdagen!=this.responseText) {
+                    urenperdagen = JSON.stringify(jsondata);
+                } else if (urenperdagen!=this.responseText) {
                     urenperdagen = this.responseText;
                 }
-            }
-                
                 onload();
-
-            } else {
-                alert(this.status)
-
-                
-                     
-
             }
+            
         } 
-      };
     // geef aan dt je data wil gaan pakken uit de database
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
     xhttp.open("GET", "http://localhost:8082/"+api);

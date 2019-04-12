@@ -51,7 +51,7 @@ public class UrenPerDag {
 	}
 
 	int overig;
-	String datum;
+	LocalDate datum;
 
 	public int getOpdracht() {
 		return opdracht;
@@ -109,11 +109,11 @@ public class UrenPerDag {
 		this.overig = overig;
 	}
 
-	public String getDatum() {
+	public LocalDate getDatum() {
 		return datum;
 	}
 
-	public void setDatum(String datum) {
+	public void setDatum(LocalDate datum) {
 		this.datum = datum;
 	}
 
