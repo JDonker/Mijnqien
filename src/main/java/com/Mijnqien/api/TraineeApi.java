@@ -121,16 +121,33 @@ public class TraineeApi {
 	}
 	
 	
+//	@POST
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	@Path("/admin")
+//	public Response nieuweTrainee(Trainee trainee) {
+//		Trainee tr2 = traineeService.saveTrainee(trainee);
+//		User user=new User();
+//		user.setUsername(trainee.getEmailAdres());
+//		user.setRole("ROLE_TRAINEE");
+//		// add password generator
+//		user.setPassword("test");
+//		User savedUser = userService.saveUser(user);
+//		tr2.setUser(savedUser);
+//		Trainee tr3 = traineeService.saveTrainee(tr2);
+//		return Response.ok(tr3).build();
+//	}
+	
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/admin")
-	public Response nieuweTrainee(Trainee trainee) {
+	public Response trainee1Maken(Trainee trainee) {
+		System.out.println("hoi");
 		Trainee tr2 = traineeService.saveTrainee(trainee);
 		User user=new User();
 		user.setUsername(trainee.getEmailAdres());
 		user.setRole("ROLE_TRAINEE");
-		// add password generator
 		user.setPassword("test");
 		User savedUser = userService.saveUser(user);
 		tr2.setUser(savedUser);
@@ -138,14 +155,4 @@ public class TraineeApi {
 		return Response.ok(tr3).build();
 	}
 	
-	
-	@POST
-	public Response inDatabaseStoppen(Trainee trainee) {
-		Trainee tr2 = traineeService.saveTrainee(trainee);
-		return Response.ok(tr2).build();
-	}
-	
-	
-
 }
-
