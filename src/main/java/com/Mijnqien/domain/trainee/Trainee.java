@@ -27,17 +27,17 @@ public class Trainee implements  Gebruiker {
 	private String voornaam="";
 	private String achternaam="";
 	private String tussenvoegsel="";
-	@NotBlank
-	String emailAdres;
+	private String personeelsnummer="";
+	private String emailAdres="";
 	@JsonIgnore
 	@OneToOne
 	User user;
 	
-	@OneToMany(mappedBy = "trainee")
+	@OneToMany(mappedBy = "trainee", fetch=FetchType.EAGER)
 	@JsonIgnoreProperties("trainee")
 	Set<DeclaratieForm> declaratieFormulieren = new LinkedHashSet<>();
 	
-	@OneToMany(mappedBy = "trainee")
+	@OneToMany(mappedBy = "trainee", fetch=FetchType.EAGER)
 	@JsonIgnoreProperties("trainee")
 	Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
 
@@ -49,9 +49,9 @@ public class Trainee implements  Gebruiker {
 		this.user = user;
 	}
 
-	//Profiel profiel;
-	private int personeelsnummer;
-	//Set<UrenForm> urenFormulieren = new LinkedHashSet<>();
+	
+	
+	
 
 
 	public Set<UrenForm> getUrenFormulieren() {
@@ -118,11 +118,11 @@ public class Trainee implements  Gebruiker {
 
 
 
-	public int getPersoneelsnummer() {
+	public String getPersoneelsnummer() {
 		return personeelsnummer;
 	}
 
-	public void setPersoneelsnummer(int personeelsnummer) {
+	public void setPersoneelsnummer(String personeelsnummer) {
 		this.personeelsnummer = personeelsnummer;
 	}
 	
