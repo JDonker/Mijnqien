@@ -265,3 +265,37 @@ function keuzeMaken(inputId, inputKeuze){
 
   }
 }
+
+var statusWijzigingVoor = 0;
+var statusWijzigingNa = 0;
+
+function statusWijzigen(id, statusWijzigingVoor, statusWijzigingNa){
+  var declaratieFormNieuw = {};
+  
+}
+//   function putdeclaratie(id){
+//     // maak een object van de te updaten reis
+//     var declaratie= {};
+//     // haal de velden op uit het formulier ze zijn makkelijk te vinden aan de hand van het meegegeven id
+//     declaratie.omschrijving = document.getElementById("omschrijving" + id).value;
+//     declaratie.bedrag = document.getElementById("bedrag" + id).value;
+//     declaratie.datum = document.getElementById("datum" + id).value;
+//     declaratie.id = id;
+//     console.log(declaratie);
+//         // maak een string van het te updaten declaratie object een stuur dat naar de put functie
+//     putDeclaratie(JSON.stringify(declaratie));
+// }
+  // function putDeclaratie(data){
+  //   var api =  "api/DeclaratieForm/" + trainee
+
+  //   // maak een nieuw request volgens het http protecol
+  //   var xhttp = new XMLHttpRequest();
+  //   console.log(api);
+  //   // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+  //   xhttp.onreadystatechange = function() {
+  //       console.log(this.status)
+  //       if (this.readyState == 4 && this.status == 202) {
+  //           // laad alle declaraties weer opnieuw (ze worden naar de declaraties variable geschreven)
+  //           loadDeclaraties()
+  //       }
+  //   };
