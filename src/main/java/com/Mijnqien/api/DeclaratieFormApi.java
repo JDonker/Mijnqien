@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Ondersteunend.EmailServer;
@@ -86,19 +87,20 @@ public class DeclaratieFormApi {
 	@Path("/verwerk/{FormID}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response verwerkDeclaratieForm(@PathParam("FormID") long FormID) {
+	public Response verwerkDeclaratieForm(@PathParam("FormID") long FormID,DeclaratieForm declaratieform) {
 		// check of iemand admin is
 		
 		try {
-			DeclaratieForm decForm= declaratieFormService.findById(FormID);
-			if (decForm.getStatus()==Stat.INGEDIEND) {
-				decForm.setStatus(Stat.GOEDGEKEURD);
+			DeclaratieForm decForm= declaratieFormService.findById(declaratieform.getId());
+//			if (decForm.getStatus()==Stat.INGEDIEND) {
+//				decForm.setStatus(Stat.GOEDGEKEURD);
 				ReadProperties.readConfig();
+				decForm.setStatus(declaratieform.getStatus());
 				decForm = declaratieFormService.save(decForm);
 				emailserver.send("jasperdonker@gmail.com","Declaratie " + decForm.getMaand().getMonth().toString() + " " + decForm.getMaand().getYear() + " goedgekeurd!","");
 				return Response.status(Status.ACCEPTED).build();
-			}
-			return Response.status(Status.BAD_REQUEST).build();
+//			}
+//			return Response.status(Status.BAD_REQUEST).build();
 		} catch (DeclaratieFormNotFoundException e) {
 			return Response.status(Status.NOT_FOUND).build();
 		}

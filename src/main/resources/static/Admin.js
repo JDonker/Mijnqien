@@ -97,7 +97,7 @@ function emailCheck(str) {
 
 
 function onload() {
-  console.log(declaratieForms.length);
+  // console.log(declaratieForms.length);
   if(declaratieForms.length==0) {
       // declaratieforms nog niet opgehaald haal ze nu op
       loadDeclaratieForms();
@@ -144,7 +144,7 @@ function DeclaratieFormsWegschrijven(){
 
   // declaratieform string met alle objecten is een globale variabel hier maak je er een lijst met jsonobjecten van
   jsondata =JSON.parse(declaratieForms);
-  console.log(declaratieForms)
+  //console.log(declaratieForms)
   // loop over de collomen van de jsontabel
   for (var i = 0; i < jsondata.length; i++) {
       // voeg nieuwe rij toe
@@ -201,10 +201,10 @@ function DeclaratieFormsWegschrijven(){
       var dropdown_contentIdString = "dropdown-test" + (i+1);
       dropdown_content.id = dropdown_contentIdString;
 
-      var keuzeMakenString1 = "keuzeMaken(" + i + ", 1)";
-      var keuzeMakenString2 = "keuzeMaken(" + i + ", 2)";
-      var keuzeMakenString3 = "keuzeMaken(" + i + ", 3)";
-      var keuzeMakenString4 = "keuzeMaken(" + i + ", 4)";
+      var keuzeMakenString1 = "keuzeMaken(" + (i+1) + ", 1)";
+      var keuzeMakenString2 = "keuzeMaken(" + (i+1) + ", 2)";
+      var keuzeMakenString3 = "keuzeMaken(" + (i+1) + ", 3)";
+      var keuzeMakenString4 = "keuzeMaken(" + (i+1) + ", 4)";
 
       var optie1 = document.createElement("a");
       optie1.innerHTML = "In afwachting";
@@ -274,15 +274,27 @@ var statusWijziging = 0;
 var id = 0;
 function statusWijzigen(id, statusWijziging){
   var declaratieFormNieuw = {};
-  declaratieFormNieuw.status = statusWijziging;
   declaratieFormNieuw.id = id;
+  declaratieFormNieuw.status = statusWijziging;
   console.log(declaratieFormNieuw);
-  putDeclaratieForm(JSON.stringify(declaratieFormNieuw));
+  putDeclaratieForm(id, JSON.stringify(declaratieFormNieuw));
   
 }
-
-function putDeclaratieForm(){
-  var api =  "api/DeclaratieForm/verwerk"
+invoerString = "";
+function putDeclaratieForm(id, invoerString){
+  var api =  "api/DeclaratieForm/verwerk/" + id;
+  console.log(api);
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+           console.log(this.status)
+           if (this.readyState == 4 && this.status == 202) {
+    //           // laad alle declaratieforms weer opnieuw (ze worden naar de declaraties variable geschreven)
+           loadDeclaratieForms();
+           }
+  }
+    xhttp.open("PUT", "http://localhost:8082/"+api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(invoerString);
 }
 //   function putdeclaratie(id){
 //     // maak een object van de te updaten reis
