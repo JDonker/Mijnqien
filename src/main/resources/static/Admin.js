@@ -178,7 +178,6 @@ function DeclaratieFormsWegschrijven(){
               }
               
               cellDeclaratieForm.id="status" + i;
-              console.log(cellDeclaratieForm.id);
                 break;
               default:
                   break;
@@ -252,26 +251,38 @@ function keuzeMaken(inputId, inputKeuze){
   switch(inputKeuze){
     case 1:
     document.getElementById(statusIdString).innerHTML = "In Afwachting";
+    statusWijzigen(inputId, 0);
     break;
     case 2:
     document.getElementById(statusIdString).innerHTML = "Ingediend";
+    statusWijzigen(inputId, 1);
     break;
     case 3:
     document.getElementById(statusIdString).innerHTML = "Wijzigen";
+    statusWijzigen(inputId, 2);
     break;
     case 4:
     document.getElementById(statusIdString).innerHTML = "Goedgekeurd";
+    statusWijzigen(inputId, 3);
     break;
 
   }
 }
 
-var statusWijzigingVoor = 0;
-var statusWijzigingNa = 0;
 
-function statusWijzigen(id, statusWijzigingVoor, statusWijzigingNa){
+var statusWijziging = 0;
+var id = 0;
+function statusWijzigen(id, statusWijziging){
   var declaratieFormNieuw = {};
+  declaratieFormNieuw.status = statusWijziging;
+  declaratieFormNieuw.id = id;
+  console.log(declaratieFormNieuw);
+  putDeclaratieForm(JSON.stringify(declaratieFormNieuw));
   
+}
+
+function putDeclaratieForm(){
+  var api =  "api/DeclaratieForm/verwerk"
 }
 //   function putdeclaratie(id){
 //     // maak een object van de te updaten reis
