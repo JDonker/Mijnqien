@@ -113,7 +113,7 @@ public class TraineeApi {
 					return Response.ok(urenFormService.findById(urenFormGesaved.getId())).build();
 				}
 			} catch (Exception e) {
-				System.out.println("hoi");
+				//System.out.println("hoi");
 				return Response.status(Status.NOT_FOUND.getStatusCode(),e.toString()).build();
 			}
 		}
@@ -143,7 +143,6 @@ public class TraineeApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response trainee1Maken(Trainee trainee) {
-		System.out.println("hoi");
 		Trainee tr2 = traineeService.saveTrainee(trainee);
 		User user=new User();
 		user.setUsername(trainee.getEmailAdres());

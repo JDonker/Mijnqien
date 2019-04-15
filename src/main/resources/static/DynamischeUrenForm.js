@@ -51,14 +51,41 @@ var urenperdagen="";
 var cellnamen = ["datum", "opdracht", "overwerk", "verlof", "ziek", "training", "overig", "verklaring"];
 
 
-var datumNu = new Date();
+//var datumNu = new Date();
 
-//function loadTitle(){
-//    var title = document.getElementById("titel");
-//    title.innerHTML = "Urenformulier " + maand[ufDatum.getMonth()] + " " + ufDatum.getFullYear();
-//}
+// function loadTitle(){
+//     var title = document.getElementById("titel");
+//     title.innerHTML = "Urenformulier " + maand[ufDatum.getMonth()] + " " + ufDatum.getFullYear();
+// }
 
-
+//Urenformulier datum ophalen
+function urenDatum() {  
+  
+    var tn = new XMLHttpRequest();
+    tn.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var urenperdag = JSON.parse(this.responseText);
+        var month = urenperdag[0].datum;
+        var datumUrenForm = new Date(JSON.stringify(month));
+         console.log(datumUrenForm.getMonth());
+         console.log(datumUrenForm.getFullYear());
+        if (urenperdag.length != 0) {
+          document.getElementById("titel").innerHTML = "Urenformulier " + maand[datumUrenForm.getMonth()] + " " + datumUrenForm.getFullYear();
+          //console.log(document.getElementById("titel").innerHTML = "Urenformulier " + maand[datumMaand.getMonth()] + " " + datumJaar.getFullYear());
+          //console.log(urenperdag[0].datum);
+          //console.log(month) 
+          //console.log(trainee[0]);
+          //console.log(uren)
+        }
+        else { 
+          document.getElementById("titel").innerHTML = "Geen bestaande trainee";
+        }  
+      }
+    };
+    tn.open("GET", "http://localhost:8082/api/urenperdag", true);
+    tn.send();
+  
+  }
 
 
 function onload(){
@@ -68,11 +95,13 @@ function onload(){
     }else{
         urenWegschrijven();
     }
-    getMonth();
+    urenDatum()
 }
 
+
+
 function urenWegschrijven(){
-    getMonth();
+    //loadTitle();
     jsondata = JSON.parse(urenperdagen);
     // console.log(jsondata);
 
@@ -278,37 +307,6 @@ function getUren(){
     xhttp.send();
 }
 
-function getMonth(){
-    var api =  "api/urenform/" + urenformid;
-    var tn = new XMLHttpRequest();
- tn.onreadystatechange = function () {
-   if (this.readyState == 4 && this.status == 200) {
-     var urenform = JSON.parse(this.responseText);
-     var month = urenform[urenformid].maand;
-     var datum = new Date(JSON.stringify(month));
-     ufDatum = datum;
-     var monthUrenForm = ufDatum.getMonth();
-     var yearUrenForm = ufDatum.getFullYear();
-     console.log(datum.getMonth());
-     if (urenform.length != 0) {
-        var title = document.getElementById("titel");
-        title.innerHTML = "Urenformulier " + maand[monthUrenForm] + " " + yearUrenForm;
-     }
-     else {
-       document.getElementById("urendemo").innerHTML = "Geen bestaande trainee";
-     }
-
-
-   }
- };
- tn.open("GET", "http://localhost:8082/" + api, true);
- tn.setRequestHeader("Authorization", "Basic dXNlcm5hbWU6cGFzc3dvcmQ=")
- xhttp.withCredentials = true;
- tn.send();
-
-
-}
-
 function verzendUrenform(){
     var api =  "api/urenperdag/" + urenformid;
     var xhttp = new XMLHttpRequest();
@@ -351,4 +349,3 @@ function downloadUren() {
   }
 
 }
-

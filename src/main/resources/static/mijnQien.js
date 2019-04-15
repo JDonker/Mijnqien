@@ -158,6 +158,8 @@ function autoTableHeader() {
   return tableHeader;
 }
 
+
+
 function autoTableRow(auto) {
   var tr = document.createElement("tr");
   addHtmlElementContent(tr, document.createElement("td"), auto.id);

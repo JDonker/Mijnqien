@@ -20,7 +20,11 @@ public class CorsConfig implements Filter {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT");
         response.setHeader("Access-Control-Max-Age", "36000");
-        response.setHeader("Access-Control-Allow-Headers", "origin, content-type, accept, X-File-Type ,X-File-Name,X-File-Size, authorization");
+        response.setHeader("Access-Control-Allow-Headers", "origin, content-type, authorization, accept, X-File-Type ,X-File-Name,X-File-Size");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+//        if (req.getContentType() == "OPTIONS") {
+//        	response.setStatus(200);
+//        }
         chain.doFilter(req, res);
     }
 

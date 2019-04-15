@@ -28,7 +28,7 @@ import com.Mijnqien.service.UserService;
 public class UserApi {
 
 	@Autowired
-	private final UserService userService;
+	UserService userService;
 	
 	@Autowired
 	public UserApi(UserService userService) {
