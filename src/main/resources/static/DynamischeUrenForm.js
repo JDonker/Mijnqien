@@ -110,8 +110,8 @@ function urenWegschrijven(){
             if(myDate.getDay() == 0 || myDate.getDay() == 6){
                 tr.setAttribute("id", "weekend");
             }
-            // else if((myDate.getMonth() == 0 && myDate.getDate() == 1) || 
-            //     (myDate.getMonth() == 3 && (myDate.getDate() == 21 || myDate.getDate() == 22 || myDate.getDate() == 27)) ||
+            //else if((myDate.getMonth() == 0 && myDate.getDate() == 1) || 
+            //(myDate.getMonth() == 3 && (myDate.getDate() == 21 || myDate.getDate() == 22 || myDate.getDate() == 27)) ||
             //     (myDate.getMonth() == 4 && myDate.getDate() == 30) ||
             //     (myDate.getMonth() == 5 && (myDate.getDate() == 9 || myDate.getDate() == 10)) ||
             //     (myDate.getMonth() == 11 && (myDate.getDate() == 25 || myDate.getDate() == 26))){
@@ -241,7 +241,7 @@ function postUren(data){
 }
 
 function getUren(){
-    var api =  "api/urenperdag";
+    var api =  "api/urenperdag/" + urenformid;
     // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
     console.log(api);
@@ -294,3 +294,39 @@ function getUren(){
     xhttp.send();
 }
 
+
+
+//Html export naar .xls - Uren
+function downloadUren() {
+  var tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
+  tab_text = tab_text + '<head><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>';
+
+  tab_text = tab_text + '<x:Name>Test Sheet</x:Name>';
+
+  tab_text = tab_text + '<x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions></x:ExcelWorksheet>';
+  tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
+
+  tab_text = tab_text + "<table border='1px'>";
+  tab_text = tab_text + $('#Uren').attr('value', function() {
+    return $(this).val();
+  });
+  tab_text = tab_text + '</table></body></html>';
+
+  var data_type = 'data:application/vnd.ms-excel';
+
+  var ua = window.navigator.userAgent;
+  var msie = ua.indexOf("MSIE");
+
+  if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+    if (window.navigator.msSaveBlob) {
+      var blob = new Blob([tab_text], {
+        type: "application/csv;charset=utf-8;"
+      });
+      navigator.msSaveBlob(blob, 'Test file.xls');
+    }
+  } else {
+    $('#downloadUren').attr('href', data_type + ', ' + encodeURIComponent(tab_text));
+    $('#downloadUren').attr('download', 'Test file.xls');
+  }
+
+}

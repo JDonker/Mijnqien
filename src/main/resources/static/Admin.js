@@ -1,5 +1,5 @@
 var input = 0;
-var trainee = 2;
+var trainee = 0;
 declaratieForms = [];
 
 var maand = new Array();
@@ -130,6 +130,9 @@ function loadDeclaratieForms(){
   // geef aan dt je data wil gaan pakken uit de database
   // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
   xhttp.open("GET", "http://localhost:8082/"+api);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  // xhttp.withCredentials = true;
+  // xhttp.setRequestHeader('Authorization', 'Basic dXNlcm5hbWU6cGFzc3dvcmQ=');
   // send request om data te gaan getten body wordt genegeerd
   // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
   xhttp.send();
@@ -294,31 +297,7 @@ function putDeclaratieForm(id, invoerString){
   }
     xhttp.open("PUT", "http://localhost:8082/"+api);
     xhttp.setRequestHeader("Content-type", "application/json");
+    // xhttp.withCredentials = true;
+    // xhttp.setRequestHeader('Authorization','Basic dXNlcm5hbWU6cGFzc3dvcmQ=');
     xhttp.send(invoerString);
 }
-//   function putdeclaratie(id){
-//     // maak een object van de te updaten reis
-//     var declaratie= {};
-//     // haal de velden op uit het formulier ze zijn makkelijk te vinden aan de hand van het meegegeven id
-//     declaratie.omschrijving = document.getElementById("omschrijving" + id).value;
-//     declaratie.bedrag = document.getElementById("bedrag" + id).value;
-//     declaratie.datum = document.getElementById("datum" + id).value;
-//     declaratie.id = id;
-//     console.log(declaratie);
-//         // maak een string van het te updaten declaratie object een stuur dat naar de put functie
-//     putDeclaratie(JSON.stringify(declaratie));
-// }
-  // function putDeclaratie(data){
-  //   var api =  "api/DeclaratieForm/" + trainee
-
-  //   // maak een nieuw request volgens het http protecol
-  //   var xhttp = new XMLHttpRequest();
-  //   console.log(api);
-  //   // als staat van het XMLHTTPRequest object verandert doe dan het volgende
-  //   xhttp.onreadystatechange = function() {
-  //       console.log(this.status)
-  //       if (this.readyState == 4 && this.status == 202) {
-  //           // laad alle declaraties weer opnieuw (ze worden naar de declaraties variable geschreven)
-  //           loadDeclaraties()
-  //       }
-  //   };
