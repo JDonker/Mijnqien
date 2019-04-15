@@ -16,9 +16,11 @@ import javax.ws.rs.core.Response.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.Mijnqien.Exceptions.DeclaratieFormNotFoundException;
 import com.Mijnqien.Exceptions.UrenFormNotFoundException;
 import com.Mijnqien.Ondersteunend.EmailServer;
 import com.Mijnqien.Ondersteunend.ReadProperties;
+import com.Mijnqien.domain.trainee.DeclaratieForm;
 import com.Mijnqien.domain.trainee.Stat;
 import com.Mijnqien.domain.trainee.UrenForm;
 import com.Mijnqien.domain.trainee.UrenPerDag;
@@ -41,6 +43,18 @@ public class UrenFormAPI {
 	public Iterable<UrenForm> getUrenForms() {
 		Iterable<UrenForm> urenForms = urenFormService.findAlleUrenForms();
 		return urenForms;
+	}
+	
+	@GET
+	@Path("/{FormID}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response listGroep(@PathParam("FormID") long FormID) {
+		try {
+			UrenForm urenForm= urenFormService.findById(FormID);
+			return Response.ok(urenForm.getUrenPerDag()).build();
+		} catch (UrenFormNotFoundException e) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
 	}
 	
 	@GET

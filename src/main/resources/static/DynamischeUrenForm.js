@@ -211,7 +211,7 @@ function postUren(data){
 }
 
 function getUren(){
-    var api =  "api/urenperdag";
+    var api =  "api/urenperdag/" + urenformid;
     // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
     console.log(api);
@@ -263,6 +263,8 @@ function getUren(){
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send();
 }
+
+function getMonth()
 
 //Html export naar .xls - Uren
 function downloadUren() {
