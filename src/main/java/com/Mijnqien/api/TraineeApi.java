@@ -143,7 +143,6 @@ public class TraineeApi {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response trainee1Maken(Trainee trainee) {
-		System.out.println("hoi");
 		Trainee tr2 = traineeService.saveTrainee(trainee);
 		User user=new User();
 		user.setUsername(trainee.getEmailAdres());
