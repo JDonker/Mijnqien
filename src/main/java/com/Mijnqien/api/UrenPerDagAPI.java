@@ -42,11 +42,11 @@ public class UrenPerDagAPI {
 	}
 
 	@GET
-	@Path("/{UrenPerDagID}")
+	@Path("/{UrenFormID}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getUrenPerDag(@PathParam("UrenPerDagID") long UrenPerDagID){
+	public Response getUrenPerDag(@PathParam("UrenFormID") long UrenFormID){
 		try {
-			UrenPerDag urenPerDag = urenPerDagService.findById(UrenPerDagID);
+			UrenPerDag urenPerDag = urenPerDagService.findById(UrenFormID);
 			return Response.ok(urenPerDag).build();
 		} catch(UrenPerDagNotFoundException e) {
 			return Response.status(Status.BAD_REQUEST).build();
@@ -63,7 +63,7 @@ public class UrenPerDagAPI {
 	}
 	
 	@POST
-	@Path("{UrenFormID}")
+	@Path("/{UrenFormID}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response postUrenPerDag(UrenPerDag urenPerDag,@PathParam("UrenFormID") long UrenFormID) {
@@ -78,7 +78,7 @@ public class UrenPerDagAPI {
 	}
 	
 	@PUT
-	@Path("{UrenFormID}")
+	@Path("/{UrenFormID}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response putUrenPerDag(UrenPerDag urenPerDag,@PathParam("UrenFormID") long UrenFormID) {
