@@ -1,5 +1,5 @@
 var input = 0;
-var trainee = 2;
+var trainee = 0;
 declaratieForms = [];
 
 var maand = new Array();
@@ -130,6 +130,9 @@ function loadDeclaratieForms(){
   // geef aan dt je data wil gaan pakken uit de database
   // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
   xhttp.open("GET", "http://localhost:8082/"+api);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  // xhttp.withCredentials = true;
+  // xhttp.setRequestHeader('Authorization', 'Basic dXNlcm5hbWU6cGFzc3dvcmQ=');
   // send request om data te gaan getten body wordt genegeerd
   // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
   xhttp.send();
@@ -294,5 +297,7 @@ function putDeclaratieForm(id, invoerString){
   }
     xhttp.open("PUT", "http://localhost:8082/"+api);
     xhttp.setRequestHeader("Content-type", "application/json");
+    // xhttp.withCredentials = true;
+    // xhttp.setRequestHeader('Authorization','Basic dXNlcm5hbWU6cGFzc3dvcmQ=');
     xhttp.send(invoerString);
 }

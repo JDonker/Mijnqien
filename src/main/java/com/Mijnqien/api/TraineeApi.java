@@ -113,7 +113,7 @@ public class TraineeApi {
 					return Response.ok(urenFormService.findById(urenFormGesaved.getId())).build();
 				}
 			} catch (Exception e) {
-				System.out.println("hoi");
+				//System.out.println("hoi");
 				return Response.status(Status.NOT_FOUND.getStatusCode(),e.toString()).build();
 			}
 		}
