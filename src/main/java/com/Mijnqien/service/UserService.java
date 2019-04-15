@@ -17,9 +17,9 @@ import com.Mijnqien.repository.UserRepository;
 
 public class UserService {
 	@Autowired
-	private final UserRepository userRepository;
-	private final SimpleSecurityController securityController;
-	private final PasswordEncoder encoder;
+	UserRepository userRepository;
+	SimpleSecurityController securityController;
+	PasswordEncoder encoder;
 
 	@Autowired
 	public UserService(UserRepository userRepository, SimpleSecurityController securityController,
