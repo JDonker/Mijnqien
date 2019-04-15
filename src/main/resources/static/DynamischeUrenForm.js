@@ -48,14 +48,41 @@ var urenperdagen="";
 var cellnamen = ["datum", "opdracht", "overwerk", "verlof", "ziek", "training", "overig", "verklaring"];
 
 
-var datumNu = new Date();
+//var datumNu = new Date();
 
-function loadTitle(){
-    var title = document.getElementById("titel");
-    title.innerHTML = "Urenformulier " + maand[ufDatum.getMonth()] + " " + ufDatum.getFullYear();
-}
+// function loadTitle(){
+//     var title = document.getElementById("titel");
+//     title.innerHTML = "Urenformulier " + maand[ufDatum.getMonth()] + " " + ufDatum.getFullYear();
+// }
 
-
+//Urenformulier datum ophalen
+function urenDatum() {  
+  
+    var tn = new XMLHttpRequest();
+    tn.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var urenperdag = JSON.parse(this.responseText);
+        var month = urenperdag[0].datum;
+        var datumUrenForm = new Date(JSON.stringify(month));
+         console.log(datumUrenForm.getMonth());
+         console.log(datumUrenForm.getFullYear());
+        if (urenperdag.length != 0) {
+          document.getElementById("titel").innerHTML = "Urenformulier " + maand[datumUrenForm.getMonth()] + " " + datumUrenForm.getFullYear();
+          //console.log(document.getElementById("titel").innerHTML = "Urenformulier " + maand[datumMaand.getMonth()] + " " + datumJaar.getFullYear());
+          //console.log(urenperdag[0].datum);
+          //console.log(month) 
+          //console.log(trainee[0]);
+          //console.log(uren)
+        }
+        else { 
+          document.getElementById("titel").innerHTML = "Geen bestaande trainee";
+        }  
+      }
+    };
+    tn.open("GET", "http://localhost:8082/api/urenperdag", true);
+    tn.send();
+  
+  }
 
 
 function onload(){
@@ -65,10 +92,13 @@ function onload(){
     }else{
         urenWegschrijven();
     }
+    urenDatum()
 }
 
+
+
 function urenWegschrijven(){
-    loadTitle();
+    //loadTitle();
     jsondata = JSON.parse(urenperdagen);
     // console.log(jsondata);
 
@@ -262,40 +292,5 @@ function getUren(){
     // send request om data te gaan getten body wordt genegeerd
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send();
-}
-
-//Html export naar .xls - Uren
-function downloadUren() {
-  var tab_text = '<html xmlns:x="urn:schemas-microsoft-com:office:excel">';
-  tab_text = tab_text + '<head><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet>';
-
-  tab_text = tab_text + '<x:Name>Test Sheet</x:Name>';
-
-  tab_text = tab_text + '<x:WorksheetOptions><x:Panes></x:Panes></x:WorksheetOptions></x:ExcelWorksheet>';
-  tab_text = tab_text + '</x:ExcelWorksheets></x:ExcelWorkbook></xml></head><body>';
-
-  tab_text = tab_text + "<table border='1px'>";
-  tab_text = tab_text + $('#Uren').attr('value', function() {
-    return $(this).val();
-  });
-  tab_text = tab_text + '</table></body></html>';
-
-  var data_type = 'data:application/vnd.ms-excel';
-
-  var ua = window.navigator.userAgent;
-  var msie = ua.indexOf("MSIE");
-
-  if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
-    if (window.navigator.msSaveBlob) {
-      var blob = new Blob([tab_text], {
-        type: "application/csv;charset=utf-8;"
-      });
-      navigator.msSaveBlob(blob, 'Test file.xls');
-    }
-  } else {
-    $('#downloadUren').attr('href', data_type + ', ' + encodeURIComponent(tab_text));
-    $('#downloadUren').attr('download', 'Test file.xls');
-  }
-
 }
 

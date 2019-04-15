@@ -1,5 +1,6 @@
 package com.Mijnqien.repository;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
@@ -13,5 +14,4 @@ import com.Mijnqien.domain.trainee.UrenForm;
 public interface UrenFormRepository extends CrudRepository <UrenForm, Long> {
 	
 	 Iterable<UrenForm> findAllByStat(Stat stat);
-
 }
