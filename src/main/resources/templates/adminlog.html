@@ -2,12 +2,7 @@
         <title>mijnQien - Welkom Trainee</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="mijnQien.css" />
-        <script>
-                function logout() {
-            localStorage.clear();
-            location.href = "logout";
-        }
-        </script>
+        <script src="adminlog.js"></script>
     
     </head>
     <div id="topdiv"><img src="logo.svg" style="height: auto; width: 50px; cursor: pointer;" onclick="window.location.href = 'adminlog';">
@@ -26,6 +21,7 @@
     <div style = "text-align: center;">
         <button class="button button1" onclick="window.location.href = 'Admin';">Dashboard bekijken</button><br><br>
         <button class="button button1" onclick="window.location.href = 'traineemaken';">Trainee aanmaken</button><br><br>
+        <button class="button button1" onclick="herDeclaForm1()">Herinnering DeclaForm sturen (-1 week)</button><br><br>
         <button class="button button1" onclick="logout()">logOut</button>
       
     </div>
