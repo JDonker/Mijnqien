@@ -186,7 +186,6 @@ function DeclaratieFormsWegschrijven(){
                   break;
           }
 
-
       }
       var cellDeclaratieForm = row.insertCell(-1);
       var dropdown = document.createElement("div");
@@ -251,6 +250,7 @@ var inputId = 0;
 var inputKeuze = 0;
 function keuzeMaken(inputId, inputKeuze){
   var statusIdString = "status" + inputId;
+  console.log(statusIdString);
   switch(inputKeuze){
     case 1:
     document.getElementById(statusIdString).innerHTML = "In Afwachting";
