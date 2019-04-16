@@ -1,4 +1,4 @@
-var urenformid = 1;
+var urenformid = 2;
 
 var maand = new Array();
 maand[0] = "januari";
@@ -39,11 +39,12 @@ dagenPerWeek[6]= "zaterdag";
 
 //var ufDatum = new Date(2020, 1, 2);
 var ufDatum = new Date();
+var dagenMaand = ufDatum;
 
-
-function daysInMonth(ufDatum) {
-    return new Date(ufDatum.getFullYear(), 
-                    ufDatum.getMonth()+1, 
+function daysInMonth(dagenMaand) {
+    console.log(dagenMaand);
+    return new Date(dagenMaand.getFullYear(), 
+                    dagenMaand.getMonth()+1, 
                     0).getDate();}
 
 var urenperdagen="";
@@ -66,6 +67,8 @@ function urenDatum() {
       if (this.readyState == 4 && this.status == 200) {
         var urenperdag = JSON.parse(this.responseText);
         var month = urenperdag[0].datum;
+        ufDatum = month;
+        console.log(JSON.stringify(ufDatum));
         var datumUrenForm = new Date(JSON.stringify(month));
          console.log(datumUrenForm.getMonth());
          console.log(datumUrenForm.getFullYear());
@@ -89,13 +92,14 @@ function urenDatum() {
 
 
 function onload(){
+  console.log(dagenMaand);
     console.log(urenperdagen.length);
     if(urenperdagen.length==0){
         getUren();
     }else{
+        urenDatum()
         urenWegschrijven();
     }
-    urenDatum()
 }
 
 
@@ -215,7 +219,7 @@ function posturen(){
 }
 
 function postUren(data){
-     var api =  "api/urenperdag/" + urenformid;
+     var api =  "api/urenperdag/";
 
     // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
@@ -231,9 +235,10 @@ function postUren(data){
                 }
                 // haal de lijst met reizen opnieuw op uit de database
             //    loadReizen()
-            } else {
-                alert("Er gaat iets mis " + this.status )
-            }
+            } 
+            // else {
+            //     alert("Er gaat iets mis " + this.status )
+            // }
         }
     };
     // geef aan dt je data wil gaan updaten in de database
@@ -250,7 +255,7 @@ function postUren(data){
 
 
 function getUren(){
-    var api =  "api/urenperdag/" + urenformid;
+    var api =  "api/urenperdag";
     // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
     console.log(api);
@@ -267,9 +272,9 @@ function getUren(){
 
                 console.log(jsondata.length)
 
-                if (jsondata.length==0) {
+                if (jsondata.length < daysInMonth(dagenMaand)) {
                     jsondata = [];
-                    for (var i = 0; i < daysInMonth(ufDatum); i++) {
+                    for (var i = 0; i < daysInMonth(dagenMaand); i++) {
                         
                         x = {};
                         var newDate = new Date();
@@ -289,6 +294,8 @@ function getUren(){
 
                     }      
                     urenperdagen = JSON.stringify(jsondata);
+ 
+                
                 } else if (urenperdagen!=this.responseText) {
                     urenperdagen = this.responseText;
                 }
@@ -300,8 +307,8 @@ function getUren(){
     // geef aan dt je data wil gaan pakken uit de database
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
     xhttp.open("GET", "http://localhost:8082/"+api);
-    xhttp.setRequestHeader("Authorization", "Basic dXNlcm5hbWU6cGFzc3dvcmQ=");
-    xhttp.withCredentials = true;
+    // xhttp.setRequestHeader("Authorization", "Basic dXNlcm5hbWU6cGFzc3dvcmQ=");
+    // xhttp.withCredentials = true;
     // send request om data te gaan getten body wordt genegeerd
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send();
