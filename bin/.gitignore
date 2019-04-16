@@ -30,9 +30,4 @@ HELP.md
 
 ### VS Code ###
 .vscode/
-/.gitignore
-/.mvn/
-/mvnw
-/mvnw.cmd
-/pom.xml
 /src/
