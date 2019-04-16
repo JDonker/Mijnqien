@@ -6,6 +6,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="mijnQien.css" />
 
+    <script>
+        function logout() {
+    localStorage.clear();
+    location.href = "logout";
+}
+</script>
+
 </head>
 <div id="topdiv"><img src="logo.svg" style="height: auto; width: 50px; cursor: pointer;" onclick="window.location.href = 'traineeinlog';">
 
@@ -17,7 +24,8 @@
     <h1>Welkom Trainee</h1>
     <div style = "text-align: center;">
     <button class="button button1" onclick="window.location.href = 'DynamischeUrenForm';">Urenformulier Invullen</button><br><br>
-    <button class="button button1" onclick="window.location.href = 'DeclaratieformulierInvullen';">Declaratieformulier Invullen</button>
+    <button class="button button1" onclick="window.location.href = 'DeclaratieformulierInvullen';">Declaratieformulier Invullen</button><br><br>
+    <button class="button button1" onclick="logout()">logOut</button>
 </div>
         
 </body>
