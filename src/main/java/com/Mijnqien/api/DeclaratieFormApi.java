@@ -98,7 +98,9 @@ public class DeclaratieFormApi {
 				decForm.setStatus(declaratieform.getStatus());
 				decForm = declaratieFormService.save(decForm);
 
-				emailserver.send("robert_vd_heuvel@hotmail.com","Declaratie " + decForm.getMaand().getMonth().toString() + " " + decForm.getMaand().getYear() + " goedgekeurd!","");
+				emailserver.send("testqien@gmail.com","Declaratie " + decForm.getNaam() + " "
+				+ decForm.getMaand().getMonth().toString() + " " + decForm.getMaand().getYear()
+				+ " gewijzigd","Deze heeft nu de status " + decForm.getStatus() + ".");
 
 				return Response.status(Status.ACCEPTED).build();
 //			}
