@@ -49,9 +49,6 @@ public class UrenFormAPI {
 		return urenForms;
 	}
 	
-
-	
-	
 	@GET
 	@Path("/{FormID}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -59,6 +56,18 @@ public class UrenFormAPI {
 		try {
 			UrenForm urenForm= urenFormService.findById(FormID);
 			return Response.ok(urenForm.getUrenPerDag()).build();
+		} catch (UrenFormNotFoundException e) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
+	
+	@GET
+	@Path("/dummy/{FormID}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response list(@PathParam("FormID") long FormID) {
+		try {
+			UrenForm urenForm= urenFormService.findById(FormID);
+			return Response.ok(urenForm).build();
 		} catch (UrenFormNotFoundException e) {
 			return Response.status(Status.NOT_FOUND).build();
 		}

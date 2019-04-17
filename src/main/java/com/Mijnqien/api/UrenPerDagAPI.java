@@ -112,6 +112,20 @@ public class UrenPerDagAPI {
 		}
 	}
 	
+	@PUT
+	@Path("/dummy/{UrenPerDagID}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response putUrenPerUrenPerDag(UrenPerDag urenPerDag, @PathParam("UrenPerDagID") long UrenPerDagID) {
+		try {
+			UrenPerDag gevondenUrenPerDag = urenPerDagService.findById(UrenPerDagID);
+			return Response.accepted(gevondenUrenPerDag).build();
+		}
+		catch (UrenPerDagNotFoundException e) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+	}
+	
 	
 	
 }
