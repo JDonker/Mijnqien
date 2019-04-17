@@ -12,7 +12,7 @@ import com.Mijnqien.User;
 @Entity
 public class Admin implements Gebruiker{
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	String voornaam;
 	String achternaam;

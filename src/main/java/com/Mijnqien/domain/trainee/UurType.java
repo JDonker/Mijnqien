@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class UurType {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	long id;
 	String naam;
 	double SalarisPercentage;

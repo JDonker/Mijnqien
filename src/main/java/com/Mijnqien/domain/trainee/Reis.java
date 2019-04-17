@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 @Entity
 public class Reis {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;				// unieke identifier
 	LocalDate datum;
 	@NotBlank
