@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 public class UrenPerDag {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	long id;
 	public long getId() {

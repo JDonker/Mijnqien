@@ -28,7 +28,7 @@ public class User {
 	
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long Id;			
 	@NotBlank
 	private String username,role,password;
@@ -36,7 +36,9 @@ public class User {
 	public long getId() {
 		return Id;
 	}
-
+	public void setId(long id) {
+		Id = id;
+	}
 	public String getUsername() {
 		return username;
 	}

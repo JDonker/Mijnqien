@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class DeclaratieForm {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long Id;				// unieke identifier
 	int prijsPerKilometer;			// moet uit een database komen
 	String naam;					// fetch van tainee op moment van wijzigen/indienen
@@ -57,7 +57,9 @@ public class DeclaratieForm {
 	public long getId() {
 		return Id;
 	}
-
+	public void setId(long id) {
+		Id = id;
+	}
 	public int getPrijsPerKilometer() {
 		return prijsPerKilometer;
 	}
