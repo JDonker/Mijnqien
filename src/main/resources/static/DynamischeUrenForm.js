@@ -48,12 +48,12 @@ var urenperdagen="";
 var cellnamen = ["datum", "opdracht", "overwerk", "verlof", "ziek", "training", "overig", "verklaring"];
 
 
-//var datumNu = new Date();
+var datumNu = new Date();
 
-// function loadTitle(){
-//     var title = document.getElementById("titel");
-//     title.innerHTML = "Urenformulier " + maand[ufDatum.getMonth()] + " " + ufDatum.getFullYear();
-// }
+function loadTitle(){
+    var title = document.getElementById("titel");
+    title.innerHTML = "Urenformulier " + maand[ufDatum.getMonth()] + " " + ufDatum.getFullYear();
+}
 
 //Urenformulier datum ophalen
 function urenDatum() {  
@@ -66,10 +66,11 @@ function urenDatum() {
         var datumUrenForm = new Date(JSON.stringify(month));
          console.log(datumUrenForm.getMonth());
          console.log(datumUrenForm.getFullYear());
+         console.log(datumUrenForm.getDay());
         if (urenperdag.length != 0) {
           document.getElementById("titel").innerHTML = "Urenformulier " + maand[datumUrenForm.getMonth()] + " " + datumUrenForm.getFullYear();
           //console.log(document.getElementById("titel").innerHTML = "Urenformulier " + maand[datumMaand.getMonth()] + " " + datumJaar.getFullYear());
-          //console.log(urenperdag[0].datum);
+          console.log(urenperdag[0].datum);
           //console.log(month) 
           //console.log(trainee[0]);
           //console.log(uren)
@@ -95,10 +96,8 @@ function onload(){
     urenDatum()
 }
 
-
-
 function urenWegschrijven(){
-    //loadTitle();
+    loadTitle();
     jsondata = JSON.parse(urenperdagen);
     // console.log(jsondata);
 
@@ -110,8 +109,8 @@ function urenWegschrijven(){
             if(myDate.getDay() == 0 || myDate.getDay() == 6){
                 tr.setAttribute("id", "weekend");
             }
-            //else if((myDate.getMonth() == 0 && myDate.getDate() == 1) || 
-            //(myDate.getMonth() == 3 && (myDate.getDate() == 21 || myDate.getDate() == 22 || myDate.getDate() == 27)) ||
+            // else if((myDate.getMonth() == 0 && myDate.getDate() == 1) || 
+            //     (myDate.getMonth() == 3 && (myDate.getDate() == 21 || myDate.getDate() == 22 || myDate.getDate() == 27)) ||
             //     (myDate.getMonth() == 4 && myDate.getDate() == 30) ||
             //     (myDate.getMonth() == 5 && (myDate.getDate() == 9 || myDate.getDate() == 10)) ||
             //     (myDate.getMonth() == 11 && (myDate.getDate() == 25 || myDate.getDate() == 26))){
@@ -241,7 +240,7 @@ function postUren(data){
 }
 
 function getUren(){
-    var api =  "api/urenperdag/" + urenformid;
+    var api =  "api/urenperdag";
     // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
     console.log(api);
@@ -293,8 +292,6 @@ function getUren(){
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send();
 }
-
-
 
 //Html export naar .xls - Uren
 function downloadUren() {
