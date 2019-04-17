@@ -1,3 +1,5 @@
+var urenformid = 1;
+
 var maand = new Array();
 maand[0] = "januari";
 maand[1] = "februari";
@@ -35,7 +37,8 @@ dagenPerWeek[4]= "donderdag";
 dagenPerWeek[5]= "vrijdag";
 dagenPerWeek[6]= "zaterdag";
 
-var ufDatum = new Date(2020, 1, 2);
+//var ufDatum = new Date(2020, 1, 2);
+var ufDatum = new Date();
 
 
 function daysInMonth(ufDatum) {
@@ -172,7 +175,7 @@ function puturen(id){
  //   puturen(JSON.stringify(uren));
 
 function putUren(data){
-    var api =  "api/urenperdag";
+    var api =  "api/urenperdag/" + urenformid;
     var xhttp = new XMLHttpRequest();
     console.log(api);
     xhttp.onreadystatechange = function() {
@@ -186,6 +189,8 @@ function putUren(data){
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
     xhttp.open("PUT", "http://localhost:8082/"+api);
     xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.setRequestHeader("Authorization", "Basic dXNlcm5hbWU6cGFzc3dvcmQ=");
+    xhttp.withCredentials = true;
     // send request om data te gaan putten
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send(data);
@@ -209,7 +214,7 @@ function posturen(){
 }
 
 function postUren(data){
-     var api =  "api/urenperdag";
+     var api =  "api/urenperdag/" + urenformid;
 
     // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
@@ -234,10 +239,14 @@ function postUren(data){
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
     xhttp.open("POST", "http://localhost:8082/"+api);
     xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.setRequestHeader("Authorization", "Basic dXNlcm5hbWU6cGFzc3dvcmQ=");
+    xhttp.withCredentials = true;
     // send request om data te gaan putten
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send(data);
 }
+
+
 
 function getUren(){
     var api =  "api/urenperdag";
@@ -247,6 +256,7 @@ function getUren(){
     // als staat van het XMLHTTPRequest object verandert doe dan het volgende
       xhttp.onreadystatechange = function() {
         if (this.readyState == 4){
+            if (this.status == 200){
 
                 console.log(JSON.parse(this.responseText));
 
@@ -283,15 +293,28 @@ function getUren(){
                 }
                 onload();
             }
+        }
             
         } 
     // geef aan dt je data wil gaan pakken uit de database
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
     xhttp.open("GET", "http://localhost:8082/"+api);
+    xhttp.setRequestHeader("Authorization", "Basic dXNlcm5hbWU6cGFzc3dvcmQ=");
+    xhttp.withCredentials = true;
     // send request om data te gaan getten body wordt genegeerd
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send();
 }
+
+
+function verzendUrenform(){
+    var api =  "api/urenperdag/" + urenformid;
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4){}}
+}
+
 
 //Html export naar .xls - Uren
 function downloadUren() {

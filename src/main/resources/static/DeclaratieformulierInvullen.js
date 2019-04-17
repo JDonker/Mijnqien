@@ -182,6 +182,7 @@ function deleteBestand(id){
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
     xhttp.open("PUT", "http://localhost:8082/"+api);
     xhttp.setRequestHeader("Content-type", "application/json");
+  
     // send request om data te gaan putten
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send();
