@@ -35,9 +35,33 @@ public class EmailApi {
 	
 	@POST
 	@Path("/herinnering1")
-	public void herinneringDeclaratieForm() {
+	public void herinnering1DeclaratieForm() {
 		emailServer.send("testqien@gmail.com","HERINNERING: Declaratieformulier maand " + ld.getMonthValue(),
 		"Over 7 dagen is de maand voorbij en de status van jouw declaratieformulier is INAFWACHTING"
+		+ ".\n\n Vergeet niet je declaratieformulier!");
+	}
+	
+	@POST
+	@Path("/herinnering2")
+	public void herinnering2DeclaratieForm() {
+		emailServer.send("testqien@gmail.com","HERINNERING: Declaratieformulier maand " + ld.getMonthValue(),
+		"Over 3 dagen is de maand voorbij en de status van jouw declaratieformulier is INAFWACHTING"
+		+ ".\n\n Vergeet niet je declaratieformulier!");
+	}
+	
+	@POST
+	@Path("/herinnering3")
+	public void herinnering3DeclaratieForm() {
+		emailServer.send("testqien@gmail.com","HERINNERING: Declaratieformulier maand " + ld.getMonthValue(),
+		"De maand is voorbij en de status van jouw declaratieformulier is INAFWACHTING"
+		+ ".\n\n Vergeet niet je declaratieformulier!");
+	}
+	
+	@POST
+	@Path("/herinnering4")
+	public void herinnering4DeclaratieForm() {
+		emailServer.send("testqien@gmail.com","HERINNERING: Declaratieformulier maand " + ld.getMonthValue(),
+		"Drie dagen geleden was de maand voorbij en de status van jouw declaratieformulier is INAFWACHTING"
 		+ ".\n\n Vergeet niet je declaratieformulier!");
 	}
 	
