@@ -56,10 +56,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeRequests()
-                .antMatchers("/", "/register", "/api/user/add").permitAll()
+                .antMatchers("/", "/register", "/api/user/add", "/logo.svg" , "/mijnQien.css" , "/achtergrond.jpg").permitAll()
                 .anyRequest().authenticated()
             .and()
             .formLogin().permitAll()
+//            .loginPage("/index.html")
                 .defaultSuccessUrl("/traineeinlog" , true)
             .and()
             .httpBasic()
