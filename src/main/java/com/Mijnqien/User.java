@@ -36,9 +36,7 @@ public class User {
 	public long getId() {
 		return Id;
 	}
-	public void setId(long id) {
-		Id = id;
-	}
+
 	public String getUsername() {
 		return username;
 	}

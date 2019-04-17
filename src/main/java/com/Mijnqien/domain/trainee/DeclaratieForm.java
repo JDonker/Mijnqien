@@ -57,9 +57,7 @@ public class DeclaratieForm {
 	public long getId() {
 		return Id;
 	}
-	public void setId(long id) {
-		Id = id;
-	}
+
 	public int getPrijsPerKilometer() {
 		return prijsPerKilometer;
 	}

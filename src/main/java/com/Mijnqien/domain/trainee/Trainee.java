@@ -86,9 +86,6 @@ public class Trainee implements  Gebruiker {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getTussenvoegsel() {
 		return tussenvoegsel;
