@@ -3,8 +3,29 @@ function logout() {
     location.href = "logout";
 }
 
-function herDeclaForm1(){
-    var api =  "api/Email/herinnering1";
+var input = 0;
+function herDeclaForm(input){
+    var api =  ""
+    switch(input){
+        case 1:
+            api =  "api/Email/herinnering1";
+        break;
+        case 2:
+            api =  "api/Email/herinnering2";
+        break;
+        case 3:
+            api =  "api/Email/herinnering3";
+        break;
+        case 4:
+            api =  "api/Email/herinnering4";
+        break;
+    }
+    herDeclaForm1(api);
+}
+
+inputString = "";
+function herDeclaForm1(inputString){
+    var api =  inputString;
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
