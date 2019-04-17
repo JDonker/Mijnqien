@@ -3,585 +3,67 @@
 <head>
     <title>mijnQien - Inloggen</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="mijnQien.css" />
+    <style></style>
 
-<style>
-@charset "ISO-8859-15";
-*{
-    font-family: 'Roboto', sans-serif;
-    box-sizing: border-box;
-}
-div#topdiv {
-	position:fixed;
-	top:0px;
-	left:0px;
-	width:50%;
-	padding:8px;
-}
-
-div#topdivr {
-text-align: right;
-	/* position:fixed; */
-	top:0px;
-	left:0px;
-	width:10%;
-	padding:8px;
-}
-
-h1{
-  text-align: center;
-   color: #ffffff;
-}
-.kleinetekst{
-  
-   color: #ffffff;
-}
-.uitlog{
-  float: right;
-  color: #ffffff;
-}
-#nav-li {
- display: inline-block;
- position: relative;
- line-height: 21px;
- text-align: right;
- color: white;
-}
-
-h2{
-    text-align: center;
-    color: #ffffff;
-  }
-/* Add a black background color to the top navigation */
-.topnav {
-    background-color: #640080;
-    overflow: hidden;
-  }
-  #logo{
-    padding: 5px 10px 5px 10px;
-
-  }
-  a:link {
-    color: #ffffff;
-}
-
-/* A link that has been visited */
-a:visited {
-    color:#dddddd;
-}
-
-  /* Style the links inside the navigation bar */
-  .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-
-  /* Add a color to the active/current link */
-  .topnav a.active {
-    background-color: rgb(216, 224, 217);
-    color: white;
-  }
-  #Uren {
-
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  #Uren th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  #Uren tr:nth-child(even){background-color: #f2f2f2;}
-  #Uren tr:nth-child(odd){background-color: #ddd;}
-  
-  #Uren tr:hover {background-color: #aaa;}
-  
-  #Uren th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #640080;
-    color: white;
-  }
-  @media 
-only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px)  {
-
-	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr { 
-		display: block; 
-  }
-  
-
-	
-	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr { 
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
-	
-	tr { border: 1px solid #640080; }
-	
-	td { 
-		/* Behave  like a "row" */
-		border: none;
-		border-bottom: 1px solid #640080;
-		position: relative;
-		padding-left: 50%; 
-	}
-	
-	td:before { 
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		width: 45%; 
-		padding-right: 10px; 
-		white-space: nowrap;
-	}
-
-td:nth-of-type(1):before { content: "Naam"; }
-td:nth-of-type(2):before { content: "Datum"; }
-td:nth-of-type(3):before { content: "Type"; }
-td:nth-of-type(4):before { content: "Status"; }
-td:nth-of-type(5):before { content: "Bewerk"; }
-
-}
-
-
-#login{
-  text-align: center;
-}
-
-#inlogformulier{
-  width: 30%;
-  margin: 0 auto;
-  padding: 5px;
-  border-color: #640080;
-  border-style: solid;
-  border-width: thin;
-
-}
-
-.input-container {
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-.icon {
-  padding: 10px;
-  background: #640080;
-  color: white;
-  min-width: 50px;
-  text-align: center;
-}
-
-.icon-sign-out{
-  font-size:1.5em;
-  padding: 10px;
-  background: #640080;
-  color: white;
-  min-width: 50px;
-  text-align: center;
-  float: right;
-}
-
-.input-field {
-  width: 100%;
-  padding: 10px;
-  outline: none;
-}
-
-.input-field:focus {
-  border: 2px solid #9C4AF0;
-}
-
-/* Set a style for the submit button */
-
-
-.btn:hover {
-  opacity: 1;
-}
-.container{
-  
-  color: #ffffff;
-}
-
-form {
-  width: 80%;
-  margin: 0 auto;
-}
-
-label, input {
-  /* in order to define widths */
-  display: inline-block;
-}
-
-label {
-  width: 30%;
-  /* positions the label text beside the input */
-  text-align: right;
-}
-
-label + input {
-  width: 30%;
-  /* large margin-right to force the next element to the new-line
-     and margin-left to create a gutter between the label and input */
-  margin: 0 30% 0 4%;
-}
-
-/* only the submit button is matched by this selector,
- but to be sure you could use an id or class for that button */
-input + input {
-  float: right;
-}
-form{
-  max-width:500px;
-  margin:auto
-}
-span.psw{
-  float: right;
-}
-#bar-chart{
-
-  background-color: #fff;
-}
-#caps{
-  color:red
-}
-
-#email{
-  color:red
-}
-  
-  /* Change the color of links on hover */
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  #Declaratie {
-    border-collapse: collapse;
-    width: 75%;
-  }
-  
-  #Declaratie th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  #Declaratie tr:nth-child(even){background-color: #f2f2f2;}
-  
-  #Declaratie tr:hover {background-color: #ddd;}
-
-
-
-  
-  #Declaratie th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #640080;
-    color: white;
-  }
-
-  #Declaratie tr:nth-child(even){background-color: #f2f2f2;}
-  #Declaratie tr:nth-child(odd){background-color: #ddd;}
-
-
-  #Declaratiekm {
-    border-collapse: collapse;
-    width: 75%;
-  }
-  
-  #Declaratiekm th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  #Declaratiekm tr:nth-child(even){background-color: #f2f2f2;}
-  
-  #Declaratiekm tr:hover {background-color: #ddd;}
-
-  
-  
-  #Declaratiekm th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #640080;
-    color: white;
-  }
-
-  #Declaratiekm tr:nth-child(even){background-color: #f2f2f2;}
-  #Declaratiekm tr:nth-child(odd){background-color: #ddd;}
-
-  @media 
-only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px)  {
-
-	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr { 
-		display: block; 
-	}
-}
-.wrapper {
-  max-width: 700px;
-  margin: 50px auto;
-}
- body{
-  padding: 10px 10px 10px 10px;  
-  background-image: url("achtergrond.jpg");
-  background-size: contain;
-  background-size: 100%;
-}
-
-  @media 
-only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px)  {
-
-	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr { 
-		display: block; 
-	}
-
-td:nth-of-type(1):before { content: "Datum"; }
-td:nth-of-type(2):before { content: "Opdracht"; }
-td:nth-of-type(3):before { content: "Overwerk"; }
-td:nth-of-type(4):before { content: "Verlof"; }
-td:nth-of-type(5):before { content: "Ziek"; }
-td:nth-of-type(6):before { content: "Training"; }
-td:nth-of-type(7):before { content: "Overig"; }
-td:nth-of-type(8):before { content: "Verklaring"; }
-}
-
-#trainee2 {
-
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  #trainee2 th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  #trainee2 tr:nth-child(even){background-color: #f2f2f2;}
-  
-  #trainee2 tr:hover {background-color: #ddd;}
-  
-  #trainee2 th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #640080;
-    color: white;
-  }
-  
-  #trainee2 table {
-  
-    border-collapse: separate;
-    border-spacing: 0px;
-    width: 100%;
-  }
-
-  
-
-.button {
-    background-color: #640080;/* Green */
-    border: none;
-    color: white;
-    padding: 6px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    margin: 2px 1px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-  }
-  
-  .button1:hover {
-    background-color: #640080; 
-    color: white; 
-    border: 2px solid #640080;
-    
-  }
-  
-  .button1 {
-    background-color: #fff ;
-    color: #000000;
-    border: 2px solid #640080;
-  }
-  
- .topnav .btn{
-  float:right;
-  width: 5%;
-  color: white;
-
-}
-
-
-body {
-  margin: 0;
-  padding: 0;
-}
-
-#nav-ul {
-  top: 0;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  //background: #640080;
-  text-align: right;
-}
-
-
-#nav-ul #nav-li {
-  display: inline-block;
-  position: relative;
-  line-height: 21px;
-  text-align: right;
-}
-
-#nav-ul #nav-li #nav-a {
-  display: block;
-  padding: 0px 10px 0px 0px;
-  color: white;
-  text-decoration: none;
-}
-
-#nav-ul #nav-li #nav-a:hover {
-  //color: #fff;
-  //background: #939393;
-}
-
-#nav-ul #nav-li #nav-ul.dropdown {
-  min-width: 125px;
-  /* Set width of the dropdown */
-  background: #640080;
-  display: none;
-  position: absolute;
-  z-index: 999;
-  left: 0;
-    border: 1px solid;
-    border-color: rgba(255,255,255, 0.7);
-    text-align: center;
-
-    cursor: pointer;
-}
-
-#nav-ul #nav-li:hover #nav-ul.dropdown {
-  display: block;
-  /* Display the dropdown */
-}
-
-#nav-ul #nav-li #nav-ul.dropdown #nav-li {
-  display: block;
-}
-
-.icon-navbar{
-  padding: 10px;
-  //background: #640080;
-  color: white;
-  min-width: 10px;
-  text-align: center;
-}
-.btn {
-    background-color: #640080;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-}
-
-#logo-qien{
-  float:left;
-  padding: 1px 5px;
-}
-
-
-  
-  
-  .button1 {
-    background-color: #9C4AF0 ;
-    color: white;
-  }
-
-  #myInput{
-    float: right;
-    width: 100px;
-  }
-
-  
-  a:visited.button1 {
-      color: #ffffff;
-  }
-  
-  #testTabel tr:nth-child(even){background-color: #f2f2f2;}
-  #testTabel tr:nth-child(odd){background-color: #ddd;}
-  
-  #testTabel tr:hover {background-color: #aaa;}
-  
-  .voorbeeldknop{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 5px;
-  width: 150px;
-  }
- 
- 
-</style>
 </head>
-<div id="topdiv"><img src="logo.svg" alt = "Qien" style="height: auto; width: 50px; cursor: pointer;" onclick="window.location.href = 'index.html';">
+<div id="topdiv"><img src="logo.svg" alt="Qien" style="height: auto; width: 50px; cursor: pointer;"
+        onclick="window.location.href = 'index.html';">
 
 
-<body>
-        <h1>          mijnQien</h1>
-    <br>
-    <br>
-      <h1>Inloggen</h1>
+    <body>
+        <h1> mijnQien</h1>
+        <br>
+        <br>
+        <h1>Inloggen</h1>
 
-    <form>
+        <!-- <form>
+            <div class="input-container">
+                <i class="fa fa-user icon"></i>
+                <input class="input-field" type="text" placeholder="gebruikersnaam">
+            </div>
+            <p id="email"></p>
+            <div class="input-container">
+                <i class="fa fa-key icon"></i>
+                <input class="input-field" id="wachtwoord" type="password" placeholder="wachtwoord"
+                    onkeyup="capsTest(event)">
+            </div>
+
+            <p id="caps"></p>
+            <div class="kleinetekst">
+                <input type="checkbox" onclick="wachtwoordTonen()">Wachtwoord tonen
+                <span class="psw">Wachtwoord <a href="#">vergeten?</a></span>
+
+            </div>
+        </form> -->
+
         <div class="input-container">
-            <i class="fa fa-user icon"></i>
-            <input class="input-field" type="text" placeholder="gebruikersnaam">
+            <form class="form-signin" method="post" action="/login">
+                <p>
+                    <i class="fa fa-user icon"></i>
+                    <label for="username" class="sr-only">Username</label>
+                    <input type="input-field" id="username" name="username" class="form-control" placeholder="Username"
+                        required autofocus>
+                </p>
+                <p>
+                    <i class="fa fa-key icon"></i>
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                        required>
+                </p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">inloggen</button>
+            </form>
         </div>
-        <p id="email"></p>
-        <div class="input-container">
-            <i class="fa fa-key icon"></i>
-            <input class="input-field" id="wachtwoord" type="password" placeholder="wachtwoord"
-                onkeyup="capsTest(event)">
-        </div>
-        
-        <p id="caps"></p>
-    <div class = "kleinetekst">
-        <input type="checkbox" onclick="wachtwoordTonen()">Wachtwoord tonen
-        <span class="psw">Wachtwoord <a href="#">vergeten?</a></span>
-    
-    </div>
-    </form>
-<br><br>
-    <div style = "text-align: center;">
-        <button class="button button1" onclick="window.location.href = 'klantinlog';">klant login</button><br><br>
-        <button class="button button1"onclick="window.location.href = 'adminlog';">admin login</button><br><br>
-        <button class="button button1"onclick="window.location.href = 'traineeinlog';">trainee login</button><br><br>
+        <br><br>
+        <!-- <div style="text-align: center;">
+            <button class="button button1" onclick="window.location.href = 'klantinlog';">klant login</button><br><br>
+            <button class="button button1" onclick="window.location.href = 'adminlog';">admin login</button><br><br>
+            <button class="button button1" onclick="window.location.href = 'traineeinlog';">trainee
+                login</button><br><br> -->
         <!-- <button class="button button1"onclick="location.href ='register'">Account Aanmaken</button> -->
-    </div>
+</div>
 
 </body>
 
