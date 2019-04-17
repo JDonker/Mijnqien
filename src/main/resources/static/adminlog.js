@@ -34,11 +34,9 @@ function herDeclaForm1(inputString){
             console.log("gelukt");
         }
     };
-    // geef aan dat je data wil gaan posten in de database
-    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+
     xhttp.open("POST", "http://localhost:8082/"+api);
     xhttp.setRequestHeader("Content-type", "application/json");
-    // send request om data te gaan posten
-    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+
     xhttp.send();
 }
