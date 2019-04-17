@@ -51,14 +51,6 @@ var urenperdagen="";
 
 var cellnamen = ["datum", "opdracht", "overwerk", "verlof", "ziek", "training", "overig", "verklaring"];
 
-
-//var datumNu = new Date();
-
-// function loadTitle(){
-//     var title = document.getElementById("titel");
-//     title.innerHTML = "Urenformulier " + maand[ufDatum.getMonth()] + " " + ufDatum.getFullYear();
-// }
-
 //Urenformulier datum ophalen
 function urenDatum() {  
   
@@ -66,34 +58,34 @@ function urenDatum() {
     tn.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         var urenperdag = JSON.parse(this.responseText);
-        var month = urenperdag[0].datum;
+        console.log(urenperdag);
+        var month = urenperdag.maand;
         ufDatum = month;
-        console.log(JSON.stringify(ufDatum));
+        console.log(JSON.stringify(month));
         var datumUrenForm = new Date(JSON.stringify(month));
          console.log(datumUrenForm.getMonth());
          console.log(datumUrenForm.getFullYear());
-        if (urenperdag.length != 0) {
+//        if (urenperdag.length != 0) {
           document.getElementById("titel").innerHTML = "Urenformulier " + maand[datumUrenForm.getMonth()] + " " + datumUrenForm.getFullYear();
           //console.log(document.getElementById("titel").innerHTML = "Urenformulier " + maand[datumMaand.getMonth()] + " " + datumJaar.getFullYear());
           //console.log(urenperdag[0].datum);
           //console.log(month) 
           //console.log(trainee[0]);
           //console.log(uren)
-        }
-        else { 
-          document.getElementById("titel").innerHTML = "Geen bestaande trainee";
-        }  
+ //       }
+ //       else { 
+   //       document.getElementById("titel").innerHTML = "Geen bestaande trainee";
+     //   }  
       }
     };
-    tn.open("GET", "http://localhost:8082/api/urenperdag", true);
+    tn.open("GET", "http://localhost:8082/api/urenform/61", true);
     tn.send();
   
   }
 
 
 function onload(){
-  console.log(dagenMaand);
-    console.log(urenperdagen.length);
+    urenDatum()
     if(urenperdagen.length==0){
         getUren();
     }else{
@@ -168,16 +160,6 @@ function puturen(id){
     putUren(JSON.stringify(urenperdag));
         
     }
- //   urenperdag.datum = document.getElementById(id+"datumtext").innerText;
- //   urenperdag.opdracht = document.getElementById("opdracht" + id).value;
- //   urenperdag.overwerk = document.getElementById("overwerk" + id).value;
- //   urenperdag.verlof = document.getElementById("verlof" + id).value;
- //   urenperdag.ziek = document.getElementById("ziek" + id).value;
- //   urenperdag.training = document.getElementById("training" + id).value;
- //   urenperdag.overig = document.getElementById("overig" + id).value;
- //   urenperdag.verklaringOverig = document.getElementById("verklaring" + id).value;
- //   urenperdag.id = id;
- //   puturen(JSON.stringify(uren));
 
 function putUren(data){
     var api =  "api/urenperdag/" + urenformid;
