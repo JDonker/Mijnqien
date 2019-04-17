@@ -253,19 +253,15 @@ function keuzeMaken(inputId, inputKeuze){
   console.log(statusIdString);
   switch(inputKeuze){
     case 1:
-    document.getElementById(statusIdString).innerHTML = "In Afwachting";
     statusWijzigen(inputId, 0);
     break;
     case 2:
-    document.getElementById(statusIdString).innerHTML = "Ingediend";
     statusWijzigen(inputId, 1);
     break;
     case 3:
-    document.getElementById(statusIdString).innerHTML = "Wijzigen";
     statusWijzigen(inputId, 2);
     break;
     case 4:
-    document.getElementById(statusIdString).innerHTML = "Goedgekeurd";
     statusWijzigen(inputId, 3);
     break;
 
