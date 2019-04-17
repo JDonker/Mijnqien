@@ -69,11 +69,11 @@ public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHan
 	        }
 	 
 	        if (isTrainee) {
-	            return "/traineeinlog.html";
+	            return "/traineeinlog";
 	        } else if (isAdmin) {
-	            return "/Admin.html";
+	            return "/adminlog";
 	        } else if (isKlant) {
-	            return "/klantinlog.html";
+	            return "/klantinlog";
 	        } else {
 	            throw new IllegalStateException();
 	        }
