@@ -53,6 +53,7 @@ public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHan
 	        boolean isTrainee = false;
 	        boolean isAdmin = false;
 	        boolean isKlant = false;
+	        boolean isDeveloper = false;
 	        Collection<? extends GrantedAuthority> authorities
 	         = authentication.getAuthorities();
 	        for (GrantedAuthority grantedAuthority : authorities) {
@@ -65,15 +66,20 @@ public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHan
 	            } else if (grantedAuthority.getAuthority().equals("ROLE_KLANT")) {
 	                isKlant = true;
 	                break;
+	            } else if (grantedAuthority.getAuthority().equals("ROLE_DEVELOPER")) {
+	                isDeveloper = true;
+	                break;
 	            }
 	        }
 	 
 	        if (isTrainee) {
-	            return "/traineeinlog.html";
+	            return "/traineeinlog";
 	        } else if (isAdmin) {
-	            return "/Admin.html";
+	            return "/adminlog";
 	        } else if (isKlant) {
-	            return "/klantinlog.html";
+	            return "/klantinlog";
+	        } else if (isDeveloper) {
+	            return "/adminlog";
 	        } else {
 	            throw new IllegalStateException();
 	        }

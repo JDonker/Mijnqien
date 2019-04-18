@@ -39,20 +39,22 @@
             </div>
         </form> -->
 
-        <div class="input-container">
+        
             <form class="form-signin" method="post" action="/login">
-                <p>
-                    <i class="fa fa-user icon"></i>
+               <div class="input-container">
                     <label for="username" class="sr-only">Username</label>
+                <i class="fa fa-user icon"></i>
+                    
                     <input type="input-field" id="username" name="username" class="form-control" placeholder="Username"
                         required autofocus>
-                </p>
-                <p>
-                    <i class="fa fa-key icon"></i>
+               </div>
+                <div class="input-container">
                     <label for="password" class="sr-only">Password</label>
+                    <i class="fa fa-key icon"></i>
+                    
                     <input type="password" id="password" name="password" class="form-control" placeholder="Password"
                         required>
-                </p>
+                </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">inloggen</button>
             </form>
         </div>
