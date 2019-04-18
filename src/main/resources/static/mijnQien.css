@@ -599,7 +599,7 @@ body {
   .dropdown-content a:hover {background-color: #f1f1f1}
 
 #weekend{
-  background-color: #640080;
+  background-color: darkviolet;
   color: white;
 }
 
@@ -609,4 +609,8 @@ body {
 
 #row:nth-child(odd){
   background-color: #ddd;
+}
+
+#vakantie{
+    background-color: orange;
 }
