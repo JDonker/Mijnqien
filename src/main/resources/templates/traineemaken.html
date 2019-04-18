@@ -3,7 +3,6 @@
     function go(form){
       xhr2 = new XMLHttpRequest();
       xhr2.onreadystatechange = function(){
-
         if(this.readyState == 4){
             alert("Trainee toegevoegd aan database")
        
@@ -20,7 +19,6 @@
         }
       }
     }  
-
 </script>
 
 <!DOCTYPE html>
@@ -30,9 +28,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 <link href="mijnQien.css" rel="stylesheet" type="text/css">
+<title>tm</title>
 </head>
 <div id="topdiv"><img src="logo.svg" style="height: auto; width: 50px; cursor: pointer;" onclick="window.location.href = 'adminlog';">
-
+</div>
 
 <body>
     <h1>          mijnQien</h1>
@@ -55,7 +54,7 @@
         <div class = "container">
             <div class = "form_group">    
                 <label>e-mailadres:</label>    
-                <input type = "email" name = "ea" value = "" maxlength="40" onblur: required/>    
+                <input type = "email" name = "ea" value = "" maxlength="40"  required/>    
             </div>    
             
             <div class = "form_group">    
@@ -76,12 +75,12 @@
     </div>  
         </div> 
            <br>
-           <input type=submit class="button button1" value="trainee aanmaken" onclick=go(this.form)>   
+           <input type="submit" class="button button1" value="trainee aanmaken" onclick= "go(this.form)"  >   
     </form>    
   </div>
   
   </div>
-</div>
+
 
 </body>
 </html>
