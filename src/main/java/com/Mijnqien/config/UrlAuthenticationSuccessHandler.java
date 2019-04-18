@@ -79,7 +79,7 @@ public class UrlAuthenticationSuccessHandler implements AuthenticationSuccessHan
 	        } else if (isKlant) {
 	            return "/klantinlog";
 	        } else if (isDeveloper) {
-	            return "/adminlog";
+	            return "/developerinlog";
 	        } else {
 	            throw new IllegalStateException();
 	        }
