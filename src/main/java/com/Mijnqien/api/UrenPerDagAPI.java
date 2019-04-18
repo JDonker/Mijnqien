@@ -119,6 +119,14 @@ public class UrenPerDagAPI {
 	public Response putUrenPerUrenPerDag(UrenPerDag urenPerDag, @PathParam("UrenPerDagID") long UrenPerDagID) {
 		try {
 			UrenPerDag gevondenUrenPerDag = urenPerDagService.findById(UrenPerDagID);
+			gevondenUrenPerDag.setOpdracht(urenPerDag.getOpdracht());
+			gevondenUrenPerDag.setOverig(urenPerDag.getOverig());
+			gevondenUrenPerDag.setOverwerk(urenPerDag.getOverwerk());
+			gevondenUrenPerDag.setTraining(urenPerDag.getTraining());
+			gevondenUrenPerDag.setVerlof(urenPerDag.getVerlof());
+			gevondenUrenPerDag.setZiek(urenPerDag.getZiek());
+			gevondenUrenPerDag.setVerklaringOverig(urenPerDag.getVerklaringOverig());
+			this.urenPerDagService.saveUrenPerDag(gevondenUrenPerDag);
 			return Response.accepted(gevondenUrenPerDag).build();
 		}
 		catch (UrenPerDagNotFoundException e) {

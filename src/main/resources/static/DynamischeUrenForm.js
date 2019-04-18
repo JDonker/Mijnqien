@@ -131,6 +131,7 @@ function urenWegschrijven(){
                 tr.setAttribute("id", "row");
             }
             tr.setAttribute("onfocusout","puturen(" + jsondata[i]["id"] + ")");
+            console.log(jsondata[i].id);
   //          tr.setAttribute("onfocusout", "puturen(" + jsondata[i]["id"] + ")");
             var tabCell = tr.insertCell(-1);
             tabCell.setAttribute("id", "datum" + jsondata[i]["id"]);
@@ -159,11 +160,17 @@ function urenWegschrijven(){
  //       getUren();
  //   }
 }
+onload(); 
 }
 
 function puturen(id){
+    jsondata = JSON.parse(urenperdagen);
     var urenperdag = {};
-    urenperdag.datum = datumAlsDate[id];
+     for(var j = 0; j < jsondata.length; j++){
+         if (jsondata[j]["id"]==id){
+             urenperdag.datum = jsondata[j]["datum"]
+         }
+    }
     urenperdag.opdracht = document.getElementById("opdracht" + id).value;
     urenperdag.overwerk = document.getElementById("overwerk" + id).value;
     urenperdag.verlof = document.getElementById("verlof" + id).value;
@@ -172,12 +179,12 @@ function puturen(id){
     urenperdag.overig = document.getElementById("overig" + id).value;
     urenperdag.verklaringOverig = document.getElementById("verklaring" + id).value;
     urenperdag.id = id;
-    putUren(JSON.stringify(urenperdag));
+    putUren(id, JSON.stringify(urenperdag));
         
     }
 
-function putUren(data){
-    var api =  "api/urenperdag/";
+function putUren(id, data){
+    var api =  "api/urenperdag/dummy/" + id;
     var xhttp = new XMLHttpRequest();
     console.log(api);
     xhttp.onreadystatechange = function() {
@@ -191,8 +198,6 @@ function putUren(data){
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
     xhttp.open("PUT", "http://localhost:8082/"+api);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.setRequestHeader("Authorization", "Basic dXNlcm5hbWU6cGFzc3dvcmQ=");
-    xhttp.withCredentials = true;
     // send request om data te gaan putten
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send(data);
@@ -243,8 +248,6 @@ function postUren(data){
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
     xhttp.open("POST", "http://localhost:8082/"+api);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.setRequestHeader("Authorization", "Basic dXNlcm5hbWU6cGFzc3dvcmQ=");
-    xhttp.withCredentials = true;
     // send request om data te gaan putten
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send(data);
