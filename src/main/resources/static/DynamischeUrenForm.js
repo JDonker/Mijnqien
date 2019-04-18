@@ -159,8 +159,7 @@ function urenWegschrijven(){
  //   } else {
  //       getUren();
  //   }
-}
-onload(); 
+} 
 }
 
 function puturen(id){
