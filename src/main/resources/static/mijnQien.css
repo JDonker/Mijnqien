@@ -93,8 +93,8 @@ a:visited {
     padding: 8px;
   }
   
-  #Uren tr:nth-child(even){background-color: #f2f2f2;}
-  #Uren tr:nth-child(odd){background-color: #ddd;}
+/*  #Uren tr:nth-child(even){background-color: #f2f2f2;}
+  #Uren tr:nth-child(odd){background-color: #ddd;} */
   
   #Uren tr:hover {background-color: #aaa;}
   
@@ -199,6 +199,16 @@ td:nth-of-type(5):before { content: "Bewerk"; }
 }
 
 .input-field:focus {
+  border: 2px solid #9C4AF0;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.form-control:focus {
   border: 2px solid #9C4AF0;
 }
 
@@ -440,7 +450,7 @@ body {
   margin: 0;
   padding: 0;
   list-style: none;
-  //background: #640080;
+  /* background: #640080; */
   text-align: right;
 }
 
@@ -460,8 +470,8 @@ body {
 }
 
 #nav-ul #nav-li #nav-a:hover {
-  //color: #fff;
-  //background: #939393;
+  color: #fff;
+  background: #939393;
 }
 
 #nav-ul #nav-li #nav-ul.dropdown {
@@ -490,7 +500,7 @@ body {
 
 .icon-navbar{
   padding: 10px;
-  //background: #640080;
+  /* background: #640080; */
   color: white;
   min-width: 10px;
   text-align: center;
@@ -587,8 +597,26 @@ body {
   }
   
   .dropdown-content a:hover {background-color: #f1f1f1}
+
   
   #inputDeclaratieTabel {
     float: right;
     width: 100px;
+}
+
+#weekend{
+  background-color: darkviolet;
+  color: white;
+}
+
+#row:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+#row:nth-child(odd){
+  background-color: #ddd;
+}
+
+#vakantie{
+    background-color: orange;
 }

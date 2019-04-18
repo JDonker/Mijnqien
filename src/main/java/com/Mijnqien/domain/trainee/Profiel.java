@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Profiel {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	long id;
 	String foto;
 	String adres;

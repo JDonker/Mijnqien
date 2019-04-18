@@ -10,7 +10,7 @@ import javax.persistence.Id;
 @Entity
 public class Declaratie {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long Id;				// unieke identifier
 	
 	LocalDate datum;
