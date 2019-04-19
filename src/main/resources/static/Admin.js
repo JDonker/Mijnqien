@@ -1,6 +1,7 @@
 var input = 0;
 var trainee = 0;
 declaratieForms = [];
+urenForms = [];
 
 var maand = new Array();
 maand[0] = "januari";
@@ -34,7 +35,7 @@ $(document).ready(function () {
   $("#Urenformulier").click(function () {
     $(".Urenformulier, .Declaratieformulier").toggle(1000);
     $(this).text(function (i, v) {
-      return v === 'Ander overzicht' ? 'Formulieren overzicht' : 'Ander overzicht'
+      return v === 'Urenformulieren overzicht' ? 'Declaratieformulieren overzicht' : 'Urenformulieren overzicht'
     })
   });
 });
@@ -99,7 +100,153 @@ function onload() {
     // maak declaratieform tabel
     DeclaratieFormsWegschrijven();
   }
+  if (urenForms.length == 0) {
+    // declaratieforms nog niet opgehaald haal ze nu op
+    loadUrenForms();
+  } else {
+    // maak declaratieform tabel
+    UrenFormsWegschrijven();
+  }
+
   GrafiekData()
+}
+
+function loadUrenForms() {
+  var api = "api/urenform/";
+  var xhttp = new XMLHttpRequest();
+  console.log(api);
+
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      if (urenForms != this.responseText) {
+        urenForms = this.responseText;
+        console.log("nu hier");
+        onload();
+      }
+    }
+  }
+  xhttp.open("GET", "http://localhost:8082/" + api);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send();
+}
+
+
+function UrenFormsWegschrijven() {
+
+  var table = document.getElementById("UrenFormTableBody");
+  table.innerHTML = "";
+
+  jsondata = JSON.parse(urenForms);
+
+  for (var i = 0; i < jsondata.length; i++) {
+
+    var row = table.insertRow(-1);
+    for (var k = 1; k < 5; k++) {
+
+      var cellUrenForm = row.insertCell(-1);
+
+      switch (k) {
+        case 1:
+          cellUrenForm.innerHTML = jsondata[i]["naam"];
+          break;
+        case 2:
+          var UrenFormMaand = new Date(jsondata[i]["maand"]);
+          cellUrenForm.innerHTML = maand[UrenFormMaand.getMonth()];
+          break;
+        case 3:
+          cellUrenForm.innerHTML = "Urenformulier";
+          break;
+        case 4:
+          if (jsondata[i]["stat"] == "INAFWACHTING") {
+            cellUrenForm.innerHTML = "In Afwachting";
+          } else if (jsondata[i]["stat"] == "INGEDIEND") {
+            cellUrenForm.innerHTML = "Ingediend";
+          } else if (jsondata[i]["stat"] == "WIJZIGEN") {
+            cellUrenForm.innerHTML = "Wijzigen";
+          } else if (jsondata[i]["stat"] == "GOEDGEKEURD") {
+            cellUrenForm.innerHTML = "Goedgekeurd";
+          } else {
+            cellUrenForm.innerHTML = "foutje";
+          }
+
+          cellUrenForm.id = "status" + i;
+          break;
+        default:
+          break;
+      }
+
+    }
+    var cellUrenForm = row.insertCell(-1);
+    var dropdown2 = document.createElement("div");
+    dropdown2.className = "dropdown";
+    var btn2 = document.createElement("button");
+
+    btn2.className = "dropbtn";
+    btn2.innerHTML = "Bewerken";
+
+    myFunctionString2 = "myFunction(" + (i + 1) + ")";
+    btn2.setAttribute("onclick", myFunctionString2);
+
+    var dropdown_content2 = document.createElement("div");
+    dropdown_content2.className = "dropdown-content";
+    var dropdown_contentIdString2 = "dropdown-test" + (i + 1);
+    dropdown_content2.id = dropdown_contentIdString2;
+
+    var keuzeMakenString5 = "keuzeMaken(" + (i + 1) + ", 1)";
+    var keuzeMakenString6 = "keuzeMaken(" + (i + 1) + ", 2)";
+    var keuzeMakenString7 = "keuzeMaken(" + (i + 1) + ", 3)";
+    var keuzeMakenString8 = "keuzeMaken(" + (i + 1) + ", 4)";
+
+    var optie5 = document.createElement("a");
+    optie5.innerHTML = "In afwachting";
+    optie5.setAttribute("onclick", keuzeMakenString5);
+
+    var optie6 = document.createElement("a");
+    optie6.innerHTML = "Ingediend";
+    optie6.setAttribute("onclick", keuzeMakenString6);
+
+    var optie7 = document.createElement("a");
+    optie7.innerHTML = "Wijzigen";
+    optie7.setAttribute("onclick", keuzeMakenString7);
+
+    var optie8 = document.createElement("a");
+    optie8.innerHTML = "Goedgekeurd";
+    optie8.setAttribute("onclick", keuzeMakenString8);
+
+    dropdown_content2.appendChild(optie5);
+    dropdown_content2.appendChild(optie6);
+    dropdown_content2.appendChild(optie7);
+    dropdown_content2.appendChild(optie8);
+
+    btn2.appendChild(dropdown_content2);
+    dropdown2.appendChild(btn2);
+    cellUrenForm.appendChild(dropdown2);
+
+  }
+}
+
+function statusWijzigen2(id, statusWijziging) {
+  var urenFormNieuw = {};
+  urenFormNieuw.id = id;
+  urenFormNieuw.stat = statusWijziging;
+  console.log(urenFormNieuw);
+  putUrenForm(id, JSON.stringify(urenFormNieuw));
+
+}
+
+function putUrenForm(id, invoerString) {
+  var api = "api/urenform/verwerk/" + id;
+  console.log(api);
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    console.log(this.status)
+    if (this.readyState == 4 && this.status == 202) {
+      loadUrenForms();
+    }
+  }
+  xhttp.open("PUT", "http://localhost:8082/" + api);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.send(invoerString);
 }
 
 function loadDeclaratieForms() {
@@ -282,14 +429,11 @@ function putDeclaratieForm(id, invoerString) {
   xhttp.onreadystatechange = function () {
     console.log(this.status)
     if (this.readyState == 4 && this.status == 202) {
-      //           // laad alle declaratieforms weer opnieuw (ze worden naar de declaraties variable geschreven)
       loadDeclaratieForms();
     }
   }
   xhttp.open("PUT", "http://localhost:8082/" + api);
   xhttp.setRequestHeader("Content-type", "application/json");
-  // xhttp.withCredentials = true;
-  // xhttp.setRequestHeader('Authorization','Basic dXNlcm5hbWU6cGFzc3dvcmQ=');
   xhttp.send(invoerString);
 }
 

@@ -38,11 +38,11 @@
     </div>
 
     <div>
-        <button type="button" id="Urenformulier" class="buttonToggle button button1">Formulieren overzicht</button>
+        <button type="button" id="Urenformulier" class="buttonToggle button button1">Declaratieformulieren overzicht</button>
         <a href="#" id="testButton" class="button button1" onclick="fnExcelReport()">Download trainees overzicht</a>
     </div>
 
-    <div class="Urenformulier">
+    <div class="Declaratieformulier">
         <table id="Uren">
             <thead>
                 <tr>
@@ -61,47 +61,21 @@
         </table>
     </div>
 
-    <div class="Declaratieformulier">
+    <div class="Urenformulier">
         <table id="Uren">
             <thead>
                 <tr>
-                    <th>Naam</th>
-                    <th>Datum</th>
-                    <th>Type</th>
-                    <th>Status</th>
+                    <th>Naam
+                     <input type="text" id= "inputUrenTabel" placeholder="Zoek op naam"
+                onkeyup="doorzoekTabelUren()" align="right"</input>
+                    </th>
+                    <th  onclick="sortTable(1)">Maand</th>
+                    <th  onclick="sortTable(2)">Type</th>
+                    <th  onclick="sortTable(3)">Status</th>
                     <th>Bewerk</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Jan Koevoets</td>
-                    <td>21-03-2019</td>
-                    <td>Urenformulier</td>
-                    <td>Geaccordeerd door klant</td>
-                    <td><button type="button" id="demo" class="dropbtn button button1" onclick="Klik()">Bewerk</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Jan Koevoets</td>
-                    <td>21-04-2019</td>
-                    <td>Urenformulier</td>
-                    <td>Open</td>
-                    <td><button type="button" class="dropbtn button button1">Bewerk</button></td>
-                </tr>
-                <tr>
-                    <td>Jan Koevoets</td>
-                    <td>21-02-2019</td>
-                    <td>Urenformulier</td>
-                    <td>Gefactureerd</td>
-                    <td><button type="button" class="dropbtn button button1">Bewerk</button></td>
-                </tr>
-                <tr>
-                    <td>Peter van der Velde</td>
-                    <td>03-02-2019</td>
-                    <td>Declaratieformulier</td>
-                    <td>Uitbetaald</td>
-                    <td><button type="button" class="dropbtn button button1">Bewerk</button></td>
-                </tr>
+            <tbody id="UrenFormTableBody">
             </tbody>
         </table>
     </div>
