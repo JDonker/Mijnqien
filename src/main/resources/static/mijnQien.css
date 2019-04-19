@@ -598,6 +598,12 @@ body {
   
   .dropdown-content a:hover {background-color: #f1f1f1}
 
+  
+  #inputDeclaratieTabel {
+    float: right;
+    width: 100px;
+}
+
 #weekend{
   background-color: darkviolet;
   color: white;

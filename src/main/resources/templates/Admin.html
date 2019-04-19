@@ -25,7 +25,7 @@
 
 
     <div class="wrapper">
-        <h2>Totale urenoverzicht en ziekteverzuim overzicht</h2>
+        <h2>Urenoverzicht</h2>
 
         <canvas id="bar-chart" width="800" height="350"></canvas>
     </div>
@@ -38,7 +38,7 @@
     </div>
 
     <div>
-        <button type="button" id="Urenformulier" class="buttonToggle button button1" onclick="Test()">Uren</button>
+        <button type="button" id="Urenformulier" class="buttonToggle button button1">Formulieren overzicht</button>
         <a href="#" id="testButton" class="button button1" onclick="fnExcelReport()">Download trainees overzicht</a>
     </div>
 
@@ -46,10 +46,13 @@
         <table id="Uren">
             <thead>
                 <tr>
-                    <th>Naam</th>
-                    <th>Maand</th>
-                    <th>Type</th>
-                    <th>Status</th>
+                    <th>Naam
+                     <input type="text" id= "inputDeclaratieTabel" placeholder="Zoek op naam"
+                onkeyup="doorzoekTabelDeclaraties()" align="right"</input>
+                    </th>
+                    <th  onclick="sortTable(1)">Maand</th>
+                    <th  onclick="sortTable(2)">Type</th>
+                    <th  onclick="sortTable(3)">Status</th>
                     <th>Bewerk</th>
                 </tr>
             </thead>
