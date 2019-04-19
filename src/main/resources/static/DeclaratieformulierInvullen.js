@@ -540,3 +540,12 @@ function downloadDeclaratieKm() {
     }
 
 }
+
+function verzendDeclaratieformulier(){
+    var api = "api/DeclaratieForm/verzend/" + declaratieformid;
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+    xhttp.open("PUT", "http://localhost:8082/" + api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+}
