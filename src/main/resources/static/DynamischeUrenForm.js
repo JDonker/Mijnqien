@@ -97,7 +97,9 @@ function getUren(){
         if (this.readyState == 4 && this.status == 200){
 
                 var jsondata = JSON.parse(this.responseText);
-                console.log(jsondata);
+                if(jsondata.length == 0){
+                    location.reload();
+                }
 
                 if (jsondata.length < daysInMonth(dagenMaand)) {
                     jsondata = [];
@@ -112,7 +114,7 @@ function getUren(){
                         x.overig = 0;
                         x.overwerk= 0;
                         x.training= 0;
-                        x.verklaring= "";
+                        x.verklaringOverig= "";
                         x.verlof= 0;
                         x.ziek= 0;
 
@@ -140,7 +142,7 @@ function getUren(){
 function urenWegschrijven(){
     jsondata = JSON.parse(urenperdagen);
    // console.log(urenperdagen);
-    // console.log(jsondata);
+     console.log(jsondata);
 
         var table = document.getElementById("UrenTableBody");
         for (var i = 0; i < jsondata.length; i++) { //het getal 31 moet de lengte zijn van de database van de maand.
@@ -188,10 +190,6 @@ function urenWegschrijven(){
                 }
                 tabCell.appendChild(input1);
             } 
- //       }
- //   } else {
- //       getUren();
- //   }
 } 
 }
 
@@ -204,7 +202,7 @@ function feestdagalert(){
 }
 
 function puturen(id){
-    jsondata = JSON.parse(urenperdagen);
+
     var urenperdag = {};
      for(var j = 0; j < jsondata.length; j++){
          if (jsondata[j]["id"]==id){
@@ -233,13 +231,9 @@ function putUren(id, data){
             if (this.status == 202){
             }
         }
-    };
-    // geef aan dt je data wil gaan pakken uit de database
-    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+    }
     xhttp.open("PUT", "http://localhost:8082/"+api);
     xhttp.setRequestHeader("Content-type", "application/json");
-    // send request om data te gaan putten
-    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send(data);
 }
 
@@ -264,22 +258,18 @@ function posturen(){
 function postUren(data){
      var api =  "api/urenperdag/";
 
-    // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
-    // console.log(api);
-    // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+
     xhttp.onreadystatechange = function() {
         // console.log(this.status)
         if (this.readyState == 4 && this.status == 202) {
             console.log("goede status"); 
         }
     }
-    // geef aan dt je data wil gaan updaten in de database
-    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+
     xhttp.open("POST", "http://localhost:8082/"+api);
     xhttp.setRequestHeader("Content-type", "application/json");
-    // send request om data te gaan putten
-    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+
     xhttp.send(data);
 }
 
