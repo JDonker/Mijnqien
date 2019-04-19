@@ -42,7 +42,7 @@ var ufDatum = new Date();
 var dagenMaand;
 
 function daysInMonth(dagenMaand) {
-    console.log(dagenMaand);
+  //  console.log(dagenMaand);
     return new Date(dagenMaand.getFullYear(), 
                     dagenMaand.getMonth()+1, 
                     0).getDate();}
@@ -73,13 +73,13 @@ function urenDatum() {
         dagenMaand = new Date(month);
         console.log(ufDatum);
         var datumUrenForm = new Date(JSON.stringify(month));
-         console.log(datumUrenForm.getMonth());
-         console.log(datumUrenForm.getFullYear());
-         console.log(datumUrenForm.getDay());
+        //  console.log(datumUrenForm.getMonth());
+        //  console.log(datumUrenForm.getFullYear());
+        //  console.log(datumUrenForm.getDay());
  //       if (urenperdag.length != 0) {
           document.getElementById("titel").innerHTML = "Urenformulier " + maand[datumUrenForm.getMonth()] + " " + datumUrenForm.getFullYear();
           //console.log(document.getElementById("titel").innerHTML = "Urenformulier " + maand[datumMaand.getMonth()] + " " + datumJaar.getFullYear());
-          console.log(urenperdag[0].datum);
+        //   console.log(urenperdag[0].datum);
           //console.log(month) 
           //console.log(trainee[0]);
           //console.log(uren)
@@ -108,14 +108,14 @@ function onload(){
 function urenWegschrijven(){
     loadTitle();
     jsondata = JSON.parse(urenperdagen);
-    console.log(urenperdagen);
+   // console.log(urenperdagen);
     // console.log(jsondata);
 
         var table = document.getElementById("UrenTableBody");
         for (var i = 0; i < jsondata.length; i++) { //het getal 31 moet de lengte zijn van de database van de maand.
             var myDate = ufDatum;
             myDate.setDate(i + 1);
-            console.log(myDate);
+           // console.log(myDate);
             tr = table.insertRow(-1);
             // if(myDate.getDay() == 0 || myDate.getDay() == 6){
             //     tr.setAttribute("id", "weekend");
@@ -139,7 +139,7 @@ function urenWegschrijven(){
         //    tr.setAttribute("onfocusout","puturen(" + jsondata[i]["id"] + ")");
   //          tr.getElementById("weekend").setAttribute("onfocusout", alert("HELP"));
   //          document.getElementById("weekend").setAttribute("onfocusout", alert("Let op: je hebt nu uren ingevuld in het weekend!"));
-            console.log(jsondata[i].id);
+            //console.log(jsondata[i].id);
   //          tr.setAttribute("onfocusout", "puturen(" + jsondata[i]["id"] + ")");
             var tabCell = tr.insertCell(-1);
             tabCell.setAttribute("id", "datum" + jsondata[i]["id"]);
@@ -241,10 +241,10 @@ function postUren(data){
 
     // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
-    console.log(api);
+    // console.log(api);
     // als staat van het XMLHTTPRequest object verandert doe dan het volgende
     xhttp.onreadystatechange = function() {
-        console.log(this.status)
+        // console.log(this.status)
         if (this.readyState == 4 && this.status == 202) {
             console.log("goede status"); 
         }
@@ -273,10 +273,10 @@ function getUren(){
                 console.log(JSON.parse(this.responseText));
 
                 var jsondata = JSON.parse(this.responseText);
-                console.log(jsondata);
+              //  console.log(jsondata);
 
 
-                console.log(jsondata.length)
+              //  console.log(jsondata.length)
 
                 if (jsondata.length < daysInMonth(dagenMaand)) {
                     jsondata = [];
@@ -284,7 +284,7 @@ function getUren(){
                         
                         x = {};
                         ufDatum.setDate(i+1);
-                        console.log(ufDatum);
+                        // console.log(ufDatum);
                         x.datum = ufDatum;
                         x.urenformid = urenformid;
                         x.opdracht = 0
@@ -300,7 +300,7 @@ function getUren(){
 
                     }      
                     urenperdagen = JSON.stringify(jsondata);
-                    console.log(urenperdagen);
+                    // console.log(urenperdagen);
  
                 
                 } else if (urenperdagen!=this.responseText) {
