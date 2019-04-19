@@ -106,6 +106,7 @@ public class UrenFormAPI {
 	}
 
 	@POST
+	@Path("/newform")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response inDatabaseStoppen(UrenForm urenForm) {
@@ -132,6 +133,33 @@ public class UrenFormAPI {
 			return Response.status(Status.NOT_FOUND).build();
 		}
 		
+	}
+	
+	@PUT
+	@Path("/verwerk/{FormID}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public Response verwerkUrenForm(@PathParam("FormID") long FormID,UrenForm urenForm) {
+		// check of iemand admin is
+		
+		try {
+			UrenForm uForm= urenFormService.findById(urenForm.getId());
+//			if (decForm.getStatus()==Stat.INGEDIEND) {
+//				decForm.setStatus(Stat.GOEDGEKEURD);
+				ReadProperties.readConfig();
+				uForm.setStat(urenForm.getStat());
+				uForm = urenFormService.saveUrenForm(uForm);
+
+				emailserver.send("testqien@gmail.com","Urenformulier " + uForm.getNaam() + " "
+				+ uForm.getMaand().getMonth().toString() + " " + uForm.getMaand().getYear()
+				+ " gewijzigd","Deze heeft nu de status " + uForm.getStat() + ".");
+
+				return Response.status(Status.ACCEPTED).build();
+//			}
+//			return Response.status(Status.BAD_REQUEST).build();
+		} catch (UrenFormNotFoundException e) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
 	}
 	
 	@PUT
