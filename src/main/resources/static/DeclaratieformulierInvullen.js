@@ -279,7 +279,7 @@ function onload() {
 
 function loadDeclaraties(){
         // Dit is het adres waar de declaraties vandaan kunnen wordt opgevraagd
-        var api =  "api/DeclaratieForm/" + declaratieformid
+        var api =  "api/DeclaratieForm/"
         // maak een nieuw request volgens het http protecol
         var xhttp = new XMLHttpRequest();
         console.log(api);
@@ -306,7 +306,7 @@ function loadDeclaraties(){
 
 function loadReizen(){
     // server adres om reizen op te halen
-    var api =  "api/DeclaratieForm/Reis/" + declaratieformid
+    var api =  "api/DeclaratieForm/Reis/"
 
     // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();

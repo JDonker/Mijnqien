@@ -229,20 +229,10 @@ function postUren(data){
     // als staat van het XMLHTTPRequest object verandert doe dan het volgende
     xhttp.onreadystatechange = function() {
         console.log(this.status)
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                var jsondata = JSON.parse(this.responseText);
-                if (jsondata.length>0){
-
-                }
-                // haal de lijst met reizen opnieuw op uit de database
-            //    loadReizen()
-            } 
-            // else {
-            //     alert("Er gaat iets mis " + this.status )
-            // }
+        if (this.readyState == 4 && this.status == 202) {
+            console.log("goede status"); 
         }
-    };
+    }
     // geef aan dt je data wil gaan updaten in de database
     // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
     xhttp.open("POST", "http://localhost:8082/"+api);
@@ -315,14 +305,44 @@ function getUren(){
     xhttp.send();
 }
 
+var stat = 0;
+var id = 0;
+function statusWijzigen(id){
+  var urenFormNieuw = {};
+  urenFormNieuw.id = id;
+  switch(stat){
+      case 0:
+      urenFormNieuw.stat = 1;
+      break;
+      case 2:
+      urenFormNieuw.stat = 1;
+      break;
+      default:
+      console.log("een urenform met deze status hoort niet bij de trainee te zijn");
+      break;
+  }
+  console.log(urenFormNieuw);
+  verzendUrenForm(id, JSON.stringify(urenFormNieuw));
+  
+}
 
-function verzendUrenform(){
-    var api =  "api/urenperdag/" + urenformid;
+var invoerString = "";
+
+function verzendUrenForm(id, invoerString){
+    var api =  "api/urenform/verwerk/" + id;
     var xhttp = new XMLHttpRequest();
     console.log(api);
       xhttp.onreadystatechange = function() {
-        if (this.readyState == 4){}}
+          console.log(this.status);
+        if (this.readyState == 4 && this.status == 202){
+
+        }
+    }
+    xhttp.open("PUT", "http://localhost:8082/"+api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(invoerString);
 }
+
 
 
 //Html export naar .xls - Uren
