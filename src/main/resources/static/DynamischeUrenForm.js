@@ -42,7 +42,7 @@ var ufDatum = new Date();
 var dagenMaand;
 
 function daysInMonth(dagenMaand) {
-    console.log(dagenMaand);
+  //  console.log(dagenMaand);
     return new Date(dagenMaand.getFullYear(), 
                     dagenMaand.getMonth()+1, 
                     0).getDate();}
@@ -54,11 +54,6 @@ var cellnamen = ["datum", "opdracht", "overwerk", "verlof", "ziek", "training", 
 var idurenformulier="";
 
 var datumNu = new Date();
-
-function loadTitle(){
-    var title = document.getElementById("titel");
-    title.innerHTML = "Urenformulier " + maand[ufDatum.getMonth()] + " " + ufDatum.getFullYear();
-}
 
 //Urenformulier datum ophalen
 function urenDatum() {  
@@ -73,23 +68,10 @@ function urenDatum() {
         dagenMaand = new Date(month);
         console.log(ufDatum);
         var datumUrenForm = new Date(JSON.stringify(month));
-         console.log(datumUrenForm.getMonth());
-         console.log(datumUrenForm.getFullYear());
-         console.log(datumUrenForm.getDay());
- //       if (urenperdag.length != 0) {
           document.getElementById("titel").innerHTML = "Urenformulier " + maand[datumUrenForm.getMonth()] + " " + datumUrenForm.getFullYear();
-          //console.log(document.getElementById("titel").innerHTML = "Urenformulier " + maand[datumMaand.getMonth()] + " " + datumJaar.getFullYear());
-          console.log(urenperdag[0].datum);
-          //console.log(month) 
-          //console.log(trainee[0]);
-          //console.log(uren)
- //       }
- //       else { 
-   //       document.getElementById("titel").innerHTML = "Geen bestaande trainee";
-     //   }  
       }
     };
-    tn.open("GET", "http://localhost:8082/api/urenform/dummy/" + urenformid, true);
+    tn.open("GET", "http://localhost:8082/api/urenform/dummy/" + urenformid);
     tn.send();
   
   }
@@ -97,29 +79,78 @@ function urenDatum() {
 
 
 function onload(){
-    urenDatum();
     if(urenperdagen.length==0){
+        urenDatum();
         getUren();
     }else{
         urenWegschrijven();
     }
 }
 
+function getUren(){
+    var api =  "api/urenperdag";
+    // maak een nieuw request volgens het http protecol
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+    // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200){
+
+                var jsondata = JSON.parse(this.responseText);
+                if(jsondata.length == 0){
+                    location.reload();
+                }
+
+                if (jsondata.length < daysInMonth(dagenMaand)) {
+                    jsondata = [];
+                    for (var i = 0; i < daysInMonth(dagenMaand); i++) {
+                        
+                        x = {};
+                        ufDatum.setDate(i+1);
+                        // console.log(ufDatum);
+                        x.datum = ufDatum;
+                        x.urenformid = urenformid;
+                        x.opdracht = 0;
+                        x.overig = 0;
+                        x.overwerk= 0;
+                        x.training= 0;
+                        x.verklaringOverig= "";
+                        x.verlof= 0;
+                        x.ziek= 0;
+
+                        jsondata[i] = x;
+                        postUren(JSON.stringify(x));
+
+                    }      
+                    urenperdagen = JSON.stringify(jsondata);
+                    // console.log(urenperdagen);
+ 
+                
+                } else if (urenperdagen!=this.responseText) {
+                    urenperdagen = this.responseText;
+                }
+                onload();
+        }
+            
+        } 
+
+    xhttp.open("GET", "http://localhost:8082/"+api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+}
+
 function urenWegschrijven(){
-    loadTitle();
     jsondata = JSON.parse(urenperdagen);
-    console.log(urenperdagen);
-    // console.log(jsondata);
+   // console.log(urenperdagen);
+     console.log(jsondata);
 
         var table = document.getElementById("UrenTableBody");
         for (var i = 0; i < jsondata.length; i++) { //het getal 31 moet de lengte zijn van de database van de maand.
             var myDate = ufDatum;
             myDate.setDate(i + 1);
-            console.log(myDate);
+           // console.log(myDate);
             tr = table.insertRow(-1);
-            // if(myDate.getDay() == 0 || myDate.getDay() == 6){
-            //     tr.setAttribute("id", "weekend");
-            // }
+
             if((myDate.getMonth() == 0 && myDate.getDate() == 1) || 
                  (myDate.getMonth() == 3 && (myDate.getDate() == 21 || myDate.getDate() == 22 || myDate.getDate() == 27)) ||
                  (myDate.getMonth() == 4 && myDate.getDate() == 30) ||
@@ -136,11 +167,7 @@ function urenWegschrijven(){
                 tr.setAttribute("id", "row");
                  tr.setAttribute("onfocusout","puturen(" + jsondata[i]["id"] + ")");
             }
-        //    tr.setAttribute("onfocusout","puturen(" + jsondata[i]["id"] + ")");
-  //          tr.getElementById("weekend").setAttribute("onfocusout", alert("HELP"));
-  //          document.getElementById("weekend").setAttribute("onfocusout", alert("Let op: je hebt nu uren ingevuld in het weekend!"));
-            console.log(jsondata[i].id);
-  //          tr.setAttribute("onfocusout", "puturen(" + jsondata[i]["id"] + ")");
+
             var tabCell = tr.insertCell(-1);
             tabCell.setAttribute("id", "datum" + jsondata[i]["id"]);
             var textfield = document.createElement("div");
@@ -163,10 +190,6 @@ function urenWegschrijven(){
                 }
                 tabCell.appendChild(input1);
             } 
- //       }
- //   } else {
- //       getUren();
- //   }
 } 
 }
 
@@ -179,7 +202,7 @@ function feestdagalert(){
 }
 
 function puturen(id){
-    jsondata = JSON.parse(urenperdagen);
+
     var urenperdag = {};
      for(var j = 0; j < jsondata.length; j++){
          if (jsondata[j]["id"]==id){
@@ -208,13 +231,9 @@ function putUren(id, data){
             if (this.status == 202){
             }
         }
-    };
-    // geef aan dt je data wil gaan pakken uit de database
-    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+    }
     xhttp.open("PUT", "http://localhost:8082/"+api);
     xhttp.setRequestHeader("Content-type", "application/json");
-    // send request om data te gaan putten
-    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
     xhttp.send(data);
 }
 
@@ -239,87 +258,24 @@ function posturen(){
 function postUren(data){
      var api =  "api/urenperdag/";
 
-    // maak een nieuw request volgens het http protecol
     var xhttp = new XMLHttpRequest();
-    console.log(api);
-    // als staat van het XMLHTTPRequest object verandert doe dan het volgende
+
     xhttp.onreadystatechange = function() {
-        console.log(this.status)
+        // console.log(this.status)
         if (this.readyState == 4 && this.status == 202) {
             console.log("goede status"); 
         }
     }
-    // geef aan dt je data wil gaan updaten in de database
-    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
+
     xhttp.open("POST", "http://localhost:8082/"+api);
     xhttp.setRequestHeader("Content-type", "application/json");
-    // send request om data te gaan putten
-    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+
     xhttp.send(data);
 }
 
 
 
-function getUren(){
-    var api =  "api/urenperdag";
-    // maak een nieuw request volgens het http protecol
-    var xhttp = new XMLHttpRequest();
-    console.log(api);
-    // als staat van het XMLHTTPRequest object verandert doe dan het volgende
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4){
-            if (this.status == 200){
 
-                console.log(JSON.parse(this.responseText));
-
-                var jsondata = JSON.parse(this.responseText);
-                console.log(jsondata);
-
-
-                console.log(jsondata.length)
-
-                if (jsondata.length < daysInMonth(dagenMaand)) {
-                    jsondata = [];
-                    for (var i = 0; i < daysInMonth(dagenMaand); i++) {
-                        
-                        x = {};
-                        ufDatum.setDate(i+1);
-                        console.log(ufDatum);
-                        x.datum = ufDatum;
-                        x.urenformid = urenformid;
-                        x.opdracht = 0
-                        x.overig = 0
-                        x.overwerk= 0
-                        x.training= 0
-                        x.verklaring= ""
-                        x.verlof= 
-                        x.ziek= 0
-
-                        jsondata[i] = x;
-                        postUren(JSON.stringify(x));
-
-                    }      
-                    urenperdagen = JSON.stringify(jsondata);
-                    console.log(urenperdagen);
- 
-                
-                } else if (urenperdagen!=this.responseText) {
-                    urenperdagen = this.responseText;
-                }
-                onload();
-            }
-        }
-            
-        } 
-    // geef aan dt je data wil gaan pakken uit de database
-    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
-    xhttp.open("GET", "http://localhost:8082/"+api);
-    // xhttp.setRequestHeader("Authorization", "Basic dXNlcm5hbWU6cGFzc3dvcmQ=");
-    // xhttp.withCredentials = true;
-    // send request om data te gaan getten body wordt genegeerd
-    // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
-    xhttp.send();
-}
 
 var stat = 0;
 var id = 0;

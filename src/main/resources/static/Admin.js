@@ -120,7 +120,7 @@ function loadDeclaratieForms() {
         onload();
       }
     }
-  };
+  }
   // geef aan dt je data wil gaan pakken uit de database
   // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/open
   xhttp.open("GET", "http://localhost:8082/" + api);
