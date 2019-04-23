@@ -157,11 +157,11 @@ function urenWegschrijven(){
                  (myDate.getMonth() == 5 && (myDate.getDate() == 9 || myDate.getDate() == 10)) ||
                  (myDate.getMonth() == 11 && (myDate.getDate() == 25 || myDate.getDate() == 26))){
                      tr.setAttribute("id", "vakantie");
-                     tr.setAttribute("onfocusout", "feestdagalert()");
+                     tr.setAttribute("onfocusout", "feestdagalert(" + jsondata[i]["id"] + ")");
                 }
                 else if(myDate.getDay() == 0 || myDate.getDay() == 6){
                 tr.setAttribute("id", "weekend");
-                tr.setAttribute("onfocusout", "weekendalert()");
+                tr.setAttribute("onfocusout", "weekendalert(" + jsondata[i]["id"] + ")");
             } 
             else{
                 tr.setAttribute("id", "row");
@@ -193,12 +193,14 @@ function urenWegschrijven(){
 } 
 }
 
-function weekendalert(){
+function weekendalert(id){
     alert("Let op: je vult nu uren in op een dag in het weekend!");
+    puturen(id);
 }
 
-function feestdagalert(){
+function feestdagalert(id){
     alert("Let op: je vult nu uren in op een feestdag!");
+    puturen(id);
 }
 
 function puturen(id){
