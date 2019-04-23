@@ -82,29 +82,7 @@ a:visited {
     background-color: rgb(216, 224, 217);
     color: white;
   }
-  .adminTabellen {
 
-    border-collapse: collapse;
-    width: 100%;
-  }
-  
-  .adminTabellen th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-/*  #Uren tr:nth-child(even){background-color: #f2f2f2;}
-  #Uren tr:nth-child(odd){background-color: #ddd;} */
-  
-  .adminTabellen tr:hover {background-color: #aaa;}
-  
-  .adminTabellen th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #640080;
-    color: white;
-  }
   @media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
@@ -352,7 +330,9 @@ only screen and (max-width: 760px),
   background-size: 100%;
 }
 
-  @media 
+
+
+@media 
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
 
@@ -361,15 +341,27 @@ only screen and (max-width: 760px),
 		display: block; 
 	}
 
-td:nth-of-type(1):before { content: "Datum"; }
-td:nth-of-type(2):before { content: "Opdracht"; }
-td:nth-of-type(3):before { content: "Overwerk"; }
-td:nth-of-type(4):before { content: "Verlof"; }
-td:nth-of-type(5):before { content: "Ziek"; }
-td:nth-of-type(6):before { content: "Training"; }
-td:nth-of-type(7):before { content: "Overig"; }
-td:nth-of-type(8):before { content: "Verklaring"; }
+  #Uren td:nth-of-type(1):before { content: "Naam"; }
+  #Uren td:nth-of-type(2):before { content: "Maand"; }
+  #Uren td:nth-of-type(3):before { content: "Type"; }
+  #Uren td:nth-of-type(4):before { content: "Status"; }
+  #Uren td:nth-of-type(5):before { content: "Bewerk"; }
+
+  #Declaraties td:nth-of-type(1):before { content: "Naam"; }
+  #Declaraties td:nth-of-type(2):before { content: "Maand"; }
+  #Declaraties td:nth-of-type(3):before { content: "Type"; }
+  #Declaraties td:nth-of-type(4):before { content: "Status"; }
+  #Declaraties td:nth-of-type(5):before { content: "Bewerk"; }
+
+#testTabel td:nth-of-type(1):before { content: "Id"; }
+#testTabel td:nth-of-type(2):before { content: "Personeelsnummer"; }
+#testTabel td:nth-of-type(3):before { content: "Achternaam"; }
+#testTabel td:nth-of-type(4):before { content: "Voornaam"; }
+
+
 }
+
+
 
 #trainee2 {
 
@@ -530,7 +522,7 @@ body {
 
   #myInput{
     float: right;
-    width: 100px;
+    width: 130px;
   }
 
   
@@ -651,6 +643,46 @@ body {
 .adminTabellen tr:nth-child(even){background-color: #f2f2f2;}
 .adminTabellen tr:nth-child(odd){background-color: #ddd;}
 
+
+.adminTabellen {
+
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.adminTabellen th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.adminTabellen tr:hover {background-color: #aaa;}
+
+.adminTabellen th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #640080;
+  color: white;
+}
+
+
+  .myInput{
+    display: block;
+  }
+
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px) {
+  .myInput{
+    display: block;
+    float: left;
+  }
+}
+
+
+/*  #Uren tr:nth-child(even){background-color: #f2f2f2;}
+  #Uren tr:nth-child(odd){background-color: #ddd;} */
+
 .Urenformulierclass {
 
     border-collapse: collapse;
@@ -662,8 +694,6 @@ body {
     padding: 8px;
   }
   
-/*  #Uren tr:nth-child(even){background-color: #f2f2f2;}
-  #Uren tr:nth-child(odd){background-color: #ddd;} */
   
   .Urenformulierclass tr:hover {background-color: #aaa;}
   
@@ -677,4 +707,5 @@ body {
 
   .Urenformulierclass tr:nth-child(even){background-color: #f2f2f2;}
 .Urenformulierclass tr:nth-child(odd){background-color: #ddd;}
+
 

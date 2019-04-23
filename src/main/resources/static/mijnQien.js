@@ -87,9 +87,9 @@ function autoTableHeader() {
   var tableHeader = document.createElement("thead");
   var tr = addHtmlElement(tableHeader, document.createElement("tr"));
   addHtmlElementContent(tr, document.createElement("th"), "Id");
-  addHtmlElementContent(tr, document.createElement("th"), "Achternaam").appendChild(zoekVeld);
+  //addHtmlElementContent(tr, document.createElement("th"), "Achternaam").appendChild(zoekVeld);
   addHtmlElementContent(tr, document.createElement("th"), "Personeelsnummer");
-  addHtmlElementContent(tr, document.createElement("th"), "Tussenvoegsel");
+  addHtmlElementContent(tr, document.createElement("th"), "Achternaam").appendChild(zoekVeld);
   addHtmlElementContent(tr, document.createElement("th"), "Voornaam");
   return tableHeader;
 }
@@ -99,9 +99,9 @@ function autoTableHeader() {
 function autoTableRow(auto) {
   var tr = document.createElement("tr");
   addHtmlElementContent(tr, document.createElement("td"), auto.id);
-  addHtmlElementContent(tr, document.createElement("td"), auto.achternaam);
+  //addHtmlElementContent(tr, document.createElement("td"), auto.achternaam);
   addHtmlElementContent(tr, document.createElement("td"), auto.personeelsnummer);
-  addHtmlElementContent(tr, document.createElement("td"), auto.tussenvoegsel);
+  addHtmlElementContent(tr, document.createElement("td"), auto.tussenvoegsel + " " + auto.achternaam);
   addHtmlElementContent(tr, document.createElement("td"), auto.voornaam);
 
   return tr;
@@ -194,7 +194,7 @@ function doorzoekTabel() {
   table = document.getElementById("testTabel");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
+    td = tr[i].getElementsByTagName("td")[2];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -205,3 +205,23 @@ function doorzoekTabel() {
     }       
   }
 }
+
+// //Tabel td doorzoeken op de th van locatie voornaam[1]
+// function doorzoekTabel2() {
+//   var input, filter, table, tr, td, i, txtValue;
+//   input = document.getElementById("myInput2");
+//   filter = input.value.toUpperCase();
+//   table = document.getElementById("testTabel");
+//   tr = table.getElementsByTagName("tr");
+//   for (i = 0; i < tr.length; i++) {
+//     td = tr[i].getElementsByTagName("td")[2];
+//     if (td) {
+//       txtValue = td.textContent || td.innerText;
+//       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+//         tr[i].style.display = "";
+//       } else {
+//         tr[i].style.display = "none";
+//       }
+//     }       
+//   }
+// }
