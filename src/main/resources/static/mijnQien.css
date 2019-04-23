@@ -675,3 +675,6 @@ body {
     color: white;
   }
 
+  .Urenformulierclass tr:nth-child(even){background-color: #f2f2f2;}
+.Urenformulierclass tr:nth-child(odd){background-color: #ddd;}
+
