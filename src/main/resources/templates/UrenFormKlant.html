@@ -3,7 +3,7 @@
     <title>DynamischeUrenForm</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="mijnQien.css" />
-<script src = "DynamischeUrenForm.js"></script>
+<script src = "UrenFormKlant.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 </head>
@@ -17,7 +17,7 @@
     <h1 id = "titel"></h1>
     <div>
     <div class ="Urenformulier">
-        <table id="Uren" class = "Urenformulierclass" align="center">
+        <table id="Uren" align="center">
             <thead>
                 <tr>
                     <th>Datum</th>
@@ -35,7 +35,8 @@
         </table>
     </div>
         <a href="#" id="downloadUren" class="button button1 voorbeeldknop" onclick="downloadUren()">Download formulier</a>
-        <button onclick="statusWijzigen(1)" id="testButton" class="button button1 voorbeeldknop" >Uren verzenden</button>
+        <button onclick="urenformulierGoedkeuren()" id="testButton" class="button button1 voorbeeldknop" >Urenformulier goedkeuren</button>
+        <button onclick="urenformulierAfkeuren()" id="testButton" class="button button1 voorbeeldknop" >Urenformulier afkeuren</button>
     </div>
     
 </body>
