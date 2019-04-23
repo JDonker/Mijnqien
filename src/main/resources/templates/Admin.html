@@ -30,15 +30,20 @@
         <canvas id="bar-chart" width="800" height="350"></canvas>
     </div>
 
+
+    <!-- <div>
+        <div class="myInput"><input type="text" placeholder="Zoek op achternaam" id="myInput2" onkeyup="doorzoekTabel2()"> </input></div>
+    </div> -->
+    <br>
+    <br>
     <div id="trainee2" class="Trainee2">
-
         <button type="button" class="button button1" onclick="showTrainees()">Trainees overzicht</button>
-
         <div id="traineeTabel"></div>
     </div>
 
     <div>
-        <button type="button" id="Urenformulier" class="buttonToggle button button1">Declaratieformulieren overzicht</button>
+        <button type="button" id="Urenformulier" class="buttonToggle button button1">Declaratieformulieren
+            overzicht</button>
         <a href="#" id="testButton" class="button button1" onclick="fnExcelReport()">Download trainees overzicht</a>
     </div>
 
@@ -47,12 +52,11 @@
             <thead>
                 <tr>
                     <th>Naam
-                     <input type="text" id= "inputDeclaratieTabel" placeholder="Zoek op naam"
-                onkeyup="doorzoekTabelDeclaraties()" align="right"</input>
-                    </th>
-                    <th  onclick="sortTableDeclaraties(1)">Maand</th>
-                    <th  onclick="sortTableDeclaraties(2)">Type</th>
-                    <th  onclick="sortTableDeclaraties(3)">Status</th>
+                        <input type="text" id="inputDeclaratieTabel" placeholder="Zoek op naam"
+                            onkeyup="doorzoekTabelDeclaraties()" align="right" </input> </th> <th
+                            onclick="sortTableDeclaraties(1)">Maand</th>
+                    <th onclick="sortTableDeclaraties(2)">Type</th>
+                    <th onclick="sortTableDeclaraties(3)">Status</th>
                     <th>Bewerk</th>
                 </tr>
             </thead>
@@ -66,12 +70,10 @@
             <thead>
                 <tr>
                     <th>Naam
-                     <input type="text" id= "inputUrenTabel" placeholder="Zoek op naam"
-                onkeyup="doorzoekTabelUren()" align="right"</input>
-                    </th>
-                    <th  onclick="sortTableUren(1)">Maand</th>
-                    <th  onclick="sortTableUren(2)">Type</th>
-                    <th  onclick="sortTableUren(3)">Status</th>
+                        <input type="text" id="inputUrenTabel" placeholder="Zoek op naam" onkeyup="doorzoekTabelUren()"
+                            align="right" </input> </th> <th onclick="sortTableUren(1)">Maand</th>
+                    <th onclick="sortTableUren(2)">Type</th>
+                    <th onclick="sortTableUren(3)">Status</th>
                     <th>Bewerk</th>
                 </tr>
             </thead>
