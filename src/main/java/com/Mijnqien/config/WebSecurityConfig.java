@@ -31,8 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		users.put("developer", encoder().encode("developer") + ",ROLE_DEVELOPER,enabled");
 		users.put("trainee", encoder().encode("trainee") + ",ROLE_TRAINEE,enabled");
 		users.put("admin", encoder().encode("admin") + ",ROLE_ADMIN,enabled");
-		users.put("klant", encoder().encode("klant") + ",ROLE_KLANT,enabled");// adding for default jedimaster
-																						// account
+		users.put("klant", encoder().encode("klant") + ",ROLE_KLANT,enabled");
+		
 		return new InMemoryUserDetailsManager(users);
 	}
 	
