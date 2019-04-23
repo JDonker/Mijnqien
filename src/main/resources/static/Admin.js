@@ -1,4 +1,5 @@
 var input = 0;
+var input2 = 0;
 var trainee = 0;
 declaratieForms = [];
 urenForms = [];
@@ -178,24 +179,24 @@ function UrenFormsWegschrijven() {
     }
     var cellUrenForm = row.insertCell(-1);
     var dropdown2 = document.createElement("div");
-    dropdown2.className = "dropdown";
+    dropdown2.className = "dropdown2";
     var btn2 = document.createElement("button");
 
     btn2.className = "dropbtn";
     btn2.innerHTML = "Bewerken";
 
-    myFunctionString2 = "myFunction(" + (i + 1) + ")";
+    myFunctionString2 = "myFunction2(" + (i + 1) + ")";
     btn2.setAttribute("onclick", myFunctionString2);
 
     var dropdown_content2 = document.createElement("div");
-    dropdown_content2.className = "dropdown-content";
-    var dropdown_contentIdString2 = "dropdown-test" + (i + 1);
+    dropdown_content2.className = "dropdown-content2";
+    var dropdown_contentIdString2 = "dropdown-test2" + (i + 1);
     dropdown_content2.id = dropdown_contentIdString2;
 
-    var keuzeMakenString5 = "keuzeMaken(" + (i + 1) + ", 1)";
-    var keuzeMakenString6 = "keuzeMaken(" + (i + 1) + ", 2)";
-    var keuzeMakenString7 = "keuzeMaken(" + (i + 1) + ", 3)";
-    var keuzeMakenString8 = "keuzeMaken(" + (i + 1) + ", 4)";
+    var keuzeMakenString5 = "keuzeMaken2(" + (i + 1) + ", 1)";
+    var keuzeMakenString6 = "keuzeMaken2(" + (i + 1) + ", 2)";
+    var keuzeMakenString7 = "keuzeMaken2(" + (i + 1) + ", 3)";
+    var keuzeMakenString8 = "keuzeMaken2(" + (i + 1) + ", 4)";
 
     var optie5 = document.createElement("a");
     optie5.innerHTML = "In afwachting";
@@ -387,6 +388,16 @@ function myFunction(input2) {
   }
 }
 
+function myFunction2(input2) {
+  var deId2 = "dropdown-test2" + input2.toString(10);
+  var x = document.getElementById(deId2);
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
 var inputId = 0;
 var inputKeuze = 0;
 function keuzeMaken(inputId, inputKeuze) {
@@ -410,6 +421,26 @@ function keuzeMaken(inputId, inputKeuze) {
   }
 }
 
+function keuzeMaken2(inputId, inputKeuze) {
+  var statusIdString = "status" + inputId;
+  console.log(statusIdString);
+  switch (inputKeuze) {
+    case 1:
+    statusWijzigen2(inputId, 0);
+    break;
+    case 2:
+    statusWijzigen2(inputId, 1);
+    break;
+    case 3:
+    statusWijzigen2(inputId, 2);
+    break;
+    case 4:
+    statusWijzigen2(inputId, 3);
+    break;
+
+
+  }
+}
 
 var statusWijziging = 0;
 var id = 0;
