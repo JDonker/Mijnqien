@@ -1,4 +1,4 @@
-var urenformid = 1;
+var urenformid = 3;
 
 var maand = new Array();
 maand[0] = "januari";
@@ -182,6 +182,7 @@ function urenWegschrijven(){
                 var tabCell = tr.insertCell(-1);
                 var input1 = document.createElement("input");
                 input1.setAttribute("type", "text");
+                input1.setAttribute("disabled", "disabled");
                 input1.setAttribute("id", cellnamen[j + 1] + jsondata[i]["id"]);
                 input1.value=jsondata[i][cellnamen[j + 1]];
                              jsondata[i][cellnamen[j + 1]]
@@ -350,4 +351,27 @@ function downloadUren() {
     $('#downloadUren').attr('download', 'Test file.xls');
   }
 
+}
+
+
+function urenformulierGoedkeuren(){
+    var api = "api/urenform/goedkeur/" + urenformid;
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+    xhttp.open("PUT", "http://localhost:8082/" + api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    alert("Het urenformulier is goedgekeurd.");
+    window.location.href = 'klantinlog';
+}
+
+function urenformulierAfkeuren(){
+    var api = "api/urenform/afkeur/" + urenformid;
+    var xhttp = new XMLHttpRequest();
+    console.log(api);
+    xhttp.open("PUT", "http://localhost:8082/" + api);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    alert("Het urenformulier is afgekeurd.");
+    window.location.href = 'klantinlog';
 }
