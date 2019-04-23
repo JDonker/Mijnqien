@@ -101,43 +101,46 @@ function loadUrenForms() {
       btn2.className = "dropbtn";
       btn2.innerHTML = "Goedkeuren";
   
-      myFunctionString2 = "myFunction(" + (i + 1) + ")";
-      btn2.setAttribute("onclick", myFunctionString2);
+      myFunctionString2 = "myFunction()";
+      btn2.setAttribute("onclick", "window.location.href = 'UrenFormKlant'");
+
   
-      var dropdown_content2 = document.createElement("div");
-      dropdown_content2.className = "dropdown-content";
-      var dropdown_contentIdString2 = "dropdown-test" + (i + 1);
-      dropdown_content2.id = dropdown_contentIdString2;
+    //   var dropdown_content2 = document.createElement("div");
+    //   dropdown_content2.className = "dropdown-content";
+    //   var dropdown_contentIdString2 = "dropdown-test" + (i + 1);
+    //   dropdown_content2.id = dropdown_contentIdString2;
   
-      var keuzeMakenString5 = "keuzeMaken(" + (i + 1) + ", 1)";
-      var keuzeMakenString6 = "keuzeMaken(" + (i + 1) + ", 2)";
-      var keuzeMakenString7 = "keuzeMaken(" + (i + 1) + ", 3)";
-      var keuzeMakenString8 = "keuzeMaken(" + (i + 1) + ", 4)";
+    //   var keuzeMakenString5 = "keuzeMaken(" + (i + 1) + ", 1)";
+    //   var keuzeMakenString6 = "keuzeMaken(" + (i + 1) + ", 2)";
+    //   var keuzeMakenString7 = "keuzeMaken(" + (i + 1) + ", 3)";
+    //   var keuzeMakenString8 = "keuzeMaken(" + (i + 1) + ", 4)";
   
-      var optie5 = document.createElement("a");
-      optie5.innerHTML = "In afwachting";
-      optie5.setAttribute("onclick", keuzeMakenString5);
+    //   var optie5 = document.createElement("a");
+    //   optie5.innerHTML = "In afwachting";
+    //   optie5.setAttribute("onclick", keuzeMakenString5);
   
-      var optie6 = document.createElement("a");
-      optie6.innerHTML = "Ingediend";
-      optie6.setAttribute("onclick", keuzeMakenString6);
+    //   var optie6 = document.createElement("a");
+    //   optie6.innerHTML = "Ingediend";
+    //   optie6.setAttribute("onclick", keuzeMakenString6);
   
-      var optie7 = document.createElement("a");
-      optie7.innerHTML = "Wijzigen";
-      optie7.setAttribute("onclick", keuzeMakenString7);
+    //   var optie7 = document.createElement("a");
+    //   optie7.innerHTML = "Wijzigen";
+    //   optie7.setAttribute("onclick", keuzeMakenString7);
   
-      var optie8 = document.createElement("a");
-      optie8.innerHTML = "Goedgekeurd";
-      optie8.setAttribute("onclick", keuzeMakenString8);
+    //   var optie8 = document.createElement("a");
+    //   optie8.innerHTML = "Goedgekeurd";
+    //   optie8.setAttribute("onclick", keuzeMakenString8);
   
-      dropdown_content2.appendChild(optie5);
-      dropdown_content2.appendChild(optie6);
-      dropdown_content2.appendChild(optie7);
-      dropdown_content2.appendChild(optie8);
+    //   dropdown_content2.appendChild(optie5);
+    //   dropdown_content2.appendChild(optie6);
+    //   dropdown_content2.appendChild(optie7);
+    //   dropdown_content2.appendChild(optie8);
   
-      btn2.appendChild(dropdown_content2);
-      dropdown2.appendChild(btn2);
-      cellUrenForm.appendChild(dropdown2);
+    //   btn2.appendChild(dropdown_content2);
+    //   dropdown2.appendChild(btn2);
+    //   cellUrenForm.appendChild(dropdown2);
+
+    cellUrenForm.appendChild(btn2);
   
     }
   }

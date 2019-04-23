@@ -177,6 +177,7 @@ function UrenFormsWegschrijven() {
       }
 
     }
+    
     var cellUrenForm = row.insertCell(-1);
     var dropdown2 = document.createElement("div");
     dropdown2.className = "dropdown2";

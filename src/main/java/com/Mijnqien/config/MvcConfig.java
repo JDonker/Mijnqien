@@ -22,5 +22,6 @@ public class MvcConfig implements WebMvcConfigurer {
 		registry.addViewController("/UrenformulierInvullen").setViewName("UrenformulierInvullen");
 		registry.addViewController("/wwvergeten").setViewName("wwvergeten");
 		registry.addViewController("/wwverz").setViewName("wwverz");
+		registry.addViewController("/UrenFormKlant").setViewName("UrenFormKlant");
 	}
 }
