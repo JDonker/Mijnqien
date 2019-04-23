@@ -581,6 +581,7 @@ function sortTableUren(n) {
   }
 }
 
+
 //Declaratietabel td(cellen) doorzoeken op de th(header) van locatie naam[0]
 function doorzoekTabelDeclaraties() {
 
@@ -648,12 +649,19 @@ function GrafiekData() {
         {
           label: "Totaal in uren",
           backgroundColor: ["#3cba9f", "#3cba9f","#3cba9f"],
-          data: [400,number, 260]
+          data: [300,number, 160]
         }
       ]
     },
     options: {
       legend: { display: false },
+      scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    },
       title: {
         display: true,
         text: 'Overzicht in uren'
