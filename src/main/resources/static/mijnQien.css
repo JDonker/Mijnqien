@@ -650,3 +650,28 @@ body {
 
 .adminTabellen tr:nth-child(even){background-color: #f2f2f2;}
 .adminTabellen tr:nth-child(odd){background-color: #ddd;}
+
+.Urenformulierclass {
+
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .Urenformulierclass th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+/*  #Uren tr:nth-child(even){background-color: #f2f2f2;}
+  #Uren tr:nth-child(odd){background-color: #ddd;} */
+  
+  .Urenformulierclass tr:hover {background-color: #aaa;}
+  
+  .Urenformulierclass th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #640080;
+    color: white;
+  }
+
