@@ -82,13 +82,13 @@ a:visited {
     background-color: rgb(216, 224, 217);
     color: white;
   }
-  #Uren {
+  .adminTabellen {
 
     border-collapse: collapse;
     width: 100%;
   }
   
-  #Uren th {
+  .adminTabellen th {
     border: 1px solid #ddd;
     padding: 8px;
   }
@@ -96,9 +96,9 @@ a:visited {
 /*  #Uren tr:nth-child(even){background-color: #f2f2f2;}
   #Uren tr:nth-child(odd){background-color: #ddd;} */
   
-  #Uren tr:hover {background-color: #aaa;}
+  .adminTabellen tr:hover {background-color: #aaa;}
   
-  #Uren th {
+  .adminTabellen th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -624,6 +624,11 @@ body {
   #inputDeclaratieTabel {
     float: right;
     width: 100px;
+}
+
+#inputUrenTabel{
+  float: right;
+  width: 100px;
 }
 
 #weekend{
