@@ -6,18 +6,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="mijnQien.css" />
 
-    <script>
-        function logout() {
-    localStorage.clear();
-    location.href = "logout";
-}
-</script>
+    <script src="klantinlog.js"></script>
 
 </head>
 <div id="topdiv"><img src="logo.svg" style="height: auto; width: 50px; cursor: pointer;" onclick="window.location.href = 'klantinlog';">
 
 
-<body>
+<body onload="onload()">
     <h1>          mijnQien</h1>
 <br>
 <br>
@@ -28,6 +23,25 @@
         <button class="button button1" onclick="window.location.href = '#';">Urenformulieren goedkeuren</button><br><br>
         <button class="button button1" onclick="logout()">logOut</button>
         
+    </div>
+
+    <div class="Urenformulier">
+        <table id="Uren">
+            <thead>
+                <tr>
+                    <th>Naam
+                     <input type="text" id= "inputUrenTabel" placeholder="Zoek op naam"
+                onkeyup="doorzoekTabelUren()" align="right"</input>
+                    </th>
+                    <th  onclick="sortTable(1)">Maand</th>
+                    <th  onclick="sortTable(2)">Type</th>
+                    <th  onclick="sortTable(3)">Status</th>
+                    <th>Bewerk</th>
+                </tr>
+            </thead>
+            <tbody id="UrenFormTableBody">
+            </tbody>
+        </table>
     </div>
         
 </body>
